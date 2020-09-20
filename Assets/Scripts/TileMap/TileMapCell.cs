@@ -61,6 +61,7 @@ public class TileMapCell : MonoBehaviour
         {
             shape.Destroy();
             shape = null;
+            ScoreTracker.Instance.IncreaseScore(1);
             // Debug.Log("Shape destroyed!");
         }
     }

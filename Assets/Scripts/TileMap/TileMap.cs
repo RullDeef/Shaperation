@@ -99,31 +99,12 @@ public class TileMap : MonoBehaviour
             {
                 ShapesProducer.Instance.FreeShape(shape);
                 CheckoutShapeTriggers();
-
-                if (AllOcupied()) ResetGame();
-                else CreateNextShapeSet();
-                
+                CreateNextShapeSet();
                 return true;
             }
             else return false;
         }
         else return false;
-    }
-
-    private void ResetGame()
-    {
-        foreach (TileMapCell cell in m_Cells)
-            cell.RemoveShape();
-        ShapesProducer.Instance.SpawnNewShapes();
-        ScoreTracker.Instance.ResetScore();
-    }
-
-    private bool AllOcupied()
-    {
-        foreach (TileMapCell cell in m_Cells)
-            if (cell.IsEmpty)
-                return false;
-        return true;
     }
 
     // ckecks all types of shapes interactions upon placing them on tile map
@@ -144,10 +125,7 @@ public class TileMap : MonoBehaviour
         if (context.WillExplode)
         {
             foreach (TileMapCell cell in m_Cells)
-            {
                 cell.RemoveShape();
-                ScoreTracker.Instance.IncreaseScore(1);
-            }
         }
         else
         {
