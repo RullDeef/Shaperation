@@ -91,7 +91,10 @@ public class TransistorShape : Shape
             {
                 TileMapCell cell = TileMap.Instance.GetCellWithShape(nextNode.shape);
                 if (cell != null)
+                {
                     cell.RemoveShape();
+                    ScoreTracker.Instance.IncreaseScore(1);
+                }
             }
         }
 
