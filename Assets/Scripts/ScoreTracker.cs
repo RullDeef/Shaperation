@@ -6,7 +6,12 @@ using UnityEngine.UI;
 public class ScoreTracker : MonoBehaviour
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
     public Text scoreText;
+=======
+    public TextMeshProUGUI ScoreText;
+    public TextMeshProUGUI HighScoreText;
+>>>>>>> 8e35af6303873e40396d9fcc37004062c1555f0e
 =======
     public TextMeshProUGUI ScoreText;
     public TextMeshProUGUI HighScoreText;
@@ -25,12 +30,18 @@ public class ScoreTracker : MonoBehaviour
     private void Start()
     {
 <<<<<<< HEAD
+<<<<<<< HEAD
         scoreText.text = "0";
 =======
+=======
+>>>>>>> 8e35af6303873e40396d9fcc37004062c1555f0e
         HighScore = PlayerPrefs.GetInt("HighScore", 0);
 
         ScoreText.SetText("0");
         HighScoreText.SetText(HighScore.ToString());
+<<<<<<< HEAD
+>>>>>>> 8e35af6303873e40396d9fcc37004062c1555f0e
+=======
 >>>>>>> 8e35af6303873e40396d9fcc37004062c1555f0e
     }
 
@@ -38,8 +49,11 @@ public class ScoreTracker : MonoBehaviour
     {
         Score += addScore;
 <<<<<<< HEAD
+<<<<<<< HEAD
         scoreText.text = Score.ToString();
 =======
+=======
+>>>>>>> 8e35af6303873e40396d9fcc37004062c1555f0e
         HighScore = Mathf.Max(HighScore, Score);
 
         ScoreText.SetText(Score.ToString());
@@ -52,6 +66,9 @@ public class ScoreTracker : MonoBehaviour
     {
         Score = 0;
         ScoreText.SetText(Score.ToString());
+<<<<<<< HEAD
+>>>>>>> 8e35af6303873e40396d9fcc37004062c1555f0e
+=======
 >>>>>>> 8e35af6303873e40396d9fcc37004062c1555f0e
     }
 }
