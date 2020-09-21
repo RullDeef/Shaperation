@@ -13,13 +13,26 @@ public class MainMenuScript : MonoBehaviour
     public GameObject MainMenu;
     public float MainMenuScale;
 
-    public void MainMenuClose()
+    public GameObject PauseMenu;
+    public float PauseMenuScale;
+
+    public void MainMenuOpen()
     {
         LeanTween.move(MainMenu.GetComponent<RectTransform>(), movePos[0], moveTime);
     }
 
-    public void MainMenuOpen()
+    public void MainMenuClose()
     {
         LeanTween.move(MainMenu.GetComponent<RectTransform>(), movePos[1], moveTime);
+    }
+
+    public void PauseMenuOpen()
+    {
+        LeanTween.move(PauseMenu.GetComponent<RectTransform>(), movePos[0], moveTime);
+    }
+
+    public void PauseMenuClose()
+    {
+        LeanTween.move(PauseMenu.GetComponent<RectTransform>(), movePos[2], moveTime);
     }
 }

@@ -5,8 +5,10 @@ using UnityEngine.UI;
 
 public class ScoreTracker : MonoBehaviour
 {
-    public Text scoreText;
+    public Text ScoreText;
     public Text HighScoreText;
+
+    private int HighScore = 0;
 
     public int Score { get; private set; } = 0;
 
@@ -19,7 +21,7 @@ public class ScoreTracker : MonoBehaviour
 
     private void Start()
     {
-        scoreText.text = "0";
+        ScoreText.text = "0";
         HighScore = PlayerPrefs.GetInt("HighScore", 0);
         HighScoreText.text = HighScore.ToString();
     }
@@ -27,7 +29,7 @@ public class ScoreTracker : MonoBehaviour
     public void IncreaseScore(int addScore)
     {
         Score += addScore;
-        scoreText.text = Score.ToString();
+        ScoreText.text = Score.ToString();
         HighScore = Mathf.Max(HighScore, Score);
 
         ScoreText.text = Score.ToString();
