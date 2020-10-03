@@ -1,0 +1,1188 @@
+\hypertarget{class_lean_tween}{}\doxysection{Класс Lean\+Tween}
+\label{class_lean_tween}\index{LeanTween@{LeanTween}}
+
+
+Граф наследования\+:Lean\+Tween\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_lean_tween__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Граф связей класса Lean\+Tween\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{class_lean_tween__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Открытые члены}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_lean_tween_a5f24dc50bb414a3f01b574582ea0b166}\label{class_lean_tween_a5f24dc50bb414a3f01b574582ea0b166}} 
+void {\bfseries Update} ()
+\item 
+\mbox{\Hypertarget{class_lean_tween_a62c15745b3f208f51fecf3ffbf84acb5}\label{class_lean_tween_a62c15745b3f208f51fecf3ffbf84acb5}} 
+void {\bfseries On\+Level\+Was\+Loaded} (int lvl)
+\end{DoxyCompactItemize}
+\doxysubsection*{Открытые статические члены}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_lean_tween_aa72974cd70f00379e6d9d0b73b2f7f70}\label{class_lean_tween_aa72974cd70f00379e6d9d0b73b2f7f70}} 
+static void {\bfseries init} ()
+\item 
+\mbox{\Hypertarget{class_lean_tween_a4c24bf6cdce92b6ca5595b9a6869e3e8}\label{class_lean_tween_a4c24bf6cdce92b6ca5595b9a6869e3e8}} 
+static void {\bfseries init} (int max\+Simultaneous\+Tweens)
+\item 
+\mbox{\Hypertarget{class_lean_tween_a28ccecf6e8d2daaf13e62b9282e46a95}\label{class_lean_tween_a28ccecf6e8d2daaf13e62b9282e46a95}} 
+static void {\bfseries init} (int max\+Simultaneous\+Tweens, int max\+Simultaneous\+Sequences)
+\item 
+\mbox{\Hypertarget{class_lean_tween_adf430a6ae2d81a67efca41aa964cb922}\label{class_lean_tween_adf430a6ae2d81a67efca41aa964cb922}} 
+static void {\bfseries reset} ()
+\item 
+\mbox{\Hypertarget{class_lean_tween_a06a612e5e2c017499e07b8ff4381d243}\label{class_lean_tween_a06a612e5e2c017499e07b8ff4381d243}} 
+static void {\bfseries update} ()
+\item 
+\mbox{\Hypertarget{class_lean_tween_a84d64979b6ee9887d636b6d2ccae7a6b}\label{class_lean_tween_a84d64979b6ee9887d636b6d2ccae7a6b}} 
+static void {\bfseries remove\+Tween} (int i, int unique\+Id)
+\item 
+\mbox{\Hypertarget{class_lean_tween_a6751e58c21dcaa0d5fb7aed54b3a5c9c}\label{class_lean_tween_a6751e58c21dcaa0d5fb7aed54b3a5c9c}} 
+static void {\bfseries remove\+Tween} (int i)
+\item 
+\mbox{\Hypertarget{class_lean_tween_acb84814d246a030a54d5ba1c8cfc5e45}\label{class_lean_tween_acb84814d246a030a54d5ba1c8cfc5e45}} 
+static Vector3\mbox{[}$\,$\mbox{]} {\bfseries add} (Vector3\mbox{[}$\,$\mbox{]} a, Vector3 b)
+\item 
+\mbox{\Hypertarget{class_lean_tween_a89a538759b42b82d8230c7a44b5da76f}\label{class_lean_tween_a89a538759b42b82d8230c7a44b5da76f}} 
+static float {\bfseries closest\+Rot} (float from, float to)
+\item 
+\mbox{\Hypertarget{class_lean_tween_a738737b8a45f78942d1d6d13f64d64ab}\label{class_lean_tween_a738737b8a45f78942d1d6d13f64d64ab}} 
+static void {\bfseries cancel\+All} ()
+\item 
+\mbox{\Hypertarget{class_lean_tween_a9c58720f72665b7dbfb697cb5bed3b7a}\label{class_lean_tween_a9c58720f72665b7dbfb697cb5bed3b7a}} 
+static void {\bfseries cancel\+All} (bool call\+Complete)
+\item 
+\mbox{\Hypertarget{class_lean_tween_a0532f56b6bc79fe7ce7006c67e15dcc9}\label{class_lean_tween_a0532f56b6bc79fe7ce7006c67e15dcc9}} 
+static void {\bfseries cancel} (Game\+Object game\+Object)
+\item 
+\mbox{\Hypertarget{class_lean_tween_aff7bee0eb88bf1429af9303bc1408e3d}\label{class_lean_tween_aff7bee0eb88bf1429af9303bc1408e3d}} 
+static void {\bfseries cancel} (Game\+Object game\+Object, bool call\+On\+Complete)
+\item 
+\mbox{\Hypertarget{class_lean_tween_a78c00a1371b897ac11d9f0e0e5ea5d4d}\label{class_lean_tween_a78c00a1371b897ac11d9f0e0e5ea5d4d}} 
+static void {\bfseries cancel} (Rect\+Transform rect)
+\item 
+\mbox{\Hypertarget{class_lean_tween_a6238bce88ab340fad92bdd93f66d0373}\label{class_lean_tween_a6238bce88ab340fad92bdd93f66d0373}} 
+static void {\bfseries cancel} (Game\+Object game\+Object, int unique\+Id, bool call\+On\+Complete=false)
+\item 
+\mbox{\Hypertarget{class_lean_tween_a37ab633b924f6f938cca3d5068d38074}\label{class_lean_tween_a37ab633b924f6f938cca3d5068d38074}} 
+static void {\bfseries cancel} (\mbox{\hyperlink{class_l_t_rect}{L\+T\+Rect}} lt\+Rect, int unique\+Id)
+\item 
+\mbox{\Hypertarget{class_lean_tween_ac01b6b43be54f94a584f9eca025f3e2a}\label{class_lean_tween_ac01b6b43be54f94a584f9eca025f3e2a}} 
+static void {\bfseries cancel} (int unique\+Id)
+\item 
+\mbox{\Hypertarget{class_lean_tween_a66512ec8950b57c00e7d24edc67fb28d}\label{class_lean_tween_a66512ec8950b57c00e7d24edc67fb28d}} 
+static void {\bfseries cancel} (int unique\+Id, bool call\+On\+Complete)
+\item 
+\mbox{\Hypertarget{class_lean_tween_ac8b7c95f7d4432da852de8720bf801d3}\label{class_lean_tween_ac8b7c95f7d4432da852de8720bf801d3}} 
+static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} {\bfseries descr} (int unique\+Id)
+\item 
+\mbox{\Hypertarget{class_lean_tween_aed87a43fb94bd3b43fe635e82e94ed21}\label{class_lean_tween_aed87a43fb94bd3b43fe635e82e94ed21}} 
+static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} {\bfseries description} (int unique\+Id)
+\item 
+\mbox{\Hypertarget{class_lean_tween_a5a53976d6a6ed62b88284007b521e9b4}\label{class_lean_tween_a5a53976d6a6ed62b88284007b521e9b4}} 
+static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}}\mbox{[}$\,$\mbox{]} {\bfseries descriptions} (Game\+Object game\+Object=null)
+\item 
+\mbox{\Hypertarget{class_lean_tween_a83665779c966dfcc6314bc344dbb6ddb}\label{class_lean_tween_a83665779c966dfcc6314bc344dbb6ddb}} 
+static void {\bfseries pause} (Game\+Object game\+Object, int unique\+Id)
+\item 
+\mbox{\Hypertarget{class_lean_tween_ae9818eea8e3c6d4574022cb9d612c604}\label{class_lean_tween_ae9818eea8e3c6d4574022cb9d612c604}} 
+static void {\bfseries pause} (int unique\+Id)
+\item 
+static void \mbox{\hyperlink{class_lean_tween_af511218bf4513f8e9e89366a6c6363ec}{pause}} (Game\+Object game\+Object)
+\begin{DoxyCompactList}\small\item\em Pause all tweens for a Game\+Object \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{class_lean_tween_a49bf7c3489ffc475b7439df2322563b2}{pause\+All}} ()
+\begin{DoxyCompactList}\small\item\em Pause all active tweens \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{class_lean_tween_af1975b4f90f51ccde4e84d79c828d4de}{resume\+All}} ()
+\begin{DoxyCompactList}\small\item\em Resume all active tweens \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_lean_tween_aeab01cac70f6d0edcfe2d63c08dd30c2}\label{class_lean_tween_aeab01cac70f6d0edcfe2d63c08dd30c2}} 
+static void {\bfseries resume} (Game\+Object game\+Object, int unique\+Id)
+\item 
+\mbox{\Hypertarget{class_lean_tween_a46e12c94e1ddc75babcd7edd1accd711}\label{class_lean_tween_a46e12c94e1ddc75babcd7edd1accd711}} 
+static void {\bfseries resume} (int unique\+Id)
+\item 
+static void \mbox{\hyperlink{class_lean_tween_aad19a2614710ebf5f45486b2cac5d21d}{resume}} (Game\+Object game\+Object)
+\begin{DoxyCompactList}\small\item\em Resume all the tweens on a Game\+Object \end{DoxyCompactList}\item 
+static bool \mbox{\hyperlink{class_lean_tween_a78ce25cbc68727b2965aa45ede1e310f}{is\+Paused}} (Game\+Object game\+Object=null)
+\begin{DoxyCompactList}\small\item\em Test whether or not a tween is paused on a Game\+Object \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_lean_tween_a84f408cbe64f128e7301a9d182b3b23d}\label{class_lean_tween_a84f408cbe64f128e7301a9d182b3b23d}} 
+static bool {\bfseries is\+Paused} (Rect\+Transform rect)
+\item 
+\mbox{\Hypertarget{class_lean_tween_a13b472257bba75dbc4d576ea62c739f4}\label{class_lean_tween_a13b472257bba75dbc4d576ea62c739f4}} 
+static bool {\bfseries is\+Paused} (int unique\+Id)
+\item 
+static bool \mbox{\hyperlink{class_lean_tween_a325405079311587dfad028a14d510f58}{is\+Tweening}} (Game\+Object game\+Object=null)
+\begin{DoxyCompactList}\small\item\em Test whether or not a tween is active on a Game\+Object \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_lean_tween_aa295af287e52a2aeaf312bb135d9a4a5}\label{class_lean_tween_aa295af287e52a2aeaf312bb135d9a4a5}} 
+static bool {\bfseries is\+Tweening} (Rect\+Transform rect)
+\item 
+\mbox{\Hypertarget{class_lean_tween_a940fa16e4edcfe86b6b8723898eeeca9}\label{class_lean_tween_a940fa16e4edcfe86b6b8723898eeeca9}} 
+static bool {\bfseries is\+Tweening} (int unique\+Id)
+\item 
+\mbox{\Hypertarget{class_lean_tween_a1f60a7fc5cf3f5c442374cf6651b1784}\label{class_lean_tween_a1f60a7fc5cf3f5c442374cf6651b1784}} 
+static bool {\bfseries is\+Tweening} (\mbox{\hyperlink{class_l_t_rect}{L\+T\+Rect}} lt\+Rect)
+\item 
+\mbox{\Hypertarget{class_lean_tween_ab52134773998b4c34fea96cfafbfc9f6}\label{class_lean_tween_ab52134773998b4c34fea96cfafbfc9f6}} 
+static void {\bfseries draw\+Bezier\+Path} (Vector3 a, Vector3 b, Vector3 c, Vector3 d, float arrow\+Size=0.\+0f, Transform arrow\+Transform=null)
+\item 
+\mbox{\Hypertarget{class_lean_tween_a95a158eecb4fee9f2ddc99d2ace76339}\label{class_lean_tween_a95a158eecb4fee9f2ddc99d2ace76339}} 
+static object {\bfseries log\+Error} (string error)
+\item 
+\mbox{\Hypertarget{class_lean_tween_afdd856290d3ffa18ee46e1c1fca417b7}\label{class_lean_tween_afdd856290d3ffa18ee46e1c1fca417b7}} 
+static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} {\bfseries options} (\mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} seed)
+\item 
+\mbox{\Hypertarget{class_lean_tween_aa30d39057ac53d6cdc64908a83b5a866}\label{class_lean_tween_aa30d39057ac53d6cdc64908a83b5a866}} 
+static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} {\bfseries options} ()
+\item 
+\mbox{\Hypertarget{class_lean_tween_a893ba5d3b93c64c8838bb418af89ac7e}\label{class_lean_tween_a893ba5d3b93c64c8838bb418af89ac7e}} 
+static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} {\bfseries play} (Rect\+Transform rect\+Transform, Unity\+Engine.\+Sprite\mbox{[}$\,$\mbox{]} sprites)
+\item 
+\mbox{\Hypertarget{class_lean_tween_ad8c2123690b9478f0e712c8eb691c110}\label{class_lean_tween_ad8c2123690b9478f0e712c8eb691c110}} 
+static \mbox{\hyperlink{class_l_t_seq}{L\+T\+Seq}} {\bfseries sequence} (bool init\+Sequence=true)
+\item 
+\mbox{\Hypertarget{class_lean_tween_abfcf5bb9a6f7953a67d111b4d64fc3f5}\label{class_lean_tween_abfcf5bb9a6f7953a67d111b4d64fc3f5}} 
+static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} {\bfseries alpha} (Game\+Object game\+Object, float to, float time)
+\item 
+\mbox{\Hypertarget{class_lean_tween_ac7c6548d16a38beb477b076cc82ed777}\label{class_lean_tween_ac7c6548d16a38beb477b076cc82ed777}} 
+static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} {\bfseries alpha} (\mbox{\hyperlink{class_l_t_rect}{L\+T\+Rect}} lt\+Rect, float to, float time)
+\item 
+\mbox{\Hypertarget{class_lean_tween_ab0a4d29cea114f6256c47fc657c87583}\label{class_lean_tween_ab0a4d29cea114f6256c47fc657c87583}} 
+static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} {\bfseries text\+Alpha} (Rect\+Transform rect\+Transform, float to, float time)
+\item 
+\mbox{\Hypertarget{class_lean_tween_a2529883ecb6d1355e23c1b30c1cbd887}\label{class_lean_tween_a2529883ecb6d1355e23c1b30c1cbd887}} 
+static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} {\bfseries alpha\+Text} (Rect\+Transform rect\+Transform, float to, float time)
+\item 
+\mbox{\Hypertarget{class_lean_tween_a3b323e6da145d04106d4542c8df7da7b}\label{class_lean_tween_a3b323e6da145d04106d4542c8df7da7b}} 
+static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} {\bfseries alpha\+Canvas} (Canvas\+Group canvas\+Group, float to, float time)
+\item 
+static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} \mbox{\hyperlink{class_lean_tween_ab49e14af3b3d24a65527a19b6579f6ea}{alpha\+Vertex}} (Game\+Object game\+Object, float to, float time)
+\begin{DoxyCompactList}\small\item\em This works by tweening the vertex colors directly \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_lean_tween_aac29aaacda9846b701499c757ed67acf}\label{class_lean_tween_aac29aaacda9846b701499c757ed67acf}} 
+static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} {\bfseries color} (Game\+Object game\+Object, Color to, float time)
+\item 
+\mbox{\Hypertarget{class_lean_tween_a4c8b6b31a82bd07f478679e3d0ec3a78}\label{class_lean_tween_a4c8b6b31a82bd07f478679e3d0ec3a78}} 
+static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} {\bfseries text\+Color} (Rect\+Transform rect\+Transform, Color to, float time)
+\item 
+\mbox{\Hypertarget{class_lean_tween_a04f68fc0a65a2282c792eba831da3302}\label{class_lean_tween_a04f68fc0a65a2282c792eba831da3302}} 
+static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} {\bfseries color\+Text} (Rect\+Transform rect\+Transform, Color to, float time)
+\item 
+\mbox{\Hypertarget{class_lean_tween_a8395beb92a29fd4fc869fb1ab22a6c79}\label{class_lean_tween_a8395beb92a29fd4fc869fb1ab22a6c79}} 
+static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} {\bfseries delayed\+Call} (float delay\+Time, Action callback)
+\item 
+\mbox{\Hypertarget{class_lean_tween_a7d245b80e1bec38e697f00f8a27e0112}\label{class_lean_tween_a7d245b80e1bec38e697f00f8a27e0112}} 
+static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} {\bfseries delayed\+Call} (float delay\+Time, Action$<$ object $>$ callback)
+\item 
+\mbox{\Hypertarget{class_lean_tween_a9cf6c08dac116b7da26e2221b0f4e241}\label{class_lean_tween_a9cf6c08dac116b7da26e2221b0f4e241}} 
+static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} {\bfseries delayed\+Call} (Game\+Object game\+Object, float delay\+Time, Action callback)
+\item 
+\mbox{\Hypertarget{class_lean_tween_a0d78203c8dba6def363f2fd562160e95}\label{class_lean_tween_a0d78203c8dba6def363f2fd562160e95}} 
+static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} {\bfseries delayed\+Call} (Game\+Object game\+Object, float delay\+Time, Action$<$ object $>$ callback)
+\item 
+\mbox{\Hypertarget{class_lean_tween_ab6f2eea826fbbec8a045febe711e868b}\label{class_lean_tween_ab6f2eea826fbbec8a045febe711e868b}} 
+static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} {\bfseries destroy\+After} (\mbox{\hyperlink{class_l_t_rect}{L\+T\+Rect}} rect, float delay\+Time)
+\item 
+\mbox{\Hypertarget{class_lean_tween_a5bb0a4ac213e939b6bb6ea2cb38346e3}\label{class_lean_tween_a5bb0a4ac213e939b6bb6ea2cb38346e3}} 
+static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} {\bfseries move} (Game\+Object game\+Object, Vector3 to, float time)
+\item 
+\mbox{\Hypertarget{class_lean_tween_ab2f459b56c6b1e1819923ad3b775efbe}\label{class_lean_tween_ab2f459b56c6b1e1819923ad3b775efbe}} 
+static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} {\bfseries move} (Game\+Object game\+Object, Vector2 to, float time)
+\item 
+\mbox{\Hypertarget{class_lean_tween_aa448e5340e2dbdf4aa0e5dda786e73ab}\label{class_lean_tween_aa448e5340e2dbdf4aa0e5dda786e73ab}} 
+static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} {\bfseries move} (Game\+Object game\+Object, Vector3\mbox{[}$\,$\mbox{]} to, float time)
+\item 
+\mbox{\Hypertarget{class_lean_tween_ab5a7113d35b433b6fbd45e648607935b}\label{class_lean_tween_ab5a7113d35b433b6fbd45e648607935b}} 
+static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} {\bfseries move} (Game\+Object game\+Object, \mbox{\hyperlink{class_l_t_bezier_path}{L\+T\+Bezier\+Path}} to, float time)
+\item 
+\mbox{\Hypertarget{class_lean_tween_a1aa02c7ba2f581fff73ec3b2403492a6}\label{class_lean_tween_a1aa02c7ba2f581fff73ec3b2403492a6}} 
+static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} {\bfseries move} (Game\+Object game\+Object, \mbox{\hyperlink{class_l_t_spline}{L\+T\+Spline}} to, float time)
+\item 
+\mbox{\Hypertarget{class_lean_tween_adef52707bc65029b29c00f7a2bf2f302}\label{class_lean_tween_adef52707bc65029b29c00f7a2bf2f302}} 
+static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} {\bfseries move\+Spline} (Game\+Object game\+Object, Vector3\mbox{[}$\,$\mbox{]} to, float time)
+\item 
+\mbox{\Hypertarget{class_lean_tween_a680fcba04c2984318be35d1c3dc53d20}\label{class_lean_tween_a680fcba04c2984318be35d1c3dc53d20}} 
+static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} {\bfseries move\+Spline} (Game\+Object game\+Object, \mbox{\hyperlink{class_l_t_spline}{L\+T\+Spline}} to, float time)
+\item 
+\mbox{\Hypertarget{class_lean_tween_adc992e1b7da8fb18ac03566a528f1cc9}\label{class_lean_tween_adc992e1b7da8fb18ac03566a528f1cc9}} 
+static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} {\bfseries move\+Spline\+Local} (Game\+Object game\+Object, Vector3\mbox{[}$\,$\mbox{]} to, float time)
+\item 
+static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} \mbox{\hyperlink{class_lean_tween_a20f3161b0c2f03453ee5c7b58d9cc3d3}{move}} (\mbox{\hyperlink{class_l_t_rect}{L\+T\+Rect}} lt\+Rect, Vector2 to, float time)
+\begin{DoxyCompactList}\small\item\em Move a G\+UI Element to a certain location \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_lean_tween_a0980c07bd77885cfbb9a44f6d00a2f02}\label{class_lean_tween_a0980c07bd77885cfbb9a44f6d00a2f02}} 
+static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} {\bfseries move\+Margin} (\mbox{\hyperlink{class_l_t_rect}{L\+T\+Rect}} lt\+Rect, Vector2 to, float time)
+\item 
+static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} \mbox{\hyperlink{class_lean_tween_a0208e1917d6e016eb529cfc865afb4da}{moveX}} (Game\+Object game\+Object, float to, float time)
+\begin{DoxyCompactList}\small\item\em Move a Game\+Object along the x-\/axis \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} \mbox{\hyperlink{class_lean_tween_a7faa6b4335b52715f33b47952b45c3ee}{moveY}} (Game\+Object game\+Object, float to, float time)
+\begin{DoxyCompactList}\small\item\em Move a Game\+Object along the y-\/axis \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} \mbox{\hyperlink{class_lean_tween_a436f9b3dd24da4a7373da0261029c1ec}{moveZ}} (Game\+Object game\+Object, float to, float time)
+\begin{DoxyCompactList}\small\item\em Move a Game\+Object along the z-\/axis \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} \mbox{\hyperlink{class_lean_tween_a75991b9f12d54c1d74806d63a5f75c20}{move\+Local}} (Game\+Object game\+Object, Vector3 to, float time)
+\begin{DoxyCompactList}\small\item\em Move a Game\+Object to a certain location relative to the parent transform. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_lean_tween_a9fe22f56713893ba8592fe1c169c360d}\label{class_lean_tween_a9fe22f56713893ba8592fe1c169c360d}} 
+static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} {\bfseries move\+Local} (Game\+Object game\+Object, Vector3\mbox{[}$\,$\mbox{]} to, float time)
+\item 
+\mbox{\Hypertarget{class_lean_tween_a36c149082fc8ac99fa425a3aecf47afc}\label{class_lean_tween_a36c149082fc8ac99fa425a3aecf47afc}} 
+static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} {\bfseries move\+LocalX} (Game\+Object game\+Object, float to, float time)
+\item 
+\mbox{\Hypertarget{class_lean_tween_aff709772e51ed580f6248987d1420b18}\label{class_lean_tween_aff709772e51ed580f6248987d1420b18}} 
+static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} {\bfseries move\+LocalY} (Game\+Object game\+Object, float to, float time)
+\item 
+\mbox{\Hypertarget{class_lean_tween_a7d8eaf6a36c0dca2599ff53dcdb62fe6}\label{class_lean_tween_a7d8eaf6a36c0dca2599ff53dcdb62fe6}} 
+static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} {\bfseries move\+LocalZ} (Game\+Object game\+Object, float to, float time)
+\item 
+\mbox{\Hypertarget{class_lean_tween_a3a0304e01997645fc2cf3d15209de16c}\label{class_lean_tween_a3a0304e01997645fc2cf3d15209de16c}} 
+static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} {\bfseries move\+Local} (Game\+Object game\+Object, \mbox{\hyperlink{class_l_t_bezier_path}{L\+T\+Bezier\+Path}} to, float time)
+\item 
+\mbox{\Hypertarget{class_lean_tween_a6648846c848eb8f5e2c7607724fb93e6}\label{class_lean_tween_a6648846c848eb8f5e2c7607724fb93e6}} 
+static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} {\bfseries move\+Local} (Game\+Object game\+Object, \mbox{\hyperlink{class_l_t_spline}{L\+T\+Spline}} to, float time)
+\item 
+\mbox{\Hypertarget{class_lean_tween_a299343fc680b29a026aa2ae353688cc5}\label{class_lean_tween_a299343fc680b29a026aa2ae353688cc5}} 
+static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} {\bfseries move} (Game\+Object game\+Object, Transform to, float time)
+\item 
+\mbox{\Hypertarget{class_lean_tween_a81422e7f1652465f962a3fded2812165}\label{class_lean_tween_a81422e7f1652465f962a3fded2812165}} 
+static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} {\bfseries rotate} (Game\+Object game\+Object, Vector3 to, float time)
+\item 
+\mbox{\Hypertarget{class_lean_tween_a0baf0c2aca23a70303c580df861bb032}\label{class_lean_tween_a0baf0c2aca23a70303c580df861bb032}} 
+static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} {\bfseries rotate} (\mbox{\hyperlink{class_l_t_rect}{L\+T\+Rect}} lt\+Rect, float to, float time)
+\item 
+static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} \mbox{\hyperlink{class_lean_tween_a9b658b2284dfbd53a79cf1db5a3a228c}{rotate\+Local}} (Game\+Object game\+Object, Vector3 to, float time)
+\begin{DoxyCompactList}\small\item\em Rotate a Game\+Object in the objects local space (on the transforms local\+Euler\+Angles object) \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} \mbox{\hyperlink{class_lean_tween_af85a42c0723ab2bf398284e51760145f}{rotateX}} (Game\+Object game\+Object, float to, float time)
+\begin{DoxyCompactList}\small\item\em Rotate a Game\+Object only on the X axis \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} \mbox{\hyperlink{class_lean_tween_af5d9b9ff9a69df945604df680e15ac68}{rotateY}} (Game\+Object game\+Object, float to, float time)
+\begin{DoxyCompactList}\small\item\em Rotate a Game\+Object only on the Y axis \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} \mbox{\hyperlink{class_lean_tween_a2188a492f41ae788ce75ac2ba94b2769}{rotateZ}} (Game\+Object game\+Object, float to, float time)
+\begin{DoxyCompactList}\small\item\em Rotate a Game\+Object only on the Z axis \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_lean_tween_a9e6cca36beb2973c7706b28796a5b139}\label{class_lean_tween_a9e6cca36beb2973c7706b28796a5b139}} 
+static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} {\bfseries rotate\+Around} (Game\+Object game\+Object, Vector3 axis, float add, float time)
+\item 
+\mbox{\Hypertarget{class_lean_tween_ac866f6be84de16413a387e54fa69b5bb}\label{class_lean_tween_ac866f6be84de16413a387e54fa69b5bb}} 
+static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} {\bfseries rotate\+Around\+Local} (Game\+Object game\+Object, Vector3 axis, float add, float time)
+\item 
+static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} \mbox{\hyperlink{class_lean_tween_aa47fced990c5e3108ef221b8a4f636d5}{scale}} (Game\+Object game\+Object, Vector3 to, float time)
+\begin{DoxyCompactList}\small\item\em Scale a Game\+Object to a certain size \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_lean_tween_ad0eb131ef65bbef44407cf76e667e927}\label{class_lean_tween_ad0eb131ef65bbef44407cf76e667e927}} 
+static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} {\bfseries scale} (\mbox{\hyperlink{class_l_t_rect}{L\+T\+Rect}} lt\+Rect, Vector2 to, float time)
+\item 
+static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} \mbox{\hyperlink{class_lean_tween_a578fe06253c9c498c18c1b24f98ff8ef}{scaleX}} (Game\+Object game\+Object, float to, float time)
+\begin{DoxyCompactList}\small\item\em Scale a Game\+Object to a certain size along the x-\/axis only \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} \mbox{\hyperlink{class_lean_tween_a26b7b87be65fe89dfd5e61a5ff2932f6}{scaleY}} (Game\+Object game\+Object, float to, float time)
+\begin{DoxyCompactList}\small\item\em Scale a Game\+Object to a certain size along the y-\/axis only \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} \mbox{\hyperlink{class_lean_tween_ac7689aa78dafe72bb28d8e885998a1b7}{scaleZ}} (Game\+Object game\+Object, float to, float time)
+\begin{DoxyCompactList}\small\item\em Scale a Game\+Object to a certain size along the z-\/axis only \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_lean_tween_ab0e4dee41bb0fd33f84b18fc73591592}\label{class_lean_tween_ab0e4dee41bb0fd33f84b18fc73591592}} 
+static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} {\bfseries value} (Game\+Object game\+Object, float from, float to, float time)
+\item 
+\mbox{\Hypertarget{class_lean_tween_a1013cb44b83607233670463ec9fb5eda}\label{class_lean_tween_a1013cb44b83607233670463ec9fb5eda}} 
+static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} {\bfseries value} (float from, float to, float time)
+\item 
+\mbox{\Hypertarget{class_lean_tween_a80c211313c1abab0387aed00d3f8548c}\label{class_lean_tween_a80c211313c1abab0387aed00d3f8548c}} 
+static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} {\bfseries value} (Game\+Object game\+Object, Vector2 from, Vector2 to, float time)
+\item 
+\mbox{\Hypertarget{class_lean_tween_a3bc1d0caf13ce4e7b2f77741720dfc84}\label{class_lean_tween_a3bc1d0caf13ce4e7b2f77741720dfc84}} 
+static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} {\bfseries value} (Game\+Object game\+Object, Vector3 from, Vector3 to, float time)
+\item 
+\mbox{\Hypertarget{class_lean_tween_a657a297cd1ee33a84f51c2325728d37f}\label{class_lean_tween_a657a297cd1ee33a84f51c2325728d37f}} 
+static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} {\bfseries value} (Game\+Object game\+Object, Color from, Color to, float time)
+\item 
+\mbox{\Hypertarget{class_lean_tween_a98a3ce53072c9e3a43b73a5bb94d5b4d}\label{class_lean_tween_a98a3ce53072c9e3a43b73a5bb94d5b4d}} 
+static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} {\bfseries value} (Game\+Object game\+Object, Action$<$ float $>$ call\+On\+Update, float from, float to, float time)
+\item 
+\mbox{\Hypertarget{class_lean_tween_a6abd8d2b137acd93291ba7990029d7c5}\label{class_lean_tween_a6abd8d2b137acd93291ba7990029d7c5}} 
+static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} {\bfseries value} (Game\+Object game\+Object, Action$<$ float, float $>$ call\+On\+Update\+Ratio, float from, float to, float time)
+\item 
+\mbox{\Hypertarget{class_lean_tween_a27b95b55bd803b364f42c53b483e4160}\label{class_lean_tween_a27b95b55bd803b364f42c53b483e4160}} 
+static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} {\bfseries value} (Game\+Object game\+Object, Action$<$ Color $>$ call\+On\+Update, Color from, Color to, float time)
+\item 
+\mbox{\Hypertarget{class_lean_tween_ac72341b858dff519c6b47e7608a63c54}\label{class_lean_tween_ac72341b858dff519c6b47e7608a63c54}} 
+static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} {\bfseries value} (Game\+Object game\+Object, Action$<$ Color, object $>$ call\+On\+Update, Color from, Color to, float time)
+\item 
+static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} \mbox{\hyperlink{class_lean_tween_ad96384a1b17c6e80ae01f229641e1ec3}{value}} (Game\+Object game\+Object, Action$<$ Vector2 $>$ call\+On\+Update, Vector2 from, Vector2 to, float time)
+\begin{DoxyCompactList}\small\item\em Tween any particular value (Vector2), this could be used to tween an arbitrary value like offset property \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} \mbox{\hyperlink{class_lean_tween_a6faa228d783d9ff12b964d20c0c23ea4}{value}} (Game\+Object game\+Object, Action$<$ Vector3 $>$ call\+On\+Update, Vector3 from, Vector3 to, float time)
+\begin{DoxyCompactList}\small\item\em Tween any particular value (Vector3), this could be used to tween an arbitrary property that uses a Vector \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} \mbox{\hyperlink{class_lean_tween_a1602e176a4345f4134529e5f27c19ae4}{value}} (Game\+Object game\+Object, Action$<$ float, object $>$ call\+On\+Update, float from, float to, float time)
+\begin{DoxyCompactList}\small\item\em Tween any particular value (float) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_lean_tween_a674c94d28311aaf0e5c1e7b3edd0d1ab}\label{class_lean_tween_a674c94d28311aaf0e5c1e7b3edd0d1ab}} 
+static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} {\bfseries delayed\+Sound} (Audio\+Clip audio, Vector3 pos, float volume)
+\item 
+\mbox{\Hypertarget{class_lean_tween_a736b34dd92a0bf9b930986ce6ff2cf23}\label{class_lean_tween_a736b34dd92a0bf9b930986ce6ff2cf23}} 
+static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} {\bfseries delayed\+Sound} (Game\+Object game\+Object, Audio\+Clip audio, Vector3 pos, float volume)
+\item 
+\mbox{\Hypertarget{class_lean_tween_a49b9f619cbebe7b0b161cb95cd038ad2}\label{class_lean_tween_a49b9f619cbebe7b0b161cb95cd038ad2}} 
+static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} {\bfseries move} (Rect\+Transform rect\+Trans, Vector3 to, float time)
+\item 
+\mbox{\Hypertarget{class_lean_tween_a5bae40c914dd343219a1f8a84f9e4a44}\label{class_lean_tween_a5bae40c914dd343219a1f8a84f9e4a44}} 
+static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} {\bfseries moveX} (Rect\+Transform rect\+Trans, float to, float time)
+\item 
+\mbox{\Hypertarget{class_lean_tween_a19cbad863dfbd07d2f70d4016f678d79}\label{class_lean_tween_a19cbad863dfbd07d2f70d4016f678d79}} 
+static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} {\bfseries moveY} (Rect\+Transform rect\+Trans, float to, float time)
+\item 
+\mbox{\Hypertarget{class_lean_tween_a9bc223c70e614bc08de5ac6229ece4c2}\label{class_lean_tween_a9bc223c70e614bc08de5ac6229ece4c2}} 
+static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} {\bfseries moveZ} (Rect\+Transform rect\+Trans, float to, float time)
+\item 
+\mbox{\Hypertarget{class_lean_tween_aed1c80a74143b78adb4ad3acbd440191}\label{class_lean_tween_aed1c80a74143b78adb4ad3acbd440191}} 
+static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} {\bfseries rotate} (Rect\+Transform rect\+Trans, float to, float time)
+\item 
+\mbox{\Hypertarget{class_lean_tween_ae4c980e4277426e12cc236bbc20ca715}\label{class_lean_tween_ae4c980e4277426e12cc236bbc20ca715}} 
+static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} {\bfseries rotate} (Rect\+Transform rect\+Trans, Vector3 to, float time)
+\item 
+\mbox{\Hypertarget{class_lean_tween_a4f65490c79a957cb94ce14fb020e65b5}\label{class_lean_tween_a4f65490c79a957cb94ce14fb020e65b5}} 
+static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} {\bfseries rotate\+Around} (Rect\+Transform rect\+Trans, Vector3 axis, float to, float time)
+\item 
+\mbox{\Hypertarget{class_lean_tween_ad1b132eca72be4d55cf9983e40adea55}\label{class_lean_tween_ad1b132eca72be4d55cf9983e40adea55}} 
+static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} {\bfseries rotate\+Around\+Local} (Rect\+Transform rect\+Trans, Vector3 axis, float to, float time)
+\item 
+\mbox{\Hypertarget{class_lean_tween_a2d4c6a15b32f40465c2e9bbed394e5d4}\label{class_lean_tween_a2d4c6a15b32f40465c2e9bbed394e5d4}} 
+static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} {\bfseries scale} (Rect\+Transform rect\+Trans, Vector3 to, float time)
+\item 
+\mbox{\Hypertarget{class_lean_tween_a890b9490fe097246fd0b5ce9814c8cab}\label{class_lean_tween_a890b9490fe097246fd0b5ce9814c8cab}} 
+static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} {\bfseries size} (Rect\+Transform rect\+Trans, Vector2 to, float time)
+\item 
+\mbox{\Hypertarget{class_lean_tween_a6b29b9dec1878bb2ca7966bef251aa65}\label{class_lean_tween_a6b29b9dec1878bb2ca7966bef251aa65}} 
+static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} {\bfseries alpha} (Rect\+Transform rect\+Trans, float to, float time)
+\item 
+\mbox{\Hypertarget{class_lean_tween_afe561fc6f8170441eabe1681d998e5d5}\label{class_lean_tween_afe561fc6f8170441eabe1681d998e5d5}} 
+static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} {\bfseries color} (Rect\+Transform rect\+Trans, Color to, float time)
+\item 
+\mbox{\Hypertarget{class_lean_tween_a4e4e1af41b3d27044b7c9c5ea21a86fd}\label{class_lean_tween_a4e4e1af41b3d27044b7c9c5ea21a86fd}} 
+static float {\bfseries tween\+On\+Curve} (\mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} tween\+Descr, float ratio\+Passed)
+\item 
+\mbox{\Hypertarget{class_lean_tween_aeb2f779fe84fd0a94feab643a9250ce9}\label{class_lean_tween_aeb2f779fe84fd0a94feab643a9250ce9}} 
+static Vector3 {\bfseries tween\+On\+Curve\+Vector} (\mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} tween\+Descr, float ratio\+Passed)
+\item 
+\mbox{\Hypertarget{class_lean_tween_a7e6fdaec7907819f420ec0bb4b2953a5}\label{class_lean_tween_a7e6fdaec7907819f420ec0bb4b2953a5}} 
+static float {\bfseries ease\+Out\+Quad\+Opt} (float start, float diff, float ratio\+Passed)
+\item 
+\mbox{\Hypertarget{class_lean_tween_a0bf8aad24e397de7747183705992243a}\label{class_lean_tween_a0bf8aad24e397de7747183705992243a}} 
+static float {\bfseries ease\+In\+Quad\+Opt} (float start, float diff, float ratio\+Passed)
+\item 
+\mbox{\Hypertarget{class_lean_tween_a2f0ea6b0c1968ec46a62d01790caa0d1}\label{class_lean_tween_a2f0ea6b0c1968ec46a62d01790caa0d1}} 
+static float {\bfseries ease\+In\+Out\+Quad\+Opt} (float start, float diff, float ratio\+Passed)
+\item 
+\mbox{\Hypertarget{class_lean_tween_a14c015d874fc2d374f9a03f5e4e95501}\label{class_lean_tween_a14c015d874fc2d374f9a03f5e4e95501}} 
+static Vector3 {\bfseries ease\+In\+Out\+Quad\+Opt} (Vector3 start, Vector3 diff, float ratio\+Passed)
+\item 
+\mbox{\Hypertarget{class_lean_tween_a33e55252c69264cac92097b22c0c6aa7}\label{class_lean_tween_a33e55252c69264cac92097b22c0c6aa7}} 
+static float {\bfseries linear} (float start, float end, float val)
+\item 
+\mbox{\Hypertarget{class_lean_tween_a733bd738310eca5a7333ece0664d5ead}\label{class_lean_tween_a733bd738310eca5a7333ece0664d5ead}} 
+static float {\bfseries clerp} (float start, float end, float val)
+\item 
+\mbox{\Hypertarget{class_lean_tween_a984a34a79d0a10a90c486731245af5ef}\label{class_lean_tween_a984a34a79d0a10a90c486731245af5ef}} 
+static float {\bfseries spring} (float start, float end, float val)
+\item 
+\mbox{\Hypertarget{class_lean_tween_a4feb915fba95afce03594dbfc77120f6}\label{class_lean_tween_a4feb915fba95afce03594dbfc77120f6}} 
+static float {\bfseries ease\+In\+Quad} (float start, float end, float val)
+\item 
+\mbox{\Hypertarget{class_lean_tween_a007f6113babbbf00b9dcb7a69890a0b7}\label{class_lean_tween_a007f6113babbbf00b9dcb7a69890a0b7}} 
+static float {\bfseries ease\+Out\+Quad} (float start, float end, float val)
+\item 
+\mbox{\Hypertarget{class_lean_tween_aa481b8043b7a0e7cf742a1566b2c02bd}\label{class_lean_tween_aa481b8043b7a0e7cf742a1566b2c02bd}} 
+static float {\bfseries ease\+In\+Out\+Quad} (float start, float end, float val)
+\item 
+\mbox{\Hypertarget{class_lean_tween_a9c95edcd16b2c79465c78feb760e7cf1}\label{class_lean_tween_a9c95edcd16b2c79465c78feb760e7cf1}} 
+static float {\bfseries ease\+In\+Out\+Quad\+Opt2} (float start, float diff\+By2, float val, float val2)
+\item 
+\mbox{\Hypertarget{class_lean_tween_ae6ad19608cacc633ad1694d5ea1583bc}\label{class_lean_tween_ae6ad19608cacc633ad1694d5ea1583bc}} 
+static float {\bfseries ease\+In\+Cubic} (float start, float end, float val)
+\item 
+\mbox{\Hypertarget{class_lean_tween_aeb22fc279c8368de88e8a1f8d7adb325}\label{class_lean_tween_aeb22fc279c8368de88e8a1f8d7adb325}} 
+static float {\bfseries ease\+Out\+Cubic} (float start, float end, float val)
+\item 
+\mbox{\Hypertarget{class_lean_tween_a03e33602659888f60d1c006b7b9b15bf}\label{class_lean_tween_a03e33602659888f60d1c006b7b9b15bf}} 
+static float {\bfseries ease\+In\+Out\+Cubic} (float start, float end, float val)
+\item 
+\mbox{\Hypertarget{class_lean_tween_ae215d83850bf40dc2c03952fc33e8e9f}\label{class_lean_tween_ae215d83850bf40dc2c03952fc33e8e9f}} 
+static float {\bfseries ease\+In\+Quart} (float start, float end, float val)
+\item 
+\mbox{\Hypertarget{class_lean_tween_a449ef75dcadafa2284463204c905e7ca}\label{class_lean_tween_a449ef75dcadafa2284463204c905e7ca}} 
+static float {\bfseries ease\+Out\+Quart} (float start, float end, float val)
+\item 
+\mbox{\Hypertarget{class_lean_tween_a7d20c1b13caa619eabcb2e0fa4caa0fa}\label{class_lean_tween_a7d20c1b13caa619eabcb2e0fa4caa0fa}} 
+static float {\bfseries ease\+In\+Out\+Quart} (float start, float end, float val)
+\item 
+\mbox{\Hypertarget{class_lean_tween_a2de62425f5b59ff5e0fff3abf9326960}\label{class_lean_tween_a2de62425f5b59ff5e0fff3abf9326960}} 
+static float {\bfseries ease\+In\+Quint} (float start, float end, float val)
+\item 
+\mbox{\Hypertarget{class_lean_tween_abc88febd359416e24cd649689e780955}\label{class_lean_tween_abc88febd359416e24cd649689e780955}} 
+static float {\bfseries ease\+Out\+Quint} (float start, float end, float val)
+\item 
+\mbox{\Hypertarget{class_lean_tween_a88d2193e06687e6cc88a4bd6915edf9d}\label{class_lean_tween_a88d2193e06687e6cc88a4bd6915edf9d}} 
+static float {\bfseries ease\+In\+Out\+Quint} (float start, float end, float val)
+\item 
+\mbox{\Hypertarget{class_lean_tween_ad544d6b8ae9f2bff63b5e068118d5996}\label{class_lean_tween_ad544d6b8ae9f2bff63b5e068118d5996}} 
+static float {\bfseries ease\+In\+Sine} (float start, float end, float val)
+\item 
+\mbox{\Hypertarget{class_lean_tween_a6ab5d7782ffcd4f3ea9dc65da7c3b75b}\label{class_lean_tween_a6ab5d7782ffcd4f3ea9dc65da7c3b75b}} 
+static float {\bfseries ease\+Out\+Sine} (float start, float end, float val)
+\item 
+\mbox{\Hypertarget{class_lean_tween_a8563e81851079f753f11765445c40359}\label{class_lean_tween_a8563e81851079f753f11765445c40359}} 
+static float {\bfseries ease\+In\+Out\+Sine} (float start, float end, float val)
+\item 
+\mbox{\Hypertarget{class_lean_tween_a7876048f596e7faa00276516a6d3aaa6}\label{class_lean_tween_a7876048f596e7faa00276516a6d3aaa6}} 
+static float {\bfseries ease\+In\+Expo} (float start, float end, float val)
+\item 
+\mbox{\Hypertarget{class_lean_tween_a1522910ef976a21830c7c499c45ea6ad}\label{class_lean_tween_a1522910ef976a21830c7c499c45ea6ad}} 
+static float {\bfseries ease\+Out\+Expo} (float start, float end, float val)
+\item 
+\mbox{\Hypertarget{class_lean_tween_a08befe1cd4a7af88ebb0ce97ad3a611e}\label{class_lean_tween_a08befe1cd4a7af88ebb0ce97ad3a611e}} 
+static float {\bfseries ease\+In\+Out\+Expo} (float start, float end, float val)
+\item 
+\mbox{\Hypertarget{class_lean_tween_a4cb22ed6cc253c830ea64fb116730023}\label{class_lean_tween_a4cb22ed6cc253c830ea64fb116730023}} 
+static float {\bfseries ease\+In\+Circ} (float start, float end, float val)
+\item 
+\mbox{\Hypertarget{class_lean_tween_ab776f7b3bfda445cef49f246b4098ece}\label{class_lean_tween_ab776f7b3bfda445cef49f246b4098ece}} 
+static float {\bfseries ease\+Out\+Circ} (float start, float end, float val)
+\item 
+\mbox{\Hypertarget{class_lean_tween_ac52d694f81fcda7758e7ec2a782d3b50}\label{class_lean_tween_ac52d694f81fcda7758e7ec2a782d3b50}} 
+static float {\bfseries ease\+In\+Out\+Circ} (float start, float end, float val)
+\item 
+\mbox{\Hypertarget{class_lean_tween_a18806970d18440a57c2621b7c6417d9a}\label{class_lean_tween_a18806970d18440a57c2621b7c6417d9a}} 
+static float {\bfseries ease\+In\+Bounce} (float start, float end, float val)
+\item 
+\mbox{\Hypertarget{class_lean_tween_adc62fc7493c049aa40fc404e499b7783}\label{class_lean_tween_adc62fc7493c049aa40fc404e499b7783}} 
+static float {\bfseries ease\+Out\+Bounce} (float start, float end, float val)
+\item 
+\mbox{\Hypertarget{class_lean_tween_a825384c5889f9d5070d0ab22d98ebdb3}\label{class_lean_tween_a825384c5889f9d5070d0ab22d98ebdb3}} 
+static float {\bfseries ease\+In\+Out\+Bounce} (float start, float end, float val)
+\item 
+\mbox{\Hypertarget{class_lean_tween_a50bbedf4c54dc784dec5ba3f4963384c}\label{class_lean_tween_a50bbedf4c54dc784dec5ba3f4963384c}} 
+static float {\bfseries ease\+In\+Back} (float start, float end, float val, float overshoot=1.\+0f)
+\item 
+\mbox{\Hypertarget{class_lean_tween_ae7afa5c2f2c857e0b34f6009fa1339ba}\label{class_lean_tween_ae7afa5c2f2c857e0b34f6009fa1339ba}} 
+static float {\bfseries ease\+Out\+Back} (float start, float end, float val, float overshoot=1.\+0f)
+\item 
+\mbox{\Hypertarget{class_lean_tween_ad05d7b42fe5970bc1de4ffe0818a748f}\label{class_lean_tween_ad05d7b42fe5970bc1de4ffe0818a748f}} 
+static float {\bfseries ease\+In\+Out\+Back} (float start, float end, float val, float overshoot=1.\+0f)
+\item 
+\mbox{\Hypertarget{class_lean_tween_a9659e87f1d0f5c91fc88804c1789d985}\label{class_lean_tween_a9659e87f1d0f5c91fc88804c1789d985}} 
+static float {\bfseries ease\+In\+Elastic} (float start, float end, float val, float overshoot=1.\+0f, float period=0.\+3f)
+\item 
+\mbox{\Hypertarget{class_lean_tween_a1988eae3bdc4bcc5b9b08fa6e0373405}\label{class_lean_tween_a1988eae3bdc4bcc5b9b08fa6e0373405}} 
+static float {\bfseries ease\+Out\+Elastic} (float start, float end, float val, float overshoot=1.\+0f, float period=0.\+3f)
+\item 
+\mbox{\Hypertarget{class_lean_tween_a2536c2995084932d2c1d3272c996f40c}\label{class_lean_tween_a2536c2995084932d2c1d3272c996f40c}} 
+static float {\bfseries ease\+In\+Out\+Elastic} (float start, float end, float val, float overshoot=1.\+0f, float period=0.\+3f)
+\item 
+\mbox{\Hypertarget{class_lean_tween_a8d749661111f697180ad4dcd8e2b2f71}\label{class_lean_tween_a8d749661111f697180ad4dcd8e2b2f71}} 
+static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} {\bfseries follow\+Damp} (Transform trans, Transform target, Lean\+Prop prop, float smooth\+Time, float max\+Speed=-\/1f)
+\item 
+\mbox{\Hypertarget{class_lean_tween_a668906b19b1e20847ae89604d485ba57}\label{class_lean_tween_a668906b19b1e20847ae89604d485ba57}} 
+static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} {\bfseries follow\+Spring} (Transform trans, Transform target, Lean\+Prop prop, float smooth\+Time, float max\+Speed=-\/1f, float friction=2f, float accel\+Rate=0.\+5f)
+\item 
+\mbox{\Hypertarget{class_lean_tween_ad625ab2de9c1fa8bd4187ff67d0df319}\label{class_lean_tween_ad625ab2de9c1fa8bd4187ff67d0df319}} 
+static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} {\bfseries follow\+Bounce\+Out} (Transform trans, Transform target, Lean\+Prop prop, float smooth\+Time, float max\+Speed=-\/1f, float friction=2f, float accel\+Rate=0.\+5f, float hit\+Damping=0.\+9f)
+\item 
+\mbox{\Hypertarget{class_lean_tween_a6e7659305210595a3311cc762739758b}\label{class_lean_tween_a6e7659305210595a3311cc762739758b}} 
+static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} {\bfseries follow\+Linear} (Transform trans, Transform target, Lean\+Prop prop, float move\+Speed)
+\item 
+\mbox{\Hypertarget{class_lean_tween_a5d21dbe76a4c75cdae6bbc7fc20fab5f}\label{class_lean_tween_a5d21dbe76a4c75cdae6bbc7fc20fab5f}} 
+static void {\bfseries add\+Listener} (int event\+Id, System.\+Action$<$ \mbox{\hyperlink{class_l_t_event}{L\+T\+Event}} $>$ callback)
+\item 
+\mbox{\Hypertarget{class_lean_tween_a3249141196ac55d3df87262368cc377b}\label{class_lean_tween_a3249141196ac55d3df87262368cc377b}} 
+static void {\bfseries add\+Listener} (Game\+Object caller, int event\+Id, System.\+Action$<$ \mbox{\hyperlink{class_l_t_event}{L\+T\+Event}} $>$ callback)
+\item 
+\mbox{\Hypertarget{class_lean_tween_a8f3655ae48ad148cc508505058cdf686}\label{class_lean_tween_a8f3655ae48ad148cc508505058cdf686}} 
+static bool {\bfseries remove\+Listener} (int event\+Id, System.\+Action$<$ \mbox{\hyperlink{class_l_t_event}{L\+T\+Event}} $>$ callback)
+\item 
+\mbox{\Hypertarget{class_lean_tween_a204e4784555da23b59b307d64dd731a1}\label{class_lean_tween_a204e4784555da23b59b307d64dd731a1}} 
+static bool {\bfseries remove\+Listener} (int event\+Id)
+\item 
+\mbox{\Hypertarget{class_lean_tween_a0cfb92ba7e62ce05b383d52421bcc413}\label{class_lean_tween_a0cfb92ba7e62ce05b383d52421bcc413}} 
+static bool {\bfseries remove\+Listener} (Game\+Object caller, int event\+Id, System.\+Action$<$ \mbox{\hyperlink{class_l_t_event}{L\+T\+Event}} $>$ callback)
+\item 
+\mbox{\Hypertarget{class_lean_tween_af968ac8152230ff141104f9028912f52}\label{class_lean_tween_af968ac8152230ff141104f9028912f52}} 
+static void {\bfseries dispatch\+Event} (int event\+Id)
+\item 
+\mbox{\Hypertarget{class_lean_tween_a12e7ce6304db07ab2daa8e4ed8ff0430}\label{class_lean_tween_a12e7ce6304db07ab2daa8e4ed8ff0430}} 
+static void {\bfseries dispatch\+Event} (int event\+Id, object data)
+\end{DoxyCompactItemize}
+\doxysubsection*{Статические открытые данные}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_lean_tween_a42ffd1c3aba56ce70edeab50dae44f03}\label{class_lean_tween_a42ffd1c3aba56ce70edeab50dae44f03}} 
+static bool {\bfseries throw\+Errors} = true
+\item 
+\mbox{\Hypertarget{class_lean_tween_aad5bcf3e16e7eefb86540719e16279b4}\label{class_lean_tween_aad5bcf3e16e7eefb86540719e16279b4}} 
+static float {\bfseries tau} = Mathf.\+PI$\ast$2.\+0f
+\item 
+\mbox{\Hypertarget{class_lean_tween_a632a116057a53be863e2a81cdc9fbef7}\label{class_lean_tween_a632a116057a53be863e2a81cdc9fbef7}} 
+static float {\bfseries P\+I\+\_\+\+D\+I\+V2} = Mathf.\+PI / 2.\+0f
+\item 
+\mbox{\Hypertarget{class_lean_tween_a6886c1f6cc9b64342c4fdc6d76057082}\label{class_lean_tween_a6886c1f6cc9b64342c4fdc6d76057082}} 
+static float {\bfseries dt\+Estimated} = -\/1f
+\item 
+\mbox{\Hypertarget{class_lean_tween_ade6a26f41a430ff9c89e9fdc130cdaa9}\label{class_lean_tween_ade6a26f41a430ff9c89e9fdc130cdaa9}} 
+static float {\bfseries dt\+Manual}
+\item 
+\mbox{\Hypertarget{class_lean_tween_a6720b0bec6512dc5155ea758bd1539b6}\label{class_lean_tween_a6720b0bec6512dc5155ea758bd1539b6}} 
+static float {\bfseries dt\+Actual}
+\item 
+\mbox{\Hypertarget{class_lean_tween_a0113aff492c001e7614ba6599894517d}\label{class_lean_tween_a0113aff492c001e7614ba6599894517d}} 
+static Animation\+Curve {\bfseries punch} = new Animation\+Curve( new Keyframe(0.\+0f, 0.\+0f ), new Keyframe(0.\+112586f, 0.\+9976035f ), new Keyframe(0.\+3120486f, -\/0.\+1720615f ), new Keyframe(0.\+4316337f, 0.\+07030682f ), new Keyframe(0.\+5524869f, -\/0.\+03141804f ), new Keyframe(0.\+6549395f, 0.\+003909959f ), new Keyframe(0.\+770987f, -\/0.\+009817753f ), new Keyframe(0.\+8838775f, 0.\+001939224f ), new Keyframe(1.\+0f, 0.\+0f ) )
+\item 
+\mbox{\Hypertarget{class_lean_tween_a3cbc81578d27ee0a179dbe7b8a0917d3}\label{class_lean_tween_a3cbc81578d27ee0a179dbe7b8a0917d3}} 
+static Animation\+Curve {\bfseries shake} = new Animation\+Curve( new Keyframe(0f, 0f), new Keyframe(0.\+25f, 1f), new Keyframe(0.\+75f, -\/1f), new Keyframe(1f, 0f) )
+\item 
+\mbox{\Hypertarget{class_lean_tween_afa811f0f306adfab62bbb3861fc7c937}\label{class_lean_tween_afa811f0f306adfab62bbb3861fc7c937}} 
+static int {\bfseries start\+Search} = 0
+\item 
+\mbox{\Hypertarget{class_lean_tween_a45834a6ce075984e7355ade834b52fba}\label{class_lean_tween_a45834a6ce075984e7355ade834b52fba}} 
+static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} {\bfseries d}
+\item 
+\mbox{\Hypertarget{class_lean_tween_adb493036ec5b9f2ac285a687832ccb67}\label{class_lean_tween_adb493036ec5b9f2ac285a687832ccb67}} 
+static int {\bfseries E\+V\+E\+N\+T\+S\+\_\+\+M\+AX} = 10
+\item 
+\mbox{\Hypertarget{class_lean_tween_ae43b49e07b0c6a6c1c28af97fcdab8d9}\label{class_lean_tween_ae43b49e07b0c6a6c1c28af97fcdab8d9}} 
+static int {\bfseries L\+I\+S\+T\+E\+N\+E\+R\+S\+\_\+\+M\+AX} = 10
+\end{DoxyCompactItemize}
+\doxysubsection*{Свойства}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_lean_tween_a3a4eed23b4107f6ba96cea4f64dc2a78}\label{class_lean_tween_a3a4eed23b4107f6ba96cea4f64dc2a78}} 
+static int {\bfseries max\+Search}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+\mbox{\Hypertarget{class_lean_tween_a6579c00395e1eb701101e68719babd2e}\label{class_lean_tween_a6579c00395e1eb701101e68719babd2e}} 
+static int {\bfseries max\+Simulataneous\+Tweens}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+\mbox{\Hypertarget{class_lean_tween_a5f4c9915ccd9165ea6017cfd128c856c}\label{class_lean_tween_a5f4c9915ccd9165ea6017cfd128c856c}} 
+static int {\bfseries tweens\+Running}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+\mbox{\Hypertarget{class_lean_tween_a900516d24e1fd0bf33a73b0b44a36f41}\label{class_lean_tween_a900516d24e1fd0bf33a73b0b44a36f41}} 
+static Game\+Object {\bfseries tween\+Empty}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Закрытые статические члены}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_lean_tween_a20b6b6b79785ba32805758e634d76447}\label{class_lean_tween_a20b6b6b79785ba32805758e634d76447}} 
+static void {\bfseries internal\+On\+Level\+Was\+Loaded} (int lvl)
+\item 
+\mbox{\Hypertarget{class_lean_tween_a60cd218775c837cec59b887909805e93}\label{class_lean_tween_a60cd218775c837cec59b887909805e93}} 
+static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} {\bfseries push\+New\+Tween} (Game\+Object game\+Object, Vector3 to, float time, \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} tween)
+\end{DoxyCompactItemize}
+\doxysubsection*{Закрытые статические данные}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_lean_tween_aa196940641f89cef3fa90b6f3abe55b1}\label{class_lean_tween_aa196940641f89cef3fa90b6f3abe55b1}} 
+static \mbox{\hyperlink{class_l_t_seq}{L\+T\+Seq}}\mbox{[}$\,$\mbox{]} {\bfseries sequences}
+\item 
+\mbox{\Hypertarget{class_lean_tween_a817bd36531c6ba8e9a8fecbf6492643f}\label{class_lean_tween_a817bd36531c6ba8e9a8fecbf6492643f}} 
+static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}}\mbox{[}$\,$\mbox{]} {\bfseries tweens}
+\item 
+\mbox{\Hypertarget{class_lean_tween_abed0ff1acb41b8b1be54a35d24071e11}\label{class_lean_tween_abed0ff1acb41b8b1be54a35d24071e11}} 
+static int\mbox{[}$\,$\mbox{]} {\bfseries tweens\+Finished}
+\item 
+\mbox{\Hypertarget{class_lean_tween_aa587a05b6e0fbebcfcb44107662f4a82}\label{class_lean_tween_aa587a05b6e0fbebcfcb44107662f4a82}} 
+static int\mbox{[}$\,$\mbox{]} {\bfseries tweens\+Finished\+Ids}
+\item 
+\mbox{\Hypertarget{class_lean_tween_a6f01564c4589dc182ff90670a8ec3169}\label{class_lean_tween_a6f01564c4589dc182ff90670a8ec3169}} 
+static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} {\bfseries tween}
+\item 
+\mbox{\Hypertarget{class_lean_tween_a6fbdb1cd8571fe5ebf046b3bbc124917}\label{class_lean_tween_a6fbdb1cd8571fe5ebf046b3bbc124917}} 
+static int {\bfseries tween\+Max\+Search} = -\/1
+\item 
+\mbox{\Hypertarget{class_lean_tween_aa6516e565c33e0113579e0bebad58435}\label{class_lean_tween_aa6516e565c33e0113579e0bebad58435}} 
+static int {\bfseries max\+Tweens} = 400
+\item 
+\mbox{\Hypertarget{class_lean_tween_a318ade3f43cc2f4ae84c93c98a5b9f7a}\label{class_lean_tween_a318ade3f43cc2f4ae84c93c98a5b9f7a}} 
+static int {\bfseries max\+Sequences} = 400
+\item 
+\mbox{\Hypertarget{class_lean_tween_a00020bf8a52a1ffb8bb42eb3d9198ae7}\label{class_lean_tween_a00020bf8a52a1ffb8bb42eb3d9198ae7}} 
+static int {\bfseries frame\+Rendered} = -\/1
+\item 
+\mbox{\Hypertarget{class_lean_tween_ad2ff16e4707da6459310d43671fb4564}\label{class_lean_tween_ad2ff16e4707da6459310d43671fb4564}} 
+static Game\+Object {\bfseries \+\_\+tween\+Empty}
+\item 
+\mbox{\Hypertarget{class_lean_tween_aaacd4058a539b5aac13cbf55bcd5eae8}\label{class_lean_tween_aaacd4058a539b5aac13cbf55bcd5eae8}} 
+static uint {\bfseries global\+\_\+counter} = 0
+\item 
+\mbox{\Hypertarget{class_lean_tween_a66184e4d1713b99b584144875af90c8b}\label{class_lean_tween_a66184e4d1713b99b584144875af90c8b}} 
+static int {\bfseries i}
+\item 
+\mbox{\Hypertarget{class_lean_tween_ac582043729481f3b9fdd552fcd2b9475}\label{class_lean_tween_ac582043729481f3b9fdd552fcd2b9475}} 
+static int {\bfseries j}
+\item 
+\mbox{\Hypertarget{class_lean_tween_afe53e01df5d6b51e4a268faa7f49ce75}\label{class_lean_tween_afe53e01df5d6b51e4a268faa7f49ce75}} 
+static int {\bfseries finished\+Cnt}
+\item 
+\mbox{\Hypertarget{class_lean_tween_af468e06a2af0177515f54398fc7fbc10}\label{class_lean_tween_af468e06a2af0177515f54398fc7fbc10}} 
+static int {\bfseries max\+Tween\+Reached}
+\item 
+\mbox{\Hypertarget{class_lean_tween_aa1efd02904978c62584ef1d5601d17e2}\label{class_lean_tween_aa1efd02904978c62584ef1d5601d17e2}} 
+static System.\+Action$<$ \mbox{\hyperlink{class_l_t_event}{L\+T\+Event}} $>$\mbox{[}$\,$\mbox{]} {\bfseries event\+Listeners}
+\item 
+\mbox{\Hypertarget{class_lean_tween_a6e1cde022631c785a8f746372cd94c0c}\label{class_lean_tween_a6e1cde022631c785a8f746372cd94c0c}} 
+static Game\+Object\mbox{[}$\,$\mbox{]} {\bfseries go\+Listeners}
+\item 
+\mbox{\Hypertarget{class_lean_tween_a7190d26dd82ed723402ca1da1a549111}\label{class_lean_tween_a7190d26dd82ed723402ca1da1a549111}} 
+static int {\bfseries events\+Max\+Search} = 0
+\item 
+\mbox{\Hypertarget{class_lean_tween_a91459f7f222591a29455d82cb1ddd612}\label{class_lean_tween_a91459f7f222591a29455d82cb1ddd612}} 
+static int {\bfseries I\+N\+I\+T\+\_\+\+L\+I\+S\+T\+E\+N\+E\+R\+S\+\_\+\+M\+AX} = L\+I\+S\+T\+E\+N\+E\+R\+S\+\_\+\+M\+AX
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Подробное описание}
+\mbox{\hyperlink{class_lean_tween}{Lean\+Tween}} is an efficient tweening engine for Unity3d~\newline
+~\newline
+ \href{\#index}{\texttt{ Index of All Methods}} $\vert$ \href{LTDescr.html}{\texttt{ Optional Paramaters that can be passed}}~\newline
+~\newline
+ {\bfseries{Optional Parameters}} are passed at the end of every method~\newline
+ ~\newline
+ {\itshape Example\+:}~\newline
+ Lean\+Tween.\+move\+X( game\+Object, 1f, 1f).set\+Ease( \href{LeanTweenType.html}{\texttt{ Lean\+Tween\+Type}}.ease\+In\+Quad ).set\+Delay(1f);~\newline
+ ~\newline
+ You can pass the optional parameters in any order, and chain on as many as you wish!~\newline
+~\newline
+ You can also modify this tween later, just save the unique id of the tween.~\newline
+ \doxysubparagraph*{Example\+:}
+
+int id = Lean\+Tween.\+move\+X(game\+Object, 1f, 1f).id;~\newline
+ \href{LTDescr.html}{\texttt{ L\+T\+Descr}} d = \mbox{\hyperlink{class_lean_tween}{Lean\+Tween}}.\href{\#method_LeanTween.descr}{\texttt{ descr}}( id );~\newline
+~\newline
+ if(d!=null)\{ // if the tween has already finished it will return null~\newline
+ \&\#160;\&\#160; // change some parameters~\newline
+ \&\#160;\&\#160; d.\+set\+On\+Complete( on\+Complete\+Func ).set\+Ease( \href{LeanTweenType.html}{\texttt{ Lean\+Tween\+Type}}.ease\+In\+Out\+Back );~\newline
+ \} \begin{Desc}
+\item[Примеры]\par
+\mbox{\hyperlink{_d_1_2_dev_2_unity_2_shaperation_2_assets_2_lean_tween_2_framework_2_lean_tween_8cs-example}{D\+:/\+Dev/\+Unity/\+Shaperation/\+Assets/\+Lean\+Tween/\+Framework/\+Lean\+Tween.\+cs}}, \mbox{\hyperlink{_d_1_2_dev_2_unity_2_shaperation_2_assets_2_lean_tween_2_framework_2_l_t_descr_8cs-example}{D\+:/\+Dev/\+Unity/\+Shaperation/\+Assets/\+Lean\+Tween/\+Framework/\+L\+T\+Descr.\+cs}} и \mbox{\hyperlink{_d_1_2_dev_2_unity_2_shaperation_2_assets_2_lean_tween_2_framework_2_l_t_seq_8cs-example}{D\+:/\+Dev/\+Unity/\+Shaperation/\+Assets/\+Lean\+Tween/\+Framework/\+L\+T\+Seq.\+cs}}.\end{Desc}
+
+
+\doxysubsection{Методы}
+\mbox{\Hypertarget{class_lean_tween_ab49e14af3b3d24a65527a19b6579f6ea}\label{class_lean_tween_ab49e14af3b3d24a65527a19b6579f6ea}} 
+\index{LeanTween@{LeanTween}!alphaVertex@{alphaVertex}}
+\index{alphaVertex@{alphaVertex}!LeanTween@{LeanTween}}
+\doxysubsubsection{\texorpdfstring{alphaVertex()}{alphaVertex()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} Lean\+Tween.\+alpha\+Vertex (\begin{DoxyParamCaption}\item[{Game\+Object}]{game\+Object,  }\item[{float}]{to,  }\item[{float}]{time }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+This works by tweening the vertex colors directly 
+
+~\newline
+ Vertex-\/based coloring is useful because you avoid making a copy of your object\textquotesingle{}s material for each instance that needs a different color.~\newline
+ ~\newline
+ A shader that supports vertex colors is required for it to work (for example the shaders in Mobile/\+Particles/)
+
+@method \mbox{\hyperlink{class_lean_tween_ab49e14af3b3d24a65527a19b6579f6ea}{Lean\+Tween.\+alpha\+Vertex}} 
+\begin{DoxyParams}{Аргументы}
+{\em \{\+Game\+Object\}} & game\+Object\+:Game\+Object Gameobject that you wish to alpha \\
+\hline
+{\em \{float\}} & to\+:float The alpha value you wish to tween to \\
+\hline
+{\em \{float\}} & time\+:float The time with which to delay before calling the function \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+\{\mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}}\} \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} an object that distinguishes the tween 
+\end{DoxyReturn}
+\begin{Desc}
+\item[Примеры]\par
+\mbox{\hyperlink{_d_1_2_dev_2_unity_2_shaperation_2_assets_2_lean_tween_2_framework_2_lean_tween_8cs-example}{D\+:/\+Dev/\+Unity/\+Shaperation/\+Assets/\+Lean\+Tween/\+Framework/\+Lean\+Tween.\+cs}}.\end{Desc}
+\mbox{\Hypertarget{class_lean_tween_a78ce25cbc68727b2965aa45ede1e310f}\label{class_lean_tween_a78ce25cbc68727b2965aa45ede1e310f}} 
+\index{LeanTween@{LeanTween}!isPaused@{isPaused}}
+\index{isPaused@{isPaused}!LeanTween@{LeanTween}}
+\doxysubsubsection{\texorpdfstring{isPaused()}{isPaused()}}
+{\footnotesize\ttfamily static bool Lean\+Tween.\+is\+Paused (\begin{DoxyParamCaption}\item[{Game\+Object}]{game\+Object = {\ttfamily null} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Test whether or not a tween is paused on a Game\+Object 
+
+@method \mbox{\hyperlink{class_lean_tween_a78ce25cbc68727b2965aa45ede1e310f}{Lean\+Tween.\+is\+Paused}} 
+\begin{DoxyParams}{Аргументы}
+{\em \{\+Game\+Object\}} & game\+Object\+:Game\+Object Game\+Object that you want to test if it is paused \\
+\hline
+\end{DoxyParams}
+\begin{Desc}
+\item[Примеры]\par
+\mbox{\hyperlink{_d_1_2_dev_2_unity_2_shaperation_2_assets_2_lean_tween_2_framework_2_lean_tween_8cs-example}{D\+:/\+Dev/\+Unity/\+Shaperation/\+Assets/\+Lean\+Tween/\+Framework/\+Lean\+Tween.\+cs}}.\end{Desc}
+\mbox{\Hypertarget{class_lean_tween_a325405079311587dfad028a14d510f58}\label{class_lean_tween_a325405079311587dfad028a14d510f58}} 
+\index{LeanTween@{LeanTween}!isTweening@{isTweening}}
+\index{isTweening@{isTweening}!LeanTween@{LeanTween}}
+\doxysubsubsection{\texorpdfstring{isTweening()}{isTweening()}}
+{\footnotesize\ttfamily static bool Lean\+Tween.\+is\+Tweening (\begin{DoxyParamCaption}\item[{Game\+Object}]{game\+Object = {\ttfamily null} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Test whether or not a tween is active on a Game\+Object 
+
+@method \mbox{\hyperlink{class_lean_tween_a325405079311587dfad028a14d510f58}{Lean\+Tween.\+is\+Tweening}} 
+\begin{DoxyParams}{Аргументы}
+{\em \{\+Game\+Object\}} & game\+Object\+:Game\+Object Game\+Object that you want to test if it is tweening \\
+\hline
+\end{DoxyParams}
+\begin{Desc}
+\item[Примеры]\par
+\mbox{\hyperlink{_d_1_2_dev_2_unity_2_shaperation_2_assets_2_lean_tween_2_framework_2_lean_tween_8cs-example}{D\+:/\+Dev/\+Unity/\+Shaperation/\+Assets/\+Lean\+Tween/\+Framework/\+Lean\+Tween.\+cs}}.\end{Desc}
+\mbox{\Hypertarget{class_lean_tween_a20f3161b0c2f03453ee5c7b58d9cc3d3}\label{class_lean_tween_a20f3161b0c2f03453ee5c7b58d9cc3d3}} 
+\index{LeanTween@{LeanTween}!move@{move}}
+\index{move@{move}!LeanTween@{LeanTween}}
+\doxysubsubsection{\texorpdfstring{move()}{move()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} Lean\+Tween.\+move (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_l_t_rect}{L\+T\+Rect}}}]{lt\+Rect,  }\item[{Vector2}]{to,  }\item[{float}]{time }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Move a G\+UI Element to a certain location 
+
+@method Lean\+Tween.\+move (G\+UI) 
+\begin{DoxyParams}{Аргументы}
+{\em \{\+L\+T\+Rect\}} & lt\+Rect\+:\mbox{\hyperlink{class_l_t_rect}{L\+T\+Rect}} lt\+Rect \mbox{\hyperlink{class_l_t_rect}{L\+T\+Rect}} object that you wish to move \\
+\hline
+{\em \{\+Vector2\}} & vec\+:Vector2 to The final position with which to move to (pixel coordinates) \\
+\hline
+{\em \{float\}} & time\+:float time The time to complete the tween in \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+\{\mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}}\} \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} an object that distinguishes the tween 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_lean_tween_a75991b9f12d54c1d74806d63a5f75c20}\label{class_lean_tween_a75991b9f12d54c1d74806d63a5f75c20}} 
+\index{LeanTween@{LeanTween}!moveLocal@{moveLocal}}
+\index{moveLocal@{moveLocal}!LeanTween@{LeanTween}}
+\doxysubsubsection{\texorpdfstring{moveLocal()}{moveLocal()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} Lean\+Tween.\+move\+Local (\begin{DoxyParamCaption}\item[{Game\+Object}]{game\+Object,  }\item[{Vector3}]{to,  }\item[{float}]{time }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Move a Game\+Object to a certain location relative to the parent transform. 
+
+@method \mbox{\hyperlink{class_lean_tween_a75991b9f12d54c1d74806d63a5f75c20}{Lean\+Tween.\+move\+Local}} 
+\begin{DoxyParams}{Аргументы}
+{\em \{\+Game\+Object\}} & Game\+Object game\+Object Gameobject that you wish to rotate \\
+\hline
+{\em \{\+Vector3\}} & Vector3 to The final positin with which to move to \\
+\hline
+{\em \{float\}} & float time The time to complete the tween in \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+\{\mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}}\} \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} an object that distinguishes the tween 
+\end{DoxyReturn}
+\begin{Desc}
+\item[Примеры]\par
+\mbox{\hyperlink{_d_1_2_dev_2_unity_2_shaperation_2_assets_2_lean_tween_2_framework_2_lean_tween_8cs-example}{D\+:/\+Dev/\+Unity/\+Shaperation/\+Assets/\+Lean\+Tween/\+Framework/\+Lean\+Tween.\+cs}}.\end{Desc}
+\mbox{\Hypertarget{class_lean_tween_a0208e1917d6e016eb529cfc865afb4da}\label{class_lean_tween_a0208e1917d6e016eb529cfc865afb4da}} 
+\index{LeanTween@{LeanTween}!moveX@{moveX}}
+\index{moveX@{moveX}!LeanTween@{LeanTween}}
+\doxysubsubsection{\texorpdfstring{moveX()}{moveX()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} Lean\+Tween.\+moveX (\begin{DoxyParamCaption}\item[{Game\+Object}]{game\+Object,  }\item[{float}]{to,  }\item[{float}]{time }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Move a Game\+Object along the x-\/axis 
+
+@method \mbox{\hyperlink{class_lean_tween_a0208e1917d6e016eb529cfc865afb4da}{Lean\+Tween.\+moveX}} 
+\begin{DoxyParams}{Аргументы}
+{\em \{\+Game\+Object\}} & game\+Object\+:Game\+Object game\+Object Gameobject that you wish to move \\
+\hline
+{\em \{float\}} & to\+:float to The final position with which to move to \\
+\hline
+{\em \{float\}} & time\+:float time The time to complete the move in \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+\{\mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}}\} \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} an object that distinguishes the tween 
+\end{DoxyReturn}
+\begin{Desc}
+\item[Примеры]\par
+\mbox{\hyperlink{_d_1_2_dev_2_unity_2_shaperation_2_assets_2_lean_tween_2_framework_2_lean_tween_8cs-example}{D\+:/\+Dev/\+Unity/\+Shaperation/\+Assets/\+Lean\+Tween/\+Framework/\+Lean\+Tween.\+cs}}.\end{Desc}
+\mbox{\Hypertarget{class_lean_tween_a7faa6b4335b52715f33b47952b45c3ee}\label{class_lean_tween_a7faa6b4335b52715f33b47952b45c3ee}} 
+\index{LeanTween@{LeanTween}!moveY@{moveY}}
+\index{moveY@{moveY}!LeanTween@{LeanTween}}
+\doxysubsubsection{\texorpdfstring{moveY()}{moveY()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} Lean\+Tween.\+moveY (\begin{DoxyParamCaption}\item[{Game\+Object}]{game\+Object,  }\item[{float}]{to,  }\item[{float}]{time }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Move a Game\+Object along the y-\/axis 
+
+@method \mbox{\hyperlink{class_lean_tween_a7faa6b4335b52715f33b47952b45c3ee}{Lean\+Tween.\+moveY}} 
+\begin{DoxyParams}{Аргументы}
+{\em \{\+Game\+Object\}} & Game\+Object game\+Object Gameobject that you wish to move \\
+\hline
+{\em \{float\}} & float to The final position with which to move to \\
+\hline
+{\em \{float\}} & float time The time to complete the move in \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+\{\mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}}\} \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} an object that distinguishes the tween 
+\end{DoxyReturn}
+\begin{Desc}
+\item[Примеры]\par
+\mbox{\hyperlink{_d_1_2_dev_2_unity_2_shaperation_2_assets_2_lean_tween_2_framework_2_lean_tween_8cs-example}{D\+:/\+Dev/\+Unity/\+Shaperation/\+Assets/\+Lean\+Tween/\+Framework/\+Lean\+Tween.\+cs}}.\end{Desc}
+\mbox{\Hypertarget{class_lean_tween_a436f9b3dd24da4a7373da0261029c1ec}\label{class_lean_tween_a436f9b3dd24da4a7373da0261029c1ec}} 
+\index{LeanTween@{LeanTween}!moveZ@{moveZ}}
+\index{moveZ@{moveZ}!LeanTween@{LeanTween}}
+\doxysubsubsection{\texorpdfstring{moveZ()}{moveZ()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} Lean\+Tween.\+moveZ (\begin{DoxyParamCaption}\item[{Game\+Object}]{game\+Object,  }\item[{float}]{to,  }\item[{float}]{time }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Move a Game\+Object along the z-\/axis 
+
+@method \mbox{\hyperlink{class_lean_tween_a436f9b3dd24da4a7373da0261029c1ec}{Lean\+Tween.\+moveZ}} 
+\begin{DoxyParams}{Аргументы}
+{\em \{\+Game\+Object\}} & Game\+Object game\+Object Gameobject that you wish to move \\
+\hline
+{\em \{float\}} & float to The final position with which to move to \\
+\hline
+{\em \{float\}} & float time The time to complete the move in \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+\{\mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}}\} \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} an object that distinguishes the tween 
+\end{DoxyReturn}
+\begin{Desc}
+\item[Примеры]\par
+\mbox{\hyperlink{_d_1_2_dev_2_unity_2_shaperation_2_assets_2_lean_tween_2_framework_2_lean_tween_8cs-example}{D\+:/\+Dev/\+Unity/\+Shaperation/\+Assets/\+Lean\+Tween/\+Framework/\+Lean\+Tween.\+cs}}.\end{Desc}
+\mbox{\Hypertarget{class_lean_tween_af511218bf4513f8e9e89366a6c6363ec}\label{class_lean_tween_af511218bf4513f8e9e89366a6c6363ec}} 
+\index{LeanTween@{LeanTween}!pause@{pause}}
+\index{pause@{pause}!LeanTween@{LeanTween}}
+\doxysubsubsection{\texorpdfstring{pause()}{pause()}}
+{\footnotesize\ttfamily static void Lean\+Tween.\+pause (\begin{DoxyParamCaption}\item[{Game\+Object}]{game\+Object }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Pause all tweens for a Game\+Object 
+
+@method Lean\+Tween.\+pause 
+\begin{DoxyParams}{Аргументы}
+{\em \{\+Game\+Object\}} & game\+Object\+:Game\+Object Game\+Object whose tweens you want to pause \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_lean_tween_a49bf7c3489ffc475b7439df2322563b2}\label{class_lean_tween_a49bf7c3489ffc475b7439df2322563b2}} 
+\index{LeanTween@{LeanTween}!pauseAll@{pauseAll}}
+\index{pauseAll@{pauseAll}!LeanTween@{LeanTween}}
+\doxysubsubsection{\texorpdfstring{pauseAll()}{pauseAll()}}
+{\footnotesize\ttfamily static void Lean\+Tween.\+pause\+All (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Pause all active tweens 
+
+@method \mbox{\hyperlink{class_lean_tween_a49bf7c3489ffc475b7439df2322563b2}{Lean\+Tween.\+pause\+All}} \begin{Desc}
+\item[Примеры]\par
+\mbox{\hyperlink{_d_1_2_dev_2_unity_2_shaperation_2_assets_2_lean_tween_2_framework_2_lean_tween_8cs-example}{D\+:/\+Dev/\+Unity/\+Shaperation/\+Assets/\+Lean\+Tween/\+Framework/\+Lean\+Tween.\+cs}}.\end{Desc}
+\mbox{\Hypertarget{class_lean_tween_aad19a2614710ebf5f45486b2cac5d21d}\label{class_lean_tween_aad19a2614710ebf5f45486b2cac5d21d}} 
+\index{LeanTween@{LeanTween}!resume@{resume}}
+\index{resume@{resume}!LeanTween@{LeanTween}}
+\doxysubsubsection{\texorpdfstring{resume()}{resume()}}
+{\footnotesize\ttfamily static void Lean\+Tween.\+resume (\begin{DoxyParamCaption}\item[{Game\+Object}]{game\+Object }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Resume all the tweens on a Game\+Object 
+
+@method Lean\+Tween.\+resume 
+\begin{DoxyParams}{Аргументы}
+{\em \{\+Game\+Object\}} & game\+Object\+:Game\+Object Game\+Object whose tweens you want to resume \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_lean_tween_af1975b4f90f51ccde4e84d79c828d4de}\label{class_lean_tween_af1975b4f90f51ccde4e84d79c828d4de}} 
+\index{LeanTween@{LeanTween}!resumeAll@{resumeAll}}
+\index{resumeAll@{resumeAll}!LeanTween@{LeanTween}}
+\doxysubsubsection{\texorpdfstring{resumeAll()}{resumeAll()}}
+{\footnotesize\ttfamily static void Lean\+Tween.\+resume\+All (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Resume all active tweens 
+
+@method \mbox{\hyperlink{class_lean_tween_af1975b4f90f51ccde4e84d79c828d4de}{Lean\+Tween.\+resume\+All}} \begin{Desc}
+\item[Примеры]\par
+\mbox{\hyperlink{_d_1_2_dev_2_unity_2_shaperation_2_assets_2_lean_tween_2_framework_2_lean_tween_8cs-example}{D\+:/\+Dev/\+Unity/\+Shaperation/\+Assets/\+Lean\+Tween/\+Framework/\+Lean\+Tween.\+cs}}.\end{Desc}
+\mbox{\Hypertarget{class_lean_tween_a9b658b2284dfbd53a79cf1db5a3a228c}\label{class_lean_tween_a9b658b2284dfbd53a79cf1db5a3a228c}} 
+\index{LeanTween@{LeanTween}!rotateLocal@{rotateLocal}}
+\index{rotateLocal@{rotateLocal}!LeanTween@{LeanTween}}
+\doxysubsubsection{\texorpdfstring{rotateLocal()}{rotateLocal()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} Lean\+Tween.\+rotate\+Local (\begin{DoxyParamCaption}\item[{Game\+Object}]{game\+Object,  }\item[{Vector3}]{to,  }\item[{float}]{time }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Rotate a Game\+Object in the objects local space (on the transforms local\+Euler\+Angles object) 
+
+@method \mbox{\hyperlink{class_lean_tween_a9b658b2284dfbd53a79cf1db5a3a228c}{Lean\+Tween.\+rotate\+Local}} 
+\begin{DoxyParams}{Аргументы}
+{\em \{\+Game\+Object\}} & game\+Object\+:Game\+Object Gameobject that you wish to rotate \\
+\hline
+{\em \{\+Vector3\}} & to\+:Vector3 The final rotation with which to rotate to \\
+\hline
+{\em \{float\}} & time\+:float The time to complete the rotation in \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+\{\mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}}\} \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} an object that distinguishes the tween 
+\end{DoxyReturn}
+\begin{Desc}
+\item[Примеры]\par
+\mbox{\hyperlink{_d_1_2_dev_2_unity_2_shaperation_2_assets_2_lean_tween_2_framework_2_lean_tween_8cs-example}{D\+:/\+Dev/\+Unity/\+Shaperation/\+Assets/\+Lean\+Tween/\+Framework/\+Lean\+Tween.\+cs}}.\end{Desc}
+\mbox{\Hypertarget{class_lean_tween_af85a42c0723ab2bf398284e51760145f}\label{class_lean_tween_af85a42c0723ab2bf398284e51760145f}} 
+\index{LeanTween@{LeanTween}!rotateX@{rotateX}}
+\index{rotateX@{rotateX}!LeanTween@{LeanTween}}
+\doxysubsubsection{\texorpdfstring{rotateX()}{rotateX()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} Lean\+Tween.\+rotateX (\begin{DoxyParamCaption}\item[{Game\+Object}]{game\+Object,  }\item[{float}]{to,  }\item[{float}]{time }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Rotate a Game\+Object only on the X axis 
+
+Rotate a Game\+Object only on the X axis 
+
+@method \mbox{\hyperlink{class_lean_tween_af85a42c0723ab2bf398284e51760145f}{Lean\+Tween.\+rotateX}} 
+\begin{DoxyParams}{Аргументы}
+{\em \{\+Game\+Object\}} & Game\+Object Gameobject that you wish to rotate \\
+\hline
+{\em \{float\}} & to\+:float The final x-\/axis rotation with which to rotate \\
+\hline
+{\em \{float\}} & time\+:float The time to complete the rotation in \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+\{\mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}}\} \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} an object that distinguishes the tween 
+\end{DoxyReturn}
+\begin{Desc}
+\item[Примеры]\par
+\mbox{\hyperlink{_d_1_2_dev_2_unity_2_shaperation_2_assets_2_lean_tween_2_framework_2_lean_tween_8cs-example}{D\+:/\+Dev/\+Unity/\+Shaperation/\+Assets/\+Lean\+Tween/\+Framework/\+Lean\+Tween.\+cs}}.\end{Desc}
+\mbox{\Hypertarget{class_lean_tween_af5d9b9ff9a69df945604df680e15ac68}\label{class_lean_tween_af5d9b9ff9a69df945604df680e15ac68}} 
+\index{LeanTween@{LeanTween}!rotateY@{rotateY}}
+\index{rotateY@{rotateY}!LeanTween@{LeanTween}}
+\doxysubsubsection{\texorpdfstring{rotateY()}{rotateY()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} Lean\+Tween.\+rotateY (\begin{DoxyParamCaption}\item[{Game\+Object}]{game\+Object,  }\item[{float}]{to,  }\item[{float}]{time }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Rotate a Game\+Object only on the Y axis 
+
+@method \mbox{\hyperlink{class_lean_tween_af5d9b9ff9a69df945604df680e15ac68}{Lean\+Tween.\+rotateY}} 
+\begin{DoxyParams}{Аргументы}
+{\em \{\+Game\+Object\}} & Game\+Object Gameobject that you wish to rotate \\
+\hline
+{\em \{float\}} & to\+:float The final y-\/axis rotation with which to rotate \\
+\hline
+{\em \{float\}} & time\+:float The time to complete the rotation in \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+\{\mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}}\} \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} an object that distinguishes the tween 
+\end{DoxyReturn}
+\begin{Desc}
+\item[Примеры]\par
+\mbox{\hyperlink{_d_1_2_dev_2_unity_2_shaperation_2_assets_2_lean_tween_2_framework_2_lean_tween_8cs-example}{D\+:/\+Dev/\+Unity/\+Shaperation/\+Assets/\+Lean\+Tween/\+Framework/\+Lean\+Tween.\+cs}}.\end{Desc}
+\mbox{\Hypertarget{class_lean_tween_a2188a492f41ae788ce75ac2ba94b2769}\label{class_lean_tween_a2188a492f41ae788ce75ac2ba94b2769}} 
+\index{LeanTween@{LeanTween}!rotateZ@{rotateZ}}
+\index{rotateZ@{rotateZ}!LeanTween@{LeanTween}}
+\doxysubsubsection{\texorpdfstring{rotateZ()}{rotateZ()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} Lean\+Tween.\+rotateZ (\begin{DoxyParamCaption}\item[{Game\+Object}]{game\+Object,  }\item[{float}]{to,  }\item[{float}]{time }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Rotate a Game\+Object only on the Z axis 
+
+@method \mbox{\hyperlink{class_lean_tween_a2188a492f41ae788ce75ac2ba94b2769}{Lean\+Tween.\+rotateZ}} 
+\begin{DoxyParams}{Аргументы}
+{\em \{\+Game\+Object\}} & Game\+Object Gameobject that you wish to rotate \\
+\hline
+{\em \{float\}} & to\+:float The final z-\/axis rotation with which to rotate \\
+\hline
+{\em \{float\}} & time\+:float The time to complete the rotation in \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+\{\mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}}\} \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} an object that distinguishes the tween 
+\end{DoxyReturn}
+\begin{Desc}
+\item[Примеры]\par
+\mbox{\hyperlink{_d_1_2_dev_2_unity_2_shaperation_2_assets_2_lean_tween_2_framework_2_lean_tween_8cs-example}{D\+:/\+Dev/\+Unity/\+Shaperation/\+Assets/\+Lean\+Tween/\+Framework/\+Lean\+Tween.\+cs}}.\end{Desc}
+\mbox{\Hypertarget{class_lean_tween_aa47fced990c5e3108ef221b8a4f636d5}\label{class_lean_tween_aa47fced990c5e3108ef221b8a4f636d5}} 
+\index{LeanTween@{LeanTween}!scale@{scale}}
+\index{scale@{scale}!LeanTween@{LeanTween}}
+\doxysubsubsection{\texorpdfstring{scale()}{scale()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} Lean\+Tween.\+scale (\begin{DoxyParamCaption}\item[{Game\+Object}]{game\+Object,  }\item[{Vector3}]{to,  }\item[{float}]{time }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Scale a Game\+Object to a certain size 
+
+@method \mbox{\hyperlink{class_lean_tween_aa47fced990c5e3108ef221b8a4f636d5}{Lean\+Tween.\+scale}} 
+\begin{DoxyParams}{Аргументы}
+{\em \{\+Game\+Object\}} & game\+Object\+:Game\+Object game\+Object Gameobject that you wish to scale \\
+\hline
+{\em \{\+Vector3\}} & vec\+:Vector3 to The size with which to tween to \\
+\hline
+{\em \{float\}} & time\+:float time The time to complete the tween in \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+\{\mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}}\} \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} an object that distinguishes the tween 
+\end{DoxyReturn}
+\begin{Desc}
+\item[Примеры]\par
+\mbox{\hyperlink{_d_1_2_dev_2_unity_2_shaperation_2_assets_2_lean_tween_2_framework_2_lean_tween_8cs-example}{D\+:/\+Dev/\+Unity/\+Shaperation/\+Assets/\+Lean\+Tween/\+Framework/\+Lean\+Tween.\+cs}}.\end{Desc}
+\mbox{\Hypertarget{class_lean_tween_a578fe06253c9c498c18c1b24f98ff8ef}\label{class_lean_tween_a578fe06253c9c498c18c1b24f98ff8ef}} 
+\index{LeanTween@{LeanTween}!scaleX@{scaleX}}
+\index{scaleX@{scaleX}!LeanTween@{LeanTween}}
+\doxysubsubsection{\texorpdfstring{scaleX()}{scaleX()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} Lean\+Tween.\+scaleX (\begin{DoxyParamCaption}\item[{Game\+Object}]{game\+Object,  }\item[{float}]{to,  }\item[{float}]{time }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Scale a Game\+Object to a certain size along the x-\/axis only 
+
+@method \mbox{\hyperlink{class_lean_tween_a578fe06253c9c498c18c1b24f98ff8ef}{Lean\+Tween.\+scaleX}} 
+\begin{DoxyParams}{Аргументы}
+{\em \{\+Game\+Object\}} & game\+Object\+:Game\+Object Gameobject that you wish to scale \\
+\hline
+{\em \{float\}} & scale\+To\+:float the size with which to scale to \\
+\hline
+{\em \{float\}} & time\+:float the time to complete the tween in \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+\{\mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}}\} \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} an object that distinguishes the tween 
+\end{DoxyReturn}
+\begin{Desc}
+\item[Примеры]\par
+\mbox{\hyperlink{_d_1_2_dev_2_unity_2_shaperation_2_assets_2_lean_tween_2_framework_2_lean_tween_8cs-example}{D\+:/\+Dev/\+Unity/\+Shaperation/\+Assets/\+Lean\+Tween/\+Framework/\+Lean\+Tween.\+cs}}.\end{Desc}
+\mbox{\Hypertarget{class_lean_tween_a26b7b87be65fe89dfd5e61a5ff2932f6}\label{class_lean_tween_a26b7b87be65fe89dfd5e61a5ff2932f6}} 
+\index{LeanTween@{LeanTween}!scaleY@{scaleY}}
+\index{scaleY@{scaleY}!LeanTween@{LeanTween}}
+\doxysubsubsection{\texorpdfstring{scaleY()}{scaleY()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} Lean\+Tween.\+scaleY (\begin{DoxyParamCaption}\item[{Game\+Object}]{game\+Object,  }\item[{float}]{to,  }\item[{float}]{time }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Scale a Game\+Object to a certain size along the y-\/axis only 
+
+@method \mbox{\hyperlink{class_lean_tween_a26b7b87be65fe89dfd5e61a5ff2932f6}{Lean\+Tween.\+scaleY}} 
+\begin{DoxyParams}{Аргументы}
+{\em \{\+Game\+Object\}} & game\+Object\+:Game\+Object Gameobject that you wish to scale \\
+\hline
+{\em \{float\}} & scale\+To\+:float the size with which to scale to \\
+\hline
+{\em \{float\}} & time\+:float the time to complete the tween in \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+\{\mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}}\} \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} an object that distinguishes the tween 
+\end{DoxyReturn}
+\begin{Desc}
+\item[Примеры]\par
+\mbox{\hyperlink{_d_1_2_dev_2_unity_2_shaperation_2_assets_2_lean_tween_2_framework_2_lean_tween_8cs-example}{D\+:/\+Dev/\+Unity/\+Shaperation/\+Assets/\+Lean\+Tween/\+Framework/\+Lean\+Tween.\+cs}}.\end{Desc}
+\mbox{\Hypertarget{class_lean_tween_ac7689aa78dafe72bb28d8e885998a1b7}\label{class_lean_tween_ac7689aa78dafe72bb28d8e885998a1b7}} 
+\index{LeanTween@{LeanTween}!scaleZ@{scaleZ}}
+\index{scaleZ@{scaleZ}!LeanTween@{LeanTween}}
+\doxysubsubsection{\texorpdfstring{scaleZ()}{scaleZ()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} Lean\+Tween.\+scaleZ (\begin{DoxyParamCaption}\item[{Game\+Object}]{game\+Object,  }\item[{float}]{to,  }\item[{float}]{time }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Scale a Game\+Object to a certain size along the z-\/axis only 
+
+@method \mbox{\hyperlink{class_lean_tween_ac7689aa78dafe72bb28d8e885998a1b7}{Lean\+Tween.\+scaleZ}} 
+\begin{DoxyParams}{Аргументы}
+{\em \{\+Game\+Object\}} & game\+Object\+:Game\+Object Gameobject that you wish to scale \\
+\hline
+{\em \{float\}} & scale\+To\+:float the size with which to scale to \\
+\hline
+{\em \{float\}} & time\+:float the time to complete the tween in \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+\{\mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}}\} \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} an object that distinguishes the tween 
+\end{DoxyReturn}
+\begin{Desc}
+\item[Примеры]\par
+\mbox{\hyperlink{_d_1_2_dev_2_unity_2_shaperation_2_assets_2_lean_tween_2_framework_2_lean_tween_8cs-example}{D\+:/\+Dev/\+Unity/\+Shaperation/\+Assets/\+Lean\+Tween/\+Framework/\+Lean\+Tween.\+cs}}.\end{Desc}
+\mbox{\Hypertarget{class_lean_tween_a1602e176a4345f4134529e5f27c19ae4}\label{class_lean_tween_a1602e176a4345f4134529e5f27c19ae4}} 
+\index{LeanTween@{LeanTween}!value@{value}}
+\index{value@{value}!LeanTween@{LeanTween}}
+\doxysubsubsection{\texorpdfstring{value()}{value()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} Lean\+Tween.\+value (\begin{DoxyParamCaption}\item[{Game\+Object}]{game\+Object,  }\item[{Action$<$ float, object $>$}]{call\+On\+Update,  }\item[{float}]{from,  }\item[{float}]{to,  }\item[{float}]{time }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Tween any particular value (float) 
+
+@method Lean\+Tween.\+value (float,object) 
+\begin{DoxyParams}{Аргументы}
+{\em \{\+Game\+Object\}} & game\+Object\+:Game\+Object Gameobject that you wish to attach the tween to \\
+\hline
+{\em \{\+Action$<$float,object$>$\}} & call\+On\+Update\+:Action$<$float,object$>$ The function that is called on every Update frame, this function needs to accept a float value ex\+: function update\+Value( Vector3 val, object obj )\{ \} \\
+\hline
+{\em \{float\}} & from\+:float The original value to start the tween from \\
+\hline
+{\em \{\+Vector3\}} & to\+:float The final Vector3 with which to tween to \\
+\hline
+{\em \{float\}} & time\+:float The time to complete the tween in \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+\{\mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}}\} \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} an object that distinguishes the tween 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_lean_tween_ad96384a1b17c6e80ae01f229641e1ec3}\label{class_lean_tween_ad96384a1b17c6e80ae01f229641e1ec3}} 
+\index{LeanTween@{LeanTween}!value@{value}}
+\index{value@{value}!LeanTween@{LeanTween}}
+\doxysubsubsection{\texorpdfstring{value()}{value()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} Lean\+Tween.\+value (\begin{DoxyParamCaption}\item[{Game\+Object}]{game\+Object,  }\item[{Action$<$ Vector2 $>$}]{call\+On\+Update,  }\item[{Vector2}]{from,  }\item[{Vector2}]{to,  }\item[{float}]{time }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Tween any particular value (Vector2), this could be used to tween an arbitrary value like offset property 
+
+@method Lean\+Tween.\+value (Vector2) 
+\begin{DoxyParams}{Аргументы}
+{\em \{\+Game\+Object\}} & game\+Object\+:Game\+Object Gameobject that you wish to attach the tween to \\
+\hline
+{\em \{\+Action$<$\+Vector2$>$\}} & call\+On\+Update\+:Action$<$\+Vector2$>$ The function that is called on every Update frame, this function needs to accept a float value ex\+: function update\+Value( Vector3 val )\{ \} \\
+\hline
+{\em \{float\}} & from\+:Vector2 The original value to start the tween from \\
+\hline
+{\em \{\+Vector2\}} & to\+:Vector2 The final Vector3 with which to tween to \\
+\hline
+{\em \{float\}} & time\+:float The time to complete the tween in \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+\{\mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}}\} \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} an object that distinguishes the tween 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_lean_tween_a6faa228d783d9ff12b964d20c0c23ea4}\label{class_lean_tween_a6faa228d783d9ff12b964d20c0c23ea4}} 
+\index{LeanTween@{LeanTween}!value@{value}}
+\index{value@{value}!LeanTween@{LeanTween}}
+\doxysubsubsection{\texorpdfstring{value()}{value()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} Lean\+Tween.\+value (\begin{DoxyParamCaption}\item[{Game\+Object}]{game\+Object,  }\item[{Action$<$ Vector3 $>$}]{call\+On\+Update,  }\item[{Vector3}]{from,  }\item[{Vector3}]{to,  }\item[{float}]{time }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Tween any particular value (Vector3), this could be used to tween an arbitrary property that uses a Vector 
+
+@method Lean\+Tween.\+value (Vector3) 
+\begin{DoxyParams}{Аргументы}
+{\em \{\+Game\+Object\}} & game\+Object\+:Game\+Object Gameobject that you wish to attach the tween to \\
+\hline
+{\em \{\+Action$<$\+Vector3$>$\}} & call\+On\+Update\+:Action$<$\+Vector3$>$ The function that is called on every Update frame, this function needs to accept a float value ex\+: function update\+Value( Vector3 val )\{ \} \\
+\hline
+{\em \{float\}} & from\+:Vector3 The original value to start the tween from \\
+\hline
+{\em \{\+Vector3\}} & to\+:Vector3 The final Vector3 with which to tween to \\
+\hline
+{\em \{float\}} & time\+:float The time to complete the tween in \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+\{\mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}}\} \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} an object that distinguishes the tween 
+\end{DoxyReturn}

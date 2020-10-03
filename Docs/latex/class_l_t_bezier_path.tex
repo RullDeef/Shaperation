@@ -1,0 +1,98 @@
+\hypertarget{class_l_t_bezier_path}{}\doxysection{Класс L\+T\+Bezier\+Path}
+\label{class_l_t_bezier_path}\index{LTBezierPath@{LTBezierPath}}
+
+
+Граф связей класса L\+T\+Bezier\+Path\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=171pt]{class_l_t_bezier_path__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Открытые члены}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_l_t_bezier_path_a7603d6a72e183e5cb0d070018cc0e798}\label{class_l_t_bezier_path_a7603d6a72e183e5cb0d070018cc0e798}} 
+{\bfseries L\+T\+Bezier\+Path} (Vector3\mbox{[}$\,$\mbox{]} pts\+\_\+)
+\item 
+\mbox{\Hypertarget{class_l_t_bezier_path_afd49d4c4b8e6f4aa462f9e4c72949c7b}\label{class_l_t_bezier_path_afd49d4c4b8e6f4aa462f9e4c72949c7b}} 
+void {\bfseries set\+Points} (Vector3\mbox{[}$\,$\mbox{]} pts\+\_\+)
+\item 
+\mbox{\Hypertarget{class_l_t_bezier_path_a721db3d91e217e7003b60237d3712a12}\label{class_l_t_bezier_path_a721db3d91e217e7003b60237d3712a12}} 
+Vector3 {\bfseries point} (float ratio)
+\item 
+\mbox{\Hypertarget{class_l_t_bezier_path_a80bd7463ed2d057a4183f2e9a4bad874}\label{class_l_t_bezier_path_a80bd7463ed2d057a4183f2e9a4bad874}} 
+void {\bfseries place2d} (Transform transform, float ratio)
+\item 
+\mbox{\Hypertarget{class_l_t_bezier_path_ae93ac985e06dd368580e7097e7233a79}\label{class_l_t_bezier_path_ae93ac985e06dd368580e7097e7233a79}} 
+void {\bfseries place\+Local2d} (Transform transform, float ratio)
+\item 
+\mbox{\Hypertarget{class_l_t_bezier_path_af5d3f3890c61e36f144824e8206c0468}\label{class_l_t_bezier_path_af5d3f3890c61e36f144824e8206c0468}} 
+void {\bfseries place} (Transform transform, float ratio)
+\item 
+\mbox{\Hypertarget{class_l_t_bezier_path_a437dd90d6c7572c76cf3df6a85a839e4}\label{class_l_t_bezier_path_a437dd90d6c7572c76cf3df6a85a839e4}} 
+void {\bfseries place} (Transform transform, float ratio, Vector3 world\+Up)
+\item 
+\mbox{\Hypertarget{class_l_t_bezier_path_afd49eb73292bf11c8310235cee5ec489}\label{class_l_t_bezier_path_afd49eb73292bf11c8310235cee5ec489}} 
+void {\bfseries place\+Local} (Transform transform, float ratio)
+\item 
+\mbox{\Hypertarget{class_l_t_bezier_path_afebbb39803a49e31656b0342803c6142}\label{class_l_t_bezier_path_afebbb39803a49e31656b0342803c6142}} 
+void {\bfseries place\+Local} (Transform transform, float ratio, Vector3 world\+Up)
+\item 
+\mbox{\Hypertarget{class_l_t_bezier_path_acc75d8da16ceca2aa2d5687a87029291}\label{class_l_t_bezier_path_acc75d8da16ceca2aa2d5687a87029291}} 
+void {\bfseries gizmo\+Draw} (float t=-\/1.\+0f)
+\item 
+\mbox{\Hypertarget{class_l_t_bezier_path_af73766bde33d1121e2ba2811a3084eb6}\label{class_l_t_bezier_path_af73766bde33d1121e2ba2811a3084eb6}} 
+float {\bfseries ratio\+At\+Point} (Vector3 pt, float precision=0.\+01f)
+\end{DoxyCompactItemize}
+\doxysubsection*{Открытые атрибуты}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_l_t_bezier_path_aa7e7c3b3b3db69ae6d9c3b271e384dd9}\label{class_l_t_bezier_path_aa7e7c3b3b3db69ae6d9c3b271e384dd9}} 
+Vector3\mbox{[}$\,$\mbox{]} {\bfseries pts}
+\item 
+\mbox{\Hypertarget{class_l_t_bezier_path_affd9043eb77c0d3717eabde7e9946ed6}\label{class_l_t_bezier_path_affd9043eb77c0d3717eabde7e9946ed6}} 
+float {\bfseries length}
+\item 
+\mbox{\Hypertarget{class_l_t_bezier_path_a019d49878d7f9d93b40979c902223b3e}\label{class_l_t_bezier_path_a019d49878d7f9d93b40979c902223b3e}} 
+bool {\bfseries orient\+To\+Path}
+\item 
+\mbox{\Hypertarget{class_l_t_bezier_path_aacf44d4f5c5f0c6cbb5c4009fcec3fee}\label{class_l_t_bezier_path_aacf44d4f5c5f0c6cbb5c4009fcec3fee}} 
+bool {\bfseries orient\+To\+Path2d}
+\end{DoxyCompactItemize}
+\doxysubsection*{Свойства}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_l_t_bezier_path_ab794276417bfb26d08c59b278dd4947e}\label{class_l_t_bezier_path_ab794276417bfb26d08c59b278dd4947e}} 
+float {\bfseries distance}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Закрытые данные}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_l_t_bezier_path_a42e5dfd26dffcb610c6cadceb295bab4}\label{class_l_t_bezier_path_a42e5dfd26dffcb610c6cadceb295bab4}} 
+\mbox{\hyperlink{class_l_t_bezier}{L\+T\+Bezier}}\mbox{[}$\,$\mbox{]} {\bfseries beziers}
+\item 
+\mbox{\Hypertarget{class_l_t_bezier_path_a68f6e1a59bf50b884a3e789c79cdaf39}\label{class_l_t_bezier_path_a68f6e1a59bf50b884a3e789c79cdaf39}} 
+float\mbox{[}$\,$\mbox{]} {\bfseries length\+Ratio}
+\item 
+\mbox{\Hypertarget{class_l_t_bezier_path_a9f1800575b7b793f4ba800dd36869eed}\label{class_l_t_bezier_path_a9f1800575b7b793f4ba800dd36869eed}} 
+int {\bfseries current\+Bezier} =0
+\item 
+\mbox{\Hypertarget{class_l_t_bezier_path_ab9af605b8efbfb09747e849642c4bcc2}\label{class_l_t_bezier_path_ab9af605b8efbfb09747e849642c4bcc2}} 
+int {\bfseries previous\+Bezier} =0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Подробное описание}
+Manually animate along a bezier path with this class
+
+@constructor 
+\begin{DoxyParams}{Аргументы}
+{\em \{\+Vector3} & Array\} pts A set of points that define one or many bezier paths (the paths should be passed in multiples of 4, which correspond to each individual bezier curve)~\newline
+ It goes in the order\+: {\bfseries{start\+Point}},end\+Control,start\+Control,{\bfseries{end\+Point}} -\/ {\bfseries{Note\+:}} the control for the end and start are reversed! This is just a {\itshape quirk} of the A\+PI.~\newline
+  \\
+\hline
+\end{DoxyParams}
+\begin{Desc}
+\item[Примеры]\par
+\mbox{\hyperlink{_d_1_2_dev_2_unity_2_shaperation_2_assets_2_lean_tween_2_framework_2_lean_tween_8cs-example}{D\+:/\+Dev/\+Unity/\+Shaperation/\+Assets/\+Lean\+Tween/\+Framework/\+Lean\+Tween.\+cs}} и \mbox{\hyperlink{_d_1_2_dev_2_unity_2_shaperation_2_assets_2_lean_tween_2_framework_2_l_t_descr_8cs-example}{D\+:/\+Dev/\+Unity/\+Shaperation/\+Assets/\+Lean\+Tween/\+Framework/\+L\+T\+Descr.\+cs}}.\end{Desc}

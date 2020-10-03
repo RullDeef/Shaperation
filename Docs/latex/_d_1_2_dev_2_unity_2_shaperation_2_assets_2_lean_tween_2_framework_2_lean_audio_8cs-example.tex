@@ -1,0 +1,395 @@
+\hypertarget{_d_1_2_dev_2_unity_2_shaperation_2_assets_2_lean_tween_2_framework_2_lean_audio_8cs-example}{}\doxysection{D\+:/\+Dev/\+Unity/\+Shaperation/\+Assets/\+Lean\+Tween/\+Framework/\+Lean\+Audio.\+cs}
+Create dynamic audio from a set of Animation Curves and other options.
+
+@method create\+Audio 
+\begin{DoxyParams}{Аргументы}
+{\em \{\+Animation\+Curve\}} & volume\+Curve\+:Animation\+Curve describing the shape of the audios volume (from 0-\/1). The length of the audio is dicated by the end value here. \\
+\hline
+{\em \{\+Animation\+Curve\}} & frequency\+Curve\+:Animation\+Curve describing the width of the oscillations between the sound waves in seconds. Large numbers mean a lower note, while higher numbers mean a tighter frequency and therefor a higher note. Values are usually between 0.\+01 and 0.\+000001 (or smaller) \\
+\hline
+{\em \{\+Lean\+Audio\+Options\}} & options\+:\mbox{\hyperlink{class_lean_audio_options}{Lean\+Audio\+Options}} You can pass any other values in here like vibrato or the frequency you would like the sound to be encoded at. See \href{LeanAudioOptions.html}{\texttt{ Lean\+Audio\+Options}} for more details. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+\{Audio\+Clip\} Audio\+Clip of the procedurally generated audio
+\end{DoxyReturn}
+Animation\+Curve volume\+Curve = new Animation\+Curve( new Keyframe(0f, 1f, 0f, -\/1f), new Keyframe(1f, 0f, -\/1f, 0f));~\newline
+ Animation\+Curve frequency\+Curve = new Animation\+Curve( new Keyframe(0f, 0.\+003f, 0f, 0f), new Keyframe(1f, 0.\+003f, 0f, 0f));~\newline
+ Audio\+Clip audio\+Clip = Lean\+Audio.\+create\+Audio(volume\+Curve, frequency\+Curve, Lean\+Audio.\+options().set\+Vibrato( new Vector3\mbox{[}\mbox{]}\{ new Vector3(0.\+32f,0f,0f)\} ));~\newline
+
+
+
+\begin{DoxyCodeInclude}{0}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{using} UnityEngine;}
+\DoxyCodeLine{\textcolor{keyword}{using} System.Collections.Generic;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{public} \textcolor{keyword}{class }\mbox{\hyperlink{class_lean_audio_stream}{LeanAudioStream}} \{}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \textcolor{keywordtype}{int} position = 0;}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} AudioClip audioClip;}
+\DoxyCodeLine{    \textcolor{keyword}{public} \textcolor{keywordtype}{float}[] audioArr;}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_lean_audio_stream}{LeanAudioStream}}( \textcolor{keywordtype}{float}[] audioArr )\{}
+\DoxyCodeLine{        this.audioArr = audioArr;}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \textcolor{keywordtype}{void} OnAudioRead(\textcolor{keywordtype}{float}[] data) \{}
+\DoxyCodeLine{        \textcolor{keywordtype}{int} count = 0;}
+\DoxyCodeLine{        \textcolor{keywordflow}{while} (count < data.Length) \{}
+\DoxyCodeLine{            data[count] = audioArr[this.position];}
+\DoxyCodeLine{            position++;}
+\DoxyCodeLine{            count++;}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \textcolor{keywordtype}{void} OnAudioSetPosition(\textcolor{keywordtype}{int} newPosition) \{}
+\DoxyCodeLine{        this.position = newPosition;   }
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{public} \textcolor{keyword}{class }\mbox{\hyperlink{class_lean_audio}{LeanAudio}} : object \{}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \textcolor{keyword}{static} \textcolor{keywordtype}{float} MIN\_FREQEUNCY\_PERIOD = 0.000115f;}
+\DoxyCodeLine{    \textcolor{keyword}{public} \textcolor{keyword}{static} \textcolor{keywordtype}{int} PROCESSING\_ITERATIONS\_MAX = 50000;}
+\DoxyCodeLine{    \textcolor{keyword}{public} \textcolor{keyword}{static} \textcolor{keywordtype}{float}[] generatedWaveDistances;}
+\DoxyCodeLine{    \textcolor{keyword}{public} \textcolor{keyword}{static} \textcolor{keywordtype}{int} generatedWaveDistancesCount = 0;}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{private} \textcolor{keyword}{static} \textcolor{keywordtype}{float}[] longList;}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \textcolor{keyword}{static} \mbox{\hyperlink{class_lean_audio_options}{LeanAudioOptions}} options()\{}
+\DoxyCodeLine{        \textcolor{keywordflow}{if}(generatedWaveDistances==\textcolor{keyword}{null})\{}
+\DoxyCodeLine{            generatedWaveDistances = \textcolor{keyword}{new} \textcolor{keywordtype}{float}[ PROCESSING\_ITERATIONS\_MAX ];}
+\DoxyCodeLine{            longList = \textcolor{keyword}{new} \textcolor{keywordtype}{float}[ PROCESSING\_ITERATIONS\_MAX ];}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{new} \mbox{\hyperlink{class_lean_audio_options}{LeanAudioOptions}}();}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \textcolor{keyword}{static} \mbox{\hyperlink{class_lean_audio_stream}{LeanAudioStream}} createAudioStream( AnimationCurve volume, AnimationCurve frequency, \mbox{\hyperlink{class_lean_audio_options}{LeanAudioOptions}} options = \textcolor{keyword}{null} )\{}
+\DoxyCodeLine{        \textcolor{keywordflow}{if}(options==\textcolor{keyword}{null})}
+\DoxyCodeLine{            options = \textcolor{keyword}{new} \mbox{\hyperlink{class_lean_audio_options}{LeanAudioOptions}}();}
+\DoxyCodeLine{}
+\DoxyCodeLine{        options.useSetData = \textcolor{keyword}{false};}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{keywordtype}{int} generatedWavePtsLength = createAudioWave( volume, frequency, options);}
+\DoxyCodeLine{        createAudioFromWave( generatedWavePtsLength, options );}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} options.stream;}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \textcolor{keyword}{static} AudioClip createAudio( AnimationCurve volume, AnimationCurve frequency, \mbox{\hyperlink{class_lean_audio_options}{LeanAudioOptions}} options = \textcolor{keyword}{null} )\{}
+\DoxyCodeLine{        \textcolor{keywordflow}{if}(options==\textcolor{keyword}{null})}
+\DoxyCodeLine{            options = \textcolor{keyword}{new} \mbox{\hyperlink{class_lean_audio_options}{LeanAudioOptions}}();}
+\DoxyCodeLine{        }
+\DoxyCodeLine{        \textcolor{keywordtype}{int} generatedWavePtsLength = createAudioWave( volume, frequency, options);}
+\DoxyCodeLine{        \textcolor{comment}{// Debug.Log("generatedWavePtsLength:"+generatedWavePtsLength);}}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} createAudioFromWave( generatedWavePtsLength, options );}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{private} \textcolor{keyword}{static} \textcolor{keywordtype}{int} createAudioWave( AnimationCurve volume, AnimationCurve frequency, \mbox{\hyperlink{class_lean_audio_options}{LeanAudioOptions}} options )\{}
+\DoxyCodeLine{        \textcolor{keywordtype}{float} time = volume[ volume.length -\/ 1 ].time;}
+\DoxyCodeLine{        \textcolor{keywordtype}{int} listLength = 0;}
+\DoxyCodeLine{        \textcolor{comment}{// List<float> list = new List<float>();}}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{comment}{// generatedWaveDistances = new List<float>();}}
+\DoxyCodeLine{        \textcolor{comment}{// float[] vibratoValues = new float[ vibrato.Length ];}}
+\DoxyCodeLine{        \textcolor{keywordtype}{float} passed = 0f;}
+\DoxyCodeLine{        \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i = 0; i < PROCESSING\_ITERATIONS\_MAX; i++)\{}
+\DoxyCodeLine{            \textcolor{keywordtype}{float} f = frequency.Evaluate(passed);}
+\DoxyCodeLine{            \textcolor{keywordflow}{if}(f<MIN\_FREQEUNCY\_PERIOD)}
+\DoxyCodeLine{                f = MIN\_FREQEUNCY\_PERIOD;}
+\DoxyCodeLine{            \textcolor{keywordtype}{float} height = volume.Evaluate(passed + 0.5f*f);}
+\DoxyCodeLine{            \textcolor{keywordflow}{if}(options.vibrato!=\textcolor{keyword}{null})\{}
+\DoxyCodeLine{                \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} j=0; j<options.vibrato.Length; j++)\{}
+\DoxyCodeLine{                    \textcolor{keywordtype}{float} peakMulti = Mathf.Abs( Mathf.Sin( 1.5708f + passed * (1f/options.vibrato[j][0]) * Mathf.PI ) );}
+\DoxyCodeLine{                    \textcolor{keywordtype}{float} diff = (1f-\/options.vibrato[j][1]);}
+\DoxyCodeLine{                    peakMulti = options.vibrato[j][1] + diff*peakMulti;}
+\DoxyCodeLine{                    height *= peakMulti;}
+\DoxyCodeLine{                \}   }
+\DoxyCodeLine{            \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{            }
+\DoxyCodeLine{            \textcolor{comment}{// Debug.Log("i:"+i+" f:"+f+" passed:"+passed+" height:"+height+" time:"+time);}}
+\DoxyCodeLine{            \textcolor{keywordflow}{if}(passed + 0.5f*f>=time)}
+\DoxyCodeLine{                \textcolor{keywordflow}{break};}
+\DoxyCodeLine{            \textcolor{keywordflow}{if}(listLength >= PROCESSING\_ITERATIONS\_MAX-\/1)\{}
+\DoxyCodeLine{                Debug.LogError(\textcolor{stringliteral}{"LeanAudio has reached it's processing cap. To avoid this error increase the number of iterations ex: LeanAudio.PROCESSING\_ITERATIONS\_MAX = "}+(PROCESSING\_ITERATIONS\_MAX*2));}
+\DoxyCodeLine{                \textcolor{keywordflow}{break};}
+\DoxyCodeLine{            \}\textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{                \textcolor{keywordtype}{int} distPoint = listLength / 2;}
+\DoxyCodeLine{                }
+\DoxyCodeLine{                \textcolor{comment}{//generatedWaveDistances.Add( f );}}
+\DoxyCodeLine{                passed += f;}
+\DoxyCodeLine{}
+\DoxyCodeLine{                generatedWaveDistances[ distPoint ] = passed;}
+\DoxyCodeLine{                \textcolor{comment}{//Debug.Log("distPoint:"+distPoint+" passed:"+passed);}}
+\DoxyCodeLine{}
+\DoxyCodeLine{                \textcolor{comment}{//list.Add( passed );}}
+\DoxyCodeLine{                \textcolor{comment}{//list.Add( i\%2==0 ? -\/height : height );}}
+\DoxyCodeLine{}
+\DoxyCodeLine{                longList[ listLength ] = passed;}
+\DoxyCodeLine{                longList[ listLength + 1 ] = i\%2==0 ? -\/height : height;}
+\DoxyCodeLine{            \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{            }
+\DoxyCodeLine{}
+\DoxyCodeLine{            listLength += 2;}
+\DoxyCodeLine{            }
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{        listLength += -\/2;}
+\DoxyCodeLine{        generatedWaveDistancesCount = listLength / 2;}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{comment}{/*float[] wave = new float[ listLength ];}}
+\DoxyCodeLine{\textcolor{comment}{        for(int i = 0; i < wave.Length; i++)\{}}
+\DoxyCodeLine{\textcolor{comment}{            wave[i] = longList[i];}}
+\DoxyCodeLine{\textcolor{comment}{        \}*/}}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} listLength;}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{private} \textcolor{keyword}{static} AudioClip createAudioFromWave( \textcolor{keywordtype}{int} waveLength, \mbox{\hyperlink{class_lean_audio_options}{LeanAudioOptions}} options )\{}
+\DoxyCodeLine{        \textcolor{keywordtype}{float} time = longList[ waveLength -\/ 2 ];}
+\DoxyCodeLine{        \textcolor{keywordtype}{float}[] audioArr = \textcolor{keyword}{new} \textcolor{keywordtype}{float}[ (int)(options.frequencyRate*time) ];}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{keywordtype}{int} waveIter = 0;}
+\DoxyCodeLine{        \textcolor{keywordtype}{float} subWaveDiff = longList[waveIter];}
+\DoxyCodeLine{        \textcolor{keywordtype}{float} subWaveTimeLast = 0f;}
+\DoxyCodeLine{        \textcolor{keywordtype}{float} subWaveTime = longList[waveIter];}
+\DoxyCodeLine{        \textcolor{keywordtype}{float} waveHeight = longList[waveIter+1];}
+\DoxyCodeLine{        \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i = 0; i < audioArr.Length; i++)\{}
+\DoxyCodeLine{            \textcolor{keywordtype}{float} passedTime = (float)i / (\textcolor{keywordtype}{float})options.frequencyRate;}
+\DoxyCodeLine{            \textcolor{keywordflow}{if}(passedTime > longList[waveIter] )\{}
+\DoxyCodeLine{                subWaveTimeLast = longList[waveIter];}
+\DoxyCodeLine{                waveIter += 2;}
+\DoxyCodeLine{                subWaveDiff = longList[waveIter] -\/ longList[waveIter-\/2];}
+\DoxyCodeLine{                waveHeight = longList[waveIter+1];}
+\DoxyCodeLine{                \textcolor{comment}{// Debug.Log("passed wave i:"+i);}}
+\DoxyCodeLine{            \}}
+\DoxyCodeLine{            subWaveTime = passedTime -\/ subWaveTimeLast;}
+\DoxyCodeLine{            \textcolor{keywordtype}{float} ratioElapsed = subWaveTime / subWaveDiff;}
+\DoxyCodeLine{}
+\DoxyCodeLine{            \textcolor{keywordtype}{float} value = Mathf.Sin( ratioElapsed * Mathf.PI );}
+\DoxyCodeLine{}
+\DoxyCodeLine{            \textcolor{keywordflow}{if}(options.waveStyle==\mbox{\hyperlink{class_lean_audio_options}{LeanAudioOptions}}.LeanAudioWaveStyle.Square)\{}
+\DoxyCodeLine{                \textcolor{keywordflow}{if}(value>0f)}
+\DoxyCodeLine{                    value = 1f;}
+\DoxyCodeLine{                \textcolor{keywordflow}{if}(value<0f)}
+\DoxyCodeLine{                    value = -\/1f;}
+\DoxyCodeLine{            \}\textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(options.waveStyle==\mbox{\hyperlink{class_lean_audio_options}{LeanAudioOptions}}.LeanAudioWaveStyle.Sawtooth)\{}
+\DoxyCodeLine{                \textcolor{keywordtype}{float} sign = value > 0f ? 1f : -\/1f;}
+\DoxyCodeLine{                \textcolor{keywordflow}{if}(ratioElapsed<0.5f)\{}
+\DoxyCodeLine{                    value = (ratioElapsed*2f)*sign;}
+\DoxyCodeLine{                \}\textcolor{keywordflow}{else}\{ \textcolor{comment}{// 0.5f -\/ 1f}}
+\DoxyCodeLine{                    value = (1f -\/ ratioElapsed)*2f*sign;}
+\DoxyCodeLine{                \}}
+\DoxyCodeLine{            \}\textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(options.waveStyle==\mbox{\hyperlink{class_lean_audio_options}{LeanAudioOptions}}.LeanAudioWaveStyle.Noise)\{}
+\DoxyCodeLine{                \textcolor{keywordtype}{float} peakMulti = (1f-\/options.waveNoiseInfluence) + Mathf.PerlinNoise(0f, passedTime * options.waveNoiseScale ) * options.waveNoiseInfluence;}
+\DoxyCodeLine{                }
+\DoxyCodeLine{                \textcolor{comment}{/*if(i<25)\{}}
+\DoxyCodeLine{\textcolor{comment}{                    Debug.Log("passedTime:"+passedTime+" peakMulti:"+peakMulti+" infl:"+options.waveNoiseInfluence);}}
+\DoxyCodeLine{\textcolor{comment}{                \}*/}}
+\DoxyCodeLine{}
+\DoxyCodeLine{                value *= peakMulti;}
+\DoxyCodeLine{            \}}
+\DoxyCodeLine{            }
+\DoxyCodeLine{            \textcolor{comment}{//if(i<25)}}
+\DoxyCodeLine{            \textcolor{comment}{//  Debug.Log("passedTime:"+passedTime+" value:"+value+" ratioElapsed:"+ratioElapsed+" subWaveTime:"+subWaveTime+" subWaveDiff:"+subWaveDiff);}}
+\DoxyCodeLine{            }
+\DoxyCodeLine{            value *= waveHeight;}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{            \textcolor{keywordflow}{if}(options.modulation!=\textcolor{keyword}{null})\{}
+\DoxyCodeLine{                \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} k=0; k<options.modulation.Length; k++)\{}
+\DoxyCodeLine{                    \textcolor{keywordtype}{float} peakMulti = Mathf.Abs( Mathf.Sin( 1.5708f + passedTime * (1f/options.modulation[k][0]) * Mathf.PI ) );}
+\DoxyCodeLine{                    \textcolor{keywordtype}{float} diff = (1f-\/options.modulation[k][1]);}
+\DoxyCodeLine{                    peakMulti = options.modulation[k][1] + diff*peakMulti;}
+\DoxyCodeLine{                    \textcolor{comment}{// if(k<10)\{}}
+\DoxyCodeLine{                        \textcolor{comment}{// Debug.Log("k:"+k+" peakMulti:"+peakMulti+" value:"+value+" after:"+(value*peakMulti));}}
+\DoxyCodeLine{                    \textcolor{comment}{// \}}}
+\DoxyCodeLine{                    value *= peakMulti;}
+\DoxyCodeLine{                \}   }
+\DoxyCodeLine{            \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{            audioArr[i] = value;}
+\DoxyCodeLine{            \textcolor{comment}{// Debug.Log("pt:"+pt+" i:"+i+" val:"+audioArr[i]+" len:"+audioArr.Length);}}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{        }
+\DoxyCodeLine{        \textcolor{keywordtype}{int} lengthSamples = audioArr.Length;}
+\DoxyCodeLine{        }
+\DoxyCodeLine{\textcolor{preprocessor}{        \#if UNITY\_3\_5 || UNITY\_4\_0 || UNITY\_4\_0\_1 || UNITY\_4\_1 || UNITY\_4\_2 || UNITY\_4\_3 || UNITY\_4\_5 || UNITY\_4\_6 || UNITY\_4\_7}}
+\DoxyCodeLine{        \textcolor{keywordtype}{bool} is3dSound = \textcolor{keyword}{false};}
+\DoxyCodeLine{        AudioClip audioClip = AudioClip.Create(\textcolor{stringliteral}{"Generated Audio"}, lengthSamples, 1, options.frequencyRate, is3dSound, \textcolor{keyword}{false});}
+\DoxyCodeLine{\textcolor{preprocessor}{        \#else}}
+\DoxyCodeLine{        AudioClip audioClip = \textcolor{keyword}{null};}
+\DoxyCodeLine{        \textcolor{keywordflow}{if}(options.useSetData)\{}
+\DoxyCodeLine{            audioClip = AudioClip.Create(\textcolor{stringliteral}{"Generated Audio"}, lengthSamples, 1, options.frequencyRate, \textcolor{keyword}{false}, \textcolor{keyword}{null}, OnAudioSetPosition);}
+\DoxyCodeLine{            audioClip.SetData(audioArr, 0);}
+\DoxyCodeLine{        \}\textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{            options.stream = \textcolor{keyword}{new} \mbox{\hyperlink{class_lean_audio_stream}{LeanAudioStream}}(audioArr);}
+\DoxyCodeLine{            \textcolor{comment}{// Debug.Log("len:"+audioArr.Length+" lengthSamples:"+lengthSamples+" freqRate:"+options.frequencyRate);}}
+\DoxyCodeLine{            audioClip = AudioClip.Create(\textcolor{stringliteral}{"Generated Audio"}, lengthSamples, 1, options.frequencyRate, \textcolor{keyword}{false}, options.stream.OnAudioRead, options.stream.OnAudioSetPosition);}
+\DoxyCodeLine{            options.stream.audioClip = audioClip;}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{        }
+\DoxyCodeLine{\textcolor{preprocessor}{        \#endif}}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} audioClip;}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{private} \textcolor{keyword}{static} \textcolor{keywordtype}{void} OnAudioSetPosition(\textcolor{keywordtype}{int} newPosition) \{}
+\DoxyCodeLine{        }
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \textcolor{keyword}{static} AudioClip generateAudioFromCurve( AnimationCurve curve, \textcolor{keywordtype}{int} frequencyRate = 44100 )\{}
+\DoxyCodeLine{        \textcolor{keywordtype}{float} curveTime = curve[ curve.length -\/ 1 ].time;}
+\DoxyCodeLine{        \textcolor{keywordtype}{float} time = curveTime;}
+\DoxyCodeLine{        \textcolor{keywordtype}{float}[] audioArr = \textcolor{keyword}{new} \textcolor{keywordtype}{float}[ (int)(frequencyRate*time) ];}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{comment}{// Debug.Log("curveTime:"+curveTime+" AudioSettings.outputSampleRate:"+AudioSettings.outputSampleRate);}}
+\DoxyCodeLine{        \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i = 0; i < audioArr.Length; i++)\{}
+\DoxyCodeLine{            \textcolor{keywordtype}{float} pt = (float)i / (\textcolor{keywordtype}{float})frequencyRate;}
+\DoxyCodeLine{            audioArr[i] = curve.Evaluate( pt );}
+\DoxyCodeLine{            \textcolor{comment}{// Debug.Log("pt:"+pt+" i:"+i+" val:"+audioArr[i]+" len:"+audioArr.Length);}}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{keywordtype}{int} lengthSamples = audioArr.Length;\textcolor{comment}{//(int)( (float)frequencyRate * curveTime );}}
+\DoxyCodeLine{\textcolor{preprocessor}{        \#if UNITY\_3\_5 || UNITY\_4\_0 || UNITY\_4\_0\_1 || UNITY\_4\_1 || UNITY\_4\_2 || UNITY\_4\_3 || UNITY\_4\_5 || UNITY\_4\_6 || UNITY\_4\_7}}
+\DoxyCodeLine{        \textcolor{keywordtype}{bool} is3dSound = \textcolor{keyword}{false};}
+\DoxyCodeLine{        AudioClip audioClip = AudioClip.Create(\textcolor{stringliteral}{"Generated Audio"}, lengthSamples, 1, frequencyRate, is3dSound, \textcolor{keyword}{false});}
+\DoxyCodeLine{\textcolor{preprocessor}{        \#else}}
+\DoxyCodeLine{        AudioClip audioClip = AudioClip.Create(\textcolor{stringliteral}{"Generated Audio"}, lengthSamples, 1, frequencyRate, \textcolor{keyword}{false});}
+\DoxyCodeLine{\textcolor{preprocessor}{        \#endif}}
+\DoxyCodeLine{        audioClip.SetData(audioArr, 0);}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} audioClip;}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \textcolor{keyword}{static} AudioSource play( AudioClip audio, \textcolor{keywordtype}{float} volume )\{}
+\DoxyCodeLine{        AudioSource audioSource = playClipAt(audio, Vector3.zero);}
+\DoxyCodeLine{        audioSource.volume = volume;}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} audioSource; }
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \textcolor{keyword}{static} AudioSource play( AudioClip audio )\{}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} playClipAt( audio, Vector3.zero ); }
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \textcolor{keyword}{static} AudioSource play( AudioClip audio, Vector3 pos )\{}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} playClipAt( audio, pos ); }
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \textcolor{keyword}{static} AudioSource play( AudioClip audio, Vector3 pos, \textcolor{keywordtype}{float} volume )\{}
+\DoxyCodeLine{        \textcolor{comment}{// Debug.Log("audio length:"+audio.length);}}
+\DoxyCodeLine{        AudioSource audioSource = playClipAt(audio, pos);}
+\DoxyCodeLine{        audioSource.minDistance = 1f;}
+\DoxyCodeLine{        \textcolor{comment}{//audioSource.pitch = pitch;}}
+\DoxyCodeLine{        audioSource.volume = volume;}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} audioSource;}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \textcolor{keyword}{static} AudioSource playClipAt( AudioClip clip, Vector3 pos ) \{}
+\DoxyCodeLine{        GameObject tempGO = \textcolor{keyword}{new} GameObject(); \textcolor{comment}{// create the temp object}}
+\DoxyCodeLine{        tempGO.transform.position = pos; \textcolor{comment}{// set its position}}
+\DoxyCodeLine{        AudioSource aSource = tempGO.AddComponent<AudioSource>(); \textcolor{comment}{// add an audio source}}
+\DoxyCodeLine{        aSource.clip = clip; \textcolor{comment}{// define the clip}}
+\DoxyCodeLine{        aSource.Play(); \textcolor{comment}{// start the sound}}
+\DoxyCodeLine{        GameObject.Destroy(tempGO, clip.length); \textcolor{comment}{// destroy object after clip duration}}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} aSource; \textcolor{comment}{// return the AudioSource reference}}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \textcolor{keyword}{static} \textcolor{keywordtype}{void} printOutAudioClip( AudioClip audioClip, ref AnimationCurve curve, \textcolor{keywordtype}{float} scaleX = 1f )\{}
+\DoxyCodeLine{        \textcolor{comment}{// Debug.Log("Audio channels:"+audioClip.channels+" frequency:"+audioClip.frequency+" length:"+audioClip.length+" samples:"+audioClip.samples);}}
+\DoxyCodeLine{        \textcolor{keywordtype}{float}[] samples = \textcolor{keyword}{new} \textcolor{keywordtype}{float}[audioClip.samples * audioClip.channels];}
+\DoxyCodeLine{        audioClip.GetData(samples, 0);}
+\DoxyCodeLine{        \textcolor{keywordtype}{int} i = 0;}
+\DoxyCodeLine{}
+\DoxyCodeLine{        Keyframe[] frames = \textcolor{keyword}{new} Keyframe[samples.Length];}
+\DoxyCodeLine{        \textcolor{keywordflow}{while} (i < samples.Length) \{}
+\DoxyCodeLine{           frames[i] = \textcolor{keyword}{new} Keyframe( (\textcolor{keywordtype}{float})i * scaleX, samples[i] );}
+\DoxyCodeLine{           ++i;}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{        curve = \textcolor{keyword}{new} AnimationCurve( frames );}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{public} \textcolor{keyword}{class }\mbox{\hyperlink{class_lean_audio_options}{LeanAudioOptions}} : object \{}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \textcolor{keyword}{enum} LeanAudioWaveStyle\{}
+\DoxyCodeLine{        Sine,}
+\DoxyCodeLine{        Square,}
+\DoxyCodeLine{        Sawtooth,}
+\DoxyCodeLine{        Noise}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} LeanAudioWaveStyle waveStyle = LeanAudioWaveStyle.Sine;}
+\DoxyCodeLine{    \textcolor{keyword}{public} Vector3[] vibrato;}
+\DoxyCodeLine{    \textcolor{keyword}{public} Vector3[] modulation;}
+\DoxyCodeLine{    \textcolor{keyword}{public} \textcolor{keywordtype}{int} frequencyRate = 44100;}
+\DoxyCodeLine{    \textcolor{keyword}{public} \textcolor{keywordtype}{float} waveNoiseScale = 1000;}
+\DoxyCodeLine{    \textcolor{keyword}{public} \textcolor{keywordtype}{float} waveNoiseInfluence = 1f;}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \textcolor{keywordtype}{bool} useSetData = \textcolor{keyword}{true};}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_lean_audio_stream}{LeanAudioStream}} stream;}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_lean_audio_options}{LeanAudioOptions}}()\{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_lean_audio_options}{LeanAudioOptions}} setFrequency( \textcolor{keywordtype}{int} frequencyRate )\{}
+\DoxyCodeLine{        this.frequencyRate = frequencyRate;}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_lean_audio_options}{LeanAudioOptions}} setVibrato( Vector3[] vibrato )\{}
+\DoxyCodeLine{        this.vibrato = vibrato;}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{/*}}
+\DoxyCodeLine{\textcolor{comment}{    public LeanAudioOptions setModulation( Vector3[] modulation )\{}}
+\DoxyCodeLine{\textcolor{comment}{        this.modulation = modulation;}}
+\DoxyCodeLine{\textcolor{comment}{        return this;}}
+\DoxyCodeLine{\textcolor{comment}{    \}*/}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_lean_audio_options}{LeanAudioOptions}} setWaveSine()\{}
+\DoxyCodeLine{        this.waveStyle = LeanAudioWaveStyle.Sine;}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_lean_audio_options}{LeanAudioOptions}} setWaveSquare()\{}
+\DoxyCodeLine{        this.waveStyle = LeanAudioWaveStyle.Square;}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_lean_audio_options}{LeanAudioOptions}} setWaveSawtooth()\{}
+\DoxyCodeLine{        this.waveStyle = LeanAudioWaveStyle.Sawtooth;}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_lean_audio_options}{LeanAudioOptions}} setWaveNoise()\{}
+\DoxyCodeLine{        this.waveStyle = LeanAudioWaveStyle.Noise;}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_lean_audio_options}{LeanAudioOptions}} setWaveStyle( LeanAudioWaveStyle style )\{}
+\DoxyCodeLine{        this.waveStyle = style;}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_lean_audio_options}{LeanAudioOptions}} setWaveNoiseScale( \textcolor{keywordtype}{float} waveScale )\{}
+\DoxyCodeLine{        this.waveNoiseScale = waveScale;}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_lean_audio_options}{LeanAudioOptions}} setWaveNoiseInfluence( \textcolor{keywordtype}{float} influence )\{}
+\DoxyCodeLine{        this.waveNoiseInfluence = influence;}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\end{DoxyCodeInclude}
+ 

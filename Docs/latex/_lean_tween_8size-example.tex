@@ -1,0 +1,19 @@
+\hypertarget{_lean_tween_8size-example}{}\doxysection{Lean\+Tween.\+size}
+Change the size\+Delta of a Rect\+Transform object (used in Unity Canvas, for Buttons, Panel, Scrollbar, etc...)
+
+@method Lean\+Tween.\+size (Rect\+Transform) 
+\begin{DoxyParams}{Аргументы}
+{\em \{\+Rect\+Transform\}} & rect\+Trans\+:Rect\+Transform Rect\+Transform that you wish to attach the tween to \\
+\hline
+{\em \{\+Vector2\}} & to\+:Vector2 The final Vector2 the tween will end at for size\+Delta property \\
+\hline
+{\em \{float\}} & time\+:float The time to complete the tween in \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+\{\mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}}\} \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} an object that distinguishes the tween (game\+Object.\+Get\+Component$<$Rect\+Transform$>$(), game\+Object.\+Get\+Component$<$Rect\+Transform$>$().size\+Delta$\ast$2f, 1f).set\+Delay(1f);
+\end{DoxyReturn}
+
+\begin{DoxyCodeInclude}{0}
+\end{DoxyCodeInclude}
+ 

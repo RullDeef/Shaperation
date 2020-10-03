@@ -1,0 +1,141 @@
+\hypertarget{class_l_t_spline}{}\doxysection{Класс L\+T\+Spline}
+\label{class_l_t_spline}\index{LTSpline@{LTSpline}}
+
+
+Move a Game\+Object to a certain location  
+
+
+
+
+Граф связей класса L\+T\+Spline\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=193pt]{class_l_t_spline__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Открытые члены}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_l_t_spline_a4c6d6dbfa03841d58e312f7e0601a5a5}\label{class_l_t_spline_a4c6d6dbfa03841d58e312f7e0601a5a5}} 
+{\bfseries L\+T\+Spline} (Vector3\mbox{[}$\,$\mbox{]} pts)
+\item 
+\mbox{\Hypertarget{class_l_t_spline_a988ff9da776cf2122dc7a37f20e487c2}\label{class_l_t_spline_a988ff9da776cf2122dc7a37f20e487c2}} 
+{\bfseries L\+T\+Spline} (Vector3\mbox{[}$\,$\mbox{]} pts, bool constant\+Speed)
+\item 
+\mbox{\Hypertarget{class_l_t_spline_a99de486591ee8a661f307a86c9b125af}\label{class_l_t_spline_a99de486591ee8a661f307a86c9b125af}} 
+Vector3 {\bfseries map} (float u)
+\item 
+\mbox{\Hypertarget{class_l_t_spline_a6801b6c4bac82616a082575253699623}\label{class_l_t_spline_a6801b6c4bac82616a082575253699623}} 
+Vector3 {\bfseries interp} (float t)
+\item 
+\mbox{\Hypertarget{class_l_t_spline_ac8a97bbd1e90830fc53b5f285ac7df38}\label{class_l_t_spline_ac8a97bbd1e90830fc53b5f285ac7df38}} 
+float {\bfseries ratio\+At\+Point} (Vector3 pt)
+\item 
+\mbox{\Hypertarget{class_l_t_spline_af9f61267c93a4689fbea262f77631da8}\label{class_l_t_spline_af9f61267c93a4689fbea262f77631da8}} 
+Vector3 {\bfseries point} (float ratio)
+\item 
+\mbox{\Hypertarget{class_l_t_spline_a98801009458a6da0857f024b5c547d01}\label{class_l_t_spline_a98801009458a6da0857f024b5c547d01}} 
+void {\bfseries place2d} (Transform transform, float ratio)
+\item 
+\mbox{\Hypertarget{class_l_t_spline_ae6bdfb28d476a760b8c621bf261ea197}\label{class_l_t_spline_ae6bdfb28d476a760b8c621bf261ea197}} 
+void {\bfseries place\+Local2d} (Transform transform, float ratio)
+\item 
+\mbox{\Hypertarget{class_l_t_spline_af7c65a612de8fe594c70fb316a68f9bc}\label{class_l_t_spline_af7c65a612de8fe594c70fb316a68f9bc}} 
+void {\bfseries place} (Transform transform, float ratio)
+\item 
+\mbox{\Hypertarget{class_l_t_spline_ad04af00e0da1d67e1563badf071064d4}\label{class_l_t_spline_ad04af00e0da1d67e1563badf071064d4}} 
+void {\bfseries place} (Transform transform, float ratio, Vector3 world\+Up)
+\item 
+\mbox{\Hypertarget{class_l_t_spline_a43137fa82b29f725124efe8fcfca3869}\label{class_l_t_spline_a43137fa82b29f725124efe8fcfca3869}} 
+void {\bfseries place\+Local} (Transform transform, float ratio)
+\item 
+\mbox{\Hypertarget{class_l_t_spline_a81a793d8945b10507912efc4c1502667}\label{class_l_t_spline_a81a793d8945b10507912efc4c1502667}} 
+void {\bfseries place\+Local} (Transform transform, float ratio, Vector3 world\+Up)
+\item 
+\mbox{\Hypertarget{class_l_t_spline_abcaf652f024759e780fd59d00db13ef9}\label{class_l_t_spline_abcaf652f024759e780fd59d00db13ef9}} 
+void {\bfseries gizmo\+Draw} (float t=-\/1.\+0f)
+\item 
+\mbox{\Hypertarget{class_l_t_spline_a993ff44d8e3bddaf7f7e281c503eed4b}\label{class_l_t_spline_a993ff44d8e3bddaf7f7e281c503eed4b}} 
+void {\bfseries draw\+Gizmo} (Color color)
+\item 
+\mbox{\Hypertarget{class_l_t_spline_a1767aacf57e2aa03217c0004d8ef4b90}\label{class_l_t_spline_a1767aacf57e2aa03217c0004d8ef4b90}} 
+void {\bfseries draw\+Lines\+G\+L\+Lines} (Material outline\+Material, Color color, float width)
+\item 
+\mbox{\Hypertarget{class_l_t_spline_ae094abb5808c6c4c79244ebbe31d06a7}\label{class_l_t_spline_ae094abb5808c6c4c79244ebbe31d06a7}} 
+Vector3\mbox{[}$\,$\mbox{]} {\bfseries generate\+Vectors} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Открытые статические члены}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_l_t_spline_a3ee847859a27153e95cb2510d2abb10a}\label{class_l_t_spline_a3ee847859a27153e95cb2510d2abb10a}} 
+static void {\bfseries draw\+Gizmo} (Transform\mbox{[}$\,$\mbox{]} arr, Color color)
+\item 
+\mbox{\Hypertarget{class_l_t_spline_af6442ed8bd2c4d626e67321e6fbbe75c}\label{class_l_t_spline_af6442ed8bd2c4d626e67321e6fbbe75c}} 
+static void {\bfseries draw\+Line} (Transform\mbox{[}$\,$\mbox{]} arr, float width, Color color)
+\end{DoxyCompactItemize}
+\doxysubsection*{Открытые атрибуты}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_l_t_spline_aa778bd305aa51433a38532cbdab64442}\label{class_l_t_spline_aa778bd305aa51433a38532cbdab64442}} 
+float {\bfseries distance} = 0f
+\item 
+\mbox{\Hypertarget{class_l_t_spline_a5fc18114c3a09395621f78a2197ed062}\label{class_l_t_spline_a5fc18114c3a09395621f78a2197ed062}} 
+bool {\bfseries constant\+Speed} = true
+\item 
+\mbox{\Hypertarget{class_l_t_spline_ac4347b93ca5e6e64e13f1d8774bb78c7}\label{class_l_t_spline_ac4347b93ca5e6e64e13f1d8774bb78c7}} 
+Vector3\mbox{[}$\,$\mbox{]} {\bfseries pts}
+\item 
+\mbox{\Hypertarget{class_l_t_spline_a11fdb9a2a340f096fadb2fc22f933201}\label{class_l_t_spline_a11fdb9a2a340f096fadb2fc22f933201}} 
+Vector3\mbox{[}$\,$\mbox{]} {\bfseries pts\+Adj}
+\item 
+\mbox{\Hypertarget{class_l_t_spline_a49b70fc441d950be83edabf3ef79d0c6}\label{class_l_t_spline_a49b70fc441d950be83edabf3ef79d0c6}} 
+int {\bfseries pts\+Adj\+Length}
+\item 
+\mbox{\Hypertarget{class_l_t_spline_a0e3a3d4e42506bf65ab18a85e1ff9e51}\label{class_l_t_spline_a0e3a3d4e42506bf65ab18a85e1ff9e51}} 
+bool {\bfseries orient\+To\+Path}
+\item 
+\mbox{\Hypertarget{class_l_t_spline_a604807773c4c390964d210e3b7328c39}\label{class_l_t_spline_a604807773c4c390964d210e3b7328c39}} 
+bool {\bfseries orient\+To\+Path2d}
+\end{DoxyCompactItemize}
+\doxysubsection*{Статические открытые данные}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_l_t_spline_ab4bf1cb793884d22b63513a932cbde77}\label{class_l_t_spline_ab4bf1cb793884d22b63513a932cbde77}} 
+static int {\bfseries D\+I\+S\+T\+A\+N\+C\+E\+\_\+\+C\+O\+U\+NT} = 3
+\item 
+\mbox{\Hypertarget{class_l_t_spline_a751f5c0e4e66a75d45c864c9d55b8da8}\label{class_l_t_spline_a751f5c0e4e66a75d45c864c9d55b8da8}} 
+static int {\bfseries S\+U\+B\+L\+I\+N\+E\+\_\+\+C\+O\+U\+NT} = 20
+\end{DoxyCompactItemize}
+\doxysubsection*{Закрытые члены}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_l_t_spline_a5fee552cd273047baa76ef6c4c9dfa91}\label{class_l_t_spline_a5fee552cd273047baa76ef6c4c9dfa91}} 
+void {\bfseries init} (Vector3\mbox{[}$\,$\mbox{]} pts, bool constant\+Speed)
+\end{DoxyCompactItemize}
+\doxysubsection*{Закрытые данные}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_l_t_spline_ad6f554027fa9cb664db27b3ce6f34a4f}\label{class_l_t_spline_ad6f554027fa9cb664db27b3ce6f34a4f}} 
+int {\bfseries num\+Sections}
+\item 
+\mbox{\Hypertarget{class_l_t_spline_a812e6539aa4a951e1e0e05fc07762810}\label{class_l_t_spline_a812e6539aa4a951e1e0e05fc07762810}} 
+int {\bfseries curr\+Pt}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Подробное описание}
+Move a Game\+Object to a certain location 
+
+Animate along a set of points that need to be in the format\+: control\+Point, point1, point2.... point\+Last, end\+Control\+Point 
+
+@constructor 
+\begin{DoxyParams}{Аргументы}
+{\em \{\+Vector3} & Array\} pts A set of points that define the points the path will pass through (starting with starting control point, and ending with a control point)~\newline
+ {\itshape {\bfseries{Note\+:}} The first and last item just define the angle of the end points, they are not actually used in the spline path itself. If you do not care about the angle you can jus set the first two items and last two items as the same value.} \\
+\hline
+\end{DoxyParams}
+\begin{Desc}
+\item[Примеры]\par
+\mbox{\hyperlink{_d_1_2_dev_2_unity_2_shaperation_2_assets_2_lean_tween_2_framework_2_lean_tween_8cs-example}{D\+:/\+Dev/\+Unity/\+Shaperation/\+Assets/\+Lean\+Tween/\+Framework/\+Lean\+Tween.\+cs}} и \mbox{\hyperlink{_d_1_2_dev_2_unity_2_shaperation_2_assets_2_lean_tween_2_framework_2_l_t_descr_8cs-example}{D\+:/\+Dev/\+Unity/\+Shaperation/\+Assets/\+Lean\+Tween/\+Framework/\+L\+T\+Descr.\+cs}}.\end{Desc}

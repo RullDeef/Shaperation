@@ -1,0 +1,202 @@
+\hypertarget{_d_1_2_dev_2_unity_2_shaperation_2_assets_2_lean_tween_2_framework_2_lean_smooth_8cs-example}{}\doxysection{D\+:/\+Dev/\+Unity/\+Shaperation/\+Assets/\+Lean\+Tween/\+Framework/\+Lean\+Smooth.\+cs}
+Moves one value towards another (eases in and out to destination with no overshoot)
+
+@method Lean\+Smooth.\+damp (float) 
+\begin{DoxyParams}{Аргументы}
+{\em \{float\}} & current\+:float the current value \\
+\hline
+{\em \{float\}} & target\+:float the value we are trying to reach \\
+\hline
+{\em \{float\}} & current\+Velocity\+:float the current velocity of the value \\
+\hline
+{\em \{float\}} & smooth\+Time\+:float roughly the time it takes to reach the destination \\
+\hline
+{\em \{float\}} & max\+Speed\+:float the top speed you want the value to move at (defaults to unlimited -\/1f) \\
+\hline
+{\em \{float\}} & delta\+Time\+:float the difference in time since the method was called (defaults to Time.\+delta\+Time)\\
+\hline
+\end{DoxyParams}
+follow\+Var = Lean\+Smooth.\+damp(follow\+Var, destination\+Var, ref follow\+Velocity, 1.\+1f);~\newline
+Debug.\+Log(\char`\"{}current\+:\char`\"{}+follow\+Var);
+
+
+\begin{DoxyCodeInclude}{0}
+\DoxyCodeLine{\textcolor{keyword}{using} System.Collections;}
+\DoxyCodeLine{\textcolor{keyword}{using} System.Collections.Generic;}
+\DoxyCodeLine{\textcolor{keyword}{using} UnityEngine;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{public} \textcolor{keyword}{class }\mbox{\hyperlink{class_lean_smooth}{LeanSmooth}} \{}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \textcolor{keyword}{static} \textcolor{keywordtype}{float} damp(\textcolor{keywordtype}{float} current, \textcolor{keywordtype}{float} target, ref \textcolor{keywordtype}{float} currentVelocity, \textcolor{keywordtype}{float} smoothTime, \textcolor{keywordtype}{float} maxSpeed = -\/1f, \textcolor{keywordtype}{float} deltaTime = -\/1f)}
+\DoxyCodeLine{    \{}
+\DoxyCodeLine{        \textcolor{keywordflow}{if} (deltaTime < 0f)}
+\DoxyCodeLine{            deltaTime = Time.deltaTime;}
+\DoxyCodeLine{}
+\DoxyCodeLine{        smoothTime = Mathf.Max(0.0001f, smoothTime);}
+\DoxyCodeLine{        \textcolor{keywordtype}{float} num = 2f / smoothTime;}
+\DoxyCodeLine{        \textcolor{keywordtype}{float} num2 = num * deltaTime;}
+\DoxyCodeLine{        \textcolor{keywordtype}{float} num3 = 1f / (1f + num2 + 0.48f * num2 * num2 + 0.235f * num2 * num2 * num2);}
+\DoxyCodeLine{        \textcolor{keywordtype}{float} num4 = current -\/ target;}
+\DoxyCodeLine{        \textcolor{keywordtype}{float} num5 = target;}
+\DoxyCodeLine{        \textcolor{keywordflow}{if} (maxSpeed > 0f)}
+\DoxyCodeLine{        \{}
+\DoxyCodeLine{            \textcolor{keywordtype}{float} num6 = maxSpeed * smoothTime;}
+\DoxyCodeLine{            num4 = Mathf.Clamp(num4, -\/num6, num6);}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{        target = current -\/ num4;}
+\DoxyCodeLine{        \textcolor{keywordtype}{float} num7 = (currentVelocity + num * num4) * deltaTime;}
+\DoxyCodeLine{        currentVelocity = (currentVelocity -\/ num * num7) * num3;}
+\DoxyCodeLine{        \textcolor{keywordtype}{float} num8 = target + (num4 + num7) * num3;}
+\DoxyCodeLine{        \textcolor{keywordflow}{if} (num5 -\/ current > 0f == num8 > num5)}
+\DoxyCodeLine{        \{}
+\DoxyCodeLine{            num8 = num5;}
+\DoxyCodeLine{            currentVelocity = (num8 -\/ num5) / deltaTime;}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} num8;}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \textcolor{keyword}{static} Vector3 damp(Vector3 current, Vector3 target, ref Vector3 currentVelocity, \textcolor{keywordtype}{float} smoothTime, \textcolor{keywordtype}{float} maxSpeed = -\/1f, \textcolor{keywordtype}{float} deltaTime = -\/1f)}
+\DoxyCodeLine{    \{}
+\DoxyCodeLine{        \textcolor{keywordtype}{float} x = damp(current.x, target.x, ref currentVelocity.x, smoothTime, maxSpeed, deltaTime);}
+\DoxyCodeLine{        \textcolor{keywordtype}{float} y = damp(current.y, target.y, ref currentVelocity.y, smoothTime, maxSpeed, deltaTime);}
+\DoxyCodeLine{        \textcolor{keywordtype}{float} z = damp(current.z, target.z, ref currentVelocity.z, smoothTime, maxSpeed, deltaTime);}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{new} Vector3(x, y, z);}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \textcolor{keyword}{static} Color damp(Color current, Color target, ref Color currentVelocity, \textcolor{keywordtype}{float} smoothTime, \textcolor{keywordtype}{float} maxSpeed = -\/1f, \textcolor{keywordtype}{float} deltaTime = -\/1f)}
+\DoxyCodeLine{    \{}
+\DoxyCodeLine{        \textcolor{keywordtype}{float} r = damp(current.r, target.r, ref currentVelocity.r, smoothTime, maxSpeed, deltaTime);}
+\DoxyCodeLine{        \textcolor{keywordtype}{float} g = damp(current.g, target.g, ref currentVelocity.g, smoothTime, maxSpeed, deltaTime);}
+\DoxyCodeLine{        \textcolor{keywordtype}{float} b = damp(current.b, target.b, ref currentVelocity.b, smoothTime, maxSpeed, deltaTime);}
+\DoxyCodeLine{        \textcolor{keywordtype}{float} a = damp(current.a, target.a, ref currentVelocity.a, smoothTime, maxSpeed, deltaTime);}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{new} Color(r, g, b, a);}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \textcolor{keyword}{static} \textcolor{keywordtype}{float} spring(\textcolor{keywordtype}{float} current, \textcolor{keywordtype}{float} target, ref \textcolor{keywordtype}{float} currentVelocity, \textcolor{keywordtype}{float} smoothTime, \textcolor{keywordtype}{float} maxSpeed = -\/1f, \textcolor{keywordtype}{float} deltaTime = -\/1f, \textcolor{keywordtype}{float} friction = 2f, \textcolor{keywordtype}{float} accelRate = 0.5f)}
+\DoxyCodeLine{    \{}
+\DoxyCodeLine{        \textcolor{keywordflow}{if} (deltaTime < 0f)}
+\DoxyCodeLine{            deltaTime = Time.deltaTime;}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{keywordtype}{float} diff = target -\/ current;}
+\DoxyCodeLine{}
+\DoxyCodeLine{        currentVelocity += deltaTime / smoothTime * accelRate * diff;}
+\DoxyCodeLine{}
+\DoxyCodeLine{        currentVelocity *= (1f -\/ deltaTime * friction);}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{keywordflow}{if} (maxSpeed > 0f \&\& maxSpeed < Mathf.Abs(currentVelocity))}
+\DoxyCodeLine{            currentVelocity = maxSpeed * Mathf.Sign(currentVelocity);}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{keywordtype}{float} returned = current + currentVelocity;}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} returned;}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \textcolor{keyword}{static} Vector3 spring(Vector3 current, Vector3 target, ref Vector3 currentVelocity, \textcolor{keywordtype}{float} smoothTime, \textcolor{keywordtype}{float} maxSpeed = -\/1f, \textcolor{keywordtype}{float} deltaTime = -\/1f, \textcolor{keywordtype}{float} friction = 2f, \textcolor{keywordtype}{float} accelRate = 0.5f)}
+\DoxyCodeLine{    \{}
+\DoxyCodeLine{        \textcolor{keywordtype}{float} x = spring(current.x, target.x, ref currentVelocity.x, smoothTime, maxSpeed, deltaTime, friction, accelRate);}
+\DoxyCodeLine{        \textcolor{keywordtype}{float} y = spring(current.y, target.y, ref currentVelocity.y, smoothTime, maxSpeed, deltaTime, friction, accelRate);}
+\DoxyCodeLine{        \textcolor{keywordtype}{float} z = spring(current.z, target.z, ref currentVelocity.z, smoothTime, maxSpeed, deltaTime, friction, accelRate);}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{new} Vector3(x, y, z);}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \textcolor{keyword}{static} Color spring(Color current, Color target, ref Color currentVelocity, \textcolor{keywordtype}{float} smoothTime, \textcolor{keywordtype}{float} maxSpeed = -\/1f, \textcolor{keywordtype}{float} deltaTime = -\/1f, \textcolor{keywordtype}{float} friction = 2f, \textcolor{keywordtype}{float} accelRate = 0.5f)}
+\DoxyCodeLine{    \{}
+\DoxyCodeLine{        \textcolor{keywordtype}{float} r = spring(current.r, target.r, ref currentVelocity.r, smoothTime, maxSpeed, deltaTime, friction, accelRate);}
+\DoxyCodeLine{        \textcolor{keywordtype}{float} g = spring(current.g, target.g, ref currentVelocity.g, smoothTime, maxSpeed, deltaTime, friction, accelRate);}
+\DoxyCodeLine{        \textcolor{keywordtype}{float} b = spring(current.b, target.b, ref currentVelocity.b, smoothTime, maxSpeed, deltaTime, friction, accelRate);}
+\DoxyCodeLine{        \textcolor{keywordtype}{float} a = spring(current.a, target.a, ref currentVelocity.a, smoothTime, maxSpeed, deltaTime, friction, accelRate);}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{new} Color(r, g, b, a);}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \textcolor{keyword}{static} \textcolor{keywordtype}{float} linear(\textcolor{keywordtype}{float} current, \textcolor{keywordtype}{float} target, \textcolor{keywordtype}{float} moveSpeed, \textcolor{keywordtype}{float} deltaTime = -\/1f)}
+\DoxyCodeLine{    \{}
+\DoxyCodeLine{        \textcolor{keywordflow}{if} (deltaTime < 0f)}
+\DoxyCodeLine{            deltaTime = Time.deltaTime;}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{keywordtype}{bool} targetGreater = (target > current);}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{keywordtype}{float} currentVelocity = deltaTime * moveSpeed * (targetGreater ? 1f : -\/1f);}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{keywordtype}{float} returned = current + currentVelocity;}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{keywordtype}{float} returnPassed = returned -\/ target;}
+\DoxyCodeLine{        \textcolor{keywordflow}{if} ((targetGreater \&\& returnPassed > 0) || !targetGreater \&\& returnPassed < 0)}
+\DoxyCodeLine{        \{ \textcolor{comment}{// Has passed point, return target}}
+\DoxyCodeLine{            \textcolor{keywordflow}{return} target;}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} returned;}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \textcolor{keyword}{static} Vector3 linear(Vector3 current, Vector3 target, \textcolor{keywordtype}{float} moveSpeed, \textcolor{keywordtype}{float} deltaTime = -\/1f)}
+\DoxyCodeLine{    \{}
+\DoxyCodeLine{        \textcolor{keywordtype}{float} x = linear(current.x, target.x, moveSpeed, deltaTime);}
+\DoxyCodeLine{        \textcolor{keywordtype}{float} y = linear(current.y, target.y, moveSpeed, deltaTime);}
+\DoxyCodeLine{        \textcolor{keywordtype}{float} z = linear(current.z, target.z, moveSpeed, deltaTime);}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{new} Vector3(x, y, z);}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \textcolor{keyword}{static} Color linear(Color current, Color target, \textcolor{keywordtype}{float} moveSpeed)}
+\DoxyCodeLine{    \{}
+\DoxyCodeLine{        \textcolor{keywordtype}{float} r = linear(current.r, target.r, moveSpeed);}
+\DoxyCodeLine{        \textcolor{keywordtype}{float} g = linear(current.g, target.g, moveSpeed);}
+\DoxyCodeLine{        \textcolor{keywordtype}{float} b = linear(current.b, target.b, moveSpeed);}
+\DoxyCodeLine{        \textcolor{keywordtype}{float} a = linear(current.a, target.a, moveSpeed);}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{new} Color(r, g, b, a);}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \textcolor{keyword}{static} \textcolor{keywordtype}{float} bounceOut(\textcolor{keywordtype}{float} current, \textcolor{keywordtype}{float} target, ref \textcolor{keywordtype}{float} currentVelocity, \textcolor{keywordtype}{float} smoothTime, \textcolor{keywordtype}{float} maxSpeed = -\/1f, \textcolor{keywordtype}{float} deltaTime = -\/1f, \textcolor{keywordtype}{float} friction = 2f, \textcolor{keywordtype}{float} accelRate = 0.5f, \textcolor{keywordtype}{float} hitDamping = 0.9f)}
+\DoxyCodeLine{    \{}
+\DoxyCodeLine{        \textcolor{keywordflow}{if} (deltaTime < 0f)}
+\DoxyCodeLine{            deltaTime = Time.deltaTime;}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{keywordtype}{float} diff = target -\/ current;}
+\DoxyCodeLine{}
+\DoxyCodeLine{        currentVelocity += deltaTime / smoothTime * accelRate * diff;}
+\DoxyCodeLine{}
+\DoxyCodeLine{        currentVelocity *= (1f -\/ deltaTime * friction);}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{keywordflow}{if} (maxSpeed > 0f \&\& maxSpeed < Mathf.Abs(currentVelocity))}
+\DoxyCodeLine{            currentVelocity = maxSpeed * Mathf.Sign(currentVelocity);}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{keywordtype}{float} returned = current + currentVelocity;}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{keywordtype}{bool} targetGreater = (target > current);}
+\DoxyCodeLine{        \textcolor{keywordtype}{float} returnPassed = returned -\/ target;}
+\DoxyCodeLine{        \textcolor{keywordflow}{if} ((targetGreater \&\& returnPassed > 0) || !targetGreater \&\& returnPassed < 0)}
+\DoxyCodeLine{        \{ \textcolor{comment}{// Start a bounce}}
+\DoxyCodeLine{            currentVelocity = -\/currentVelocity * hitDamping;}
+\DoxyCodeLine{            returned = current + currentVelocity;}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} returned;}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \textcolor{keyword}{static} Vector3 bounceOut(Vector3 current, Vector3 target, ref Vector3 currentVelocity, \textcolor{keywordtype}{float} smoothTime, \textcolor{keywordtype}{float} maxSpeed = -\/1f, \textcolor{keywordtype}{float} deltaTime = -\/1f, \textcolor{keywordtype}{float} friction = 2f, \textcolor{keywordtype}{float} accelRate = 0.5f, \textcolor{keywordtype}{float} hitDamping = 0.9f)}
+\DoxyCodeLine{    \{}
+\DoxyCodeLine{        \textcolor{keywordtype}{float} x = bounceOut(current.x, target.x, ref currentVelocity.x, smoothTime, maxSpeed, deltaTime, friction, accelRate, hitDamping);}
+\DoxyCodeLine{        \textcolor{keywordtype}{float} y = bounceOut(current.y, target.y, ref currentVelocity.y, smoothTime, maxSpeed, deltaTime, friction, accelRate, hitDamping);}
+\DoxyCodeLine{        \textcolor{keywordtype}{float} z = bounceOut(current.z, target.z, ref currentVelocity.z, smoothTime, maxSpeed, deltaTime, friction, accelRate, hitDamping);}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{new} Vector3(x, y, z);}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \textcolor{keyword}{static} Color bounceOut(Color current, Color target, ref Color currentVelocity, \textcolor{keywordtype}{float} smoothTime, \textcolor{keywordtype}{float} maxSpeed = -\/1f, \textcolor{keywordtype}{float} deltaTime = -\/1f, \textcolor{keywordtype}{float} friction = 2f, \textcolor{keywordtype}{float} accelRate = 0.5f, \textcolor{keywordtype}{float} hitDamping = 0.9f)}
+\DoxyCodeLine{    \{}
+\DoxyCodeLine{        \textcolor{keywordtype}{float} r = bounceOut(current.r, target.r, ref currentVelocity.r, smoothTime, maxSpeed, deltaTime, friction, accelRate, hitDamping);}
+\DoxyCodeLine{        \textcolor{keywordtype}{float} g = bounceOut(current.g, target.g, ref currentVelocity.g, smoothTime, maxSpeed, deltaTime, friction, accelRate, hitDamping);}
+\DoxyCodeLine{        \textcolor{keywordtype}{float} b = bounceOut(current.b, target.b, ref currentVelocity.b, smoothTime, maxSpeed, deltaTime, friction, accelRate, hitDamping);}
+\DoxyCodeLine{        \textcolor{keywordtype}{float} a = bounceOut(current.a, target.a, ref currentVelocity.a, smoothTime, maxSpeed, deltaTime, friction, accelRate, hitDamping);}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{new} Color(r, g, b, a);}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{\}}
+\end{DoxyCodeInclude}
+ 

@@ -1,0 +1,19 @@
+\hypertarget{_lean_tween_8delayed_call-example}{}\doxysection{Lean\+Tween.\+delayed\+Call}
+Call a method after a specified amount of time
+
+@method Lean\+Tween.\+delayed\+Call 
+\begin{DoxyParams}{Аргументы}
+{\em \{\+Game\+Object\}} & game\+Object\+:Game\+Object Gameobject that you wish to associate with this delayed call \\
+\hline
+{\em \{float\}} & time\+:float delay The time you wish to pass before the method is called \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+\{\mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}}\} \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} an object that distinguishes the tween (game\+Object, 1f, ()=$>$\{ ~\newline
+Debug.\+Log(\char`\"{}\+I am called one second later!\char`\"{});~\newline
+ \}));
+\end{DoxyReturn}
+
+\begin{DoxyCodeInclude}{0}
+\end{DoxyCodeInclude}
+ 

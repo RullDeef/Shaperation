@@ -1,0 +1,6 @@
+<map id="TileMapCell" name="TileMapCell">
+<area shape="rect" id="node1" title=" " alt="" coords="119,145,246,252"/>
+<area shape="rect" id="node2" href="$class_mono_behaviour.html" title=" " alt="" coords="5,5,117,83"/>
+<area shape="rect" id="node3" title=" " alt="" coords="142,5,223,83"/>
+<area shape="rect" id="node4" title=" " alt="" coords="250,5,297,83"/>
+</map>

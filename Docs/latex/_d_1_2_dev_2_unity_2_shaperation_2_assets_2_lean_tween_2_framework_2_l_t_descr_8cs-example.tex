@@ -1,0 +1,1974 @@
+\hypertarget{_d_1_2_dev_2_unity_2_shaperation_2_assets_2_lean_tween_2_framework_2_l_t_descr_8cs-example}{}\doxysection{D\+:/\+Dev/\+Unity/\+Shaperation/\+Assets/\+Lean\+Tween/\+Framework/\+L\+T\+Descr.\+cs}
+If you need a tween to happen immediately instead of waiting for the next Update call, you can force it with this method
+
+@method update\+Now \begin{DoxyReturn}{Возвращает}
+\{\mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}}\} \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} an object that distinguishes the tween
+\end{DoxyReturn}
+Lean\+Tween.\+move\+X(game\+Object, 5f, 0f ).update\+Now();
+
+
+\begin{DoxyCodeInclude}{0}
+\DoxyCodeLine{\textcolor{comment}{//namespace DentedPixel\{}}
+\DoxyCodeLine{\textcolor{keyword}{using} System;}
+\DoxyCodeLine{\textcolor{keyword}{using} UnityEngine;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{public} \textcolor{keyword}{class }\mbox{\hyperlink{class_l_t_descr}{LTDescr}}}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \textcolor{keywordtype}{bool} toggle;}
+\DoxyCodeLine{    \textcolor{keyword}{public} \textcolor{keywordtype}{bool} useEstimatedTime;}
+\DoxyCodeLine{    \textcolor{keyword}{public} \textcolor{keywordtype}{bool} useFrames;}
+\DoxyCodeLine{    \textcolor{keyword}{public} \textcolor{keywordtype}{bool} useManualTime;}
+\DoxyCodeLine{    \textcolor{keyword}{public} \textcolor{keywordtype}{bool} usesNormalDt;}
+\DoxyCodeLine{    \textcolor{keyword}{public} \textcolor{keywordtype}{bool} hasInitiliazed;}
+\DoxyCodeLine{    \textcolor{keyword}{public} \textcolor{keywordtype}{bool} hasExtraOnCompletes;}
+\DoxyCodeLine{    \textcolor{keyword}{public} \textcolor{keywordtype}{bool} hasPhysics;}
+\DoxyCodeLine{    \textcolor{keyword}{public} \textcolor{keywordtype}{bool} onCompleteOnRepeat;}
+\DoxyCodeLine{    \textcolor{keyword}{public} \textcolor{keywordtype}{bool} onCompleteOnStart;}
+\DoxyCodeLine{    \textcolor{keyword}{public} \textcolor{keywordtype}{bool} useRecursion;}
+\DoxyCodeLine{    \textcolor{keyword}{public} \textcolor{keywordtype}{float} ratioPassed;}
+\DoxyCodeLine{    \textcolor{keyword}{public} \textcolor{keywordtype}{float} passed;}
+\DoxyCodeLine{    \textcolor{keyword}{public} \textcolor{keywordtype}{float} delay;}
+\DoxyCodeLine{    \textcolor{keyword}{public} \textcolor{keywordtype}{float} time;}
+\DoxyCodeLine{    \textcolor{keyword}{public} \textcolor{keywordtype}{float} speed;}
+\DoxyCodeLine{    \textcolor{keyword}{public} \textcolor{keywordtype}{float} lastVal;}
+\DoxyCodeLine{    \textcolor{keyword}{private} uint \_id;}
+\DoxyCodeLine{    \textcolor{keyword}{public} \textcolor{keywordtype}{int} loopCount;}
+\DoxyCodeLine{    \textcolor{keyword}{public} uint counter = uint.MaxValue;}
+\DoxyCodeLine{    \textcolor{keyword}{public} \textcolor{keywordtype}{float} direction;}
+\DoxyCodeLine{    \textcolor{keyword}{public} \textcolor{keywordtype}{float} directionLast;}
+\DoxyCodeLine{    \textcolor{keyword}{public} \textcolor{keywordtype}{float} overshoot;}
+\DoxyCodeLine{    \textcolor{keyword}{public} \textcolor{keywordtype}{float} period;}
+\DoxyCodeLine{    \textcolor{keyword}{public} \textcolor{keywordtype}{float} scale;}
+\DoxyCodeLine{    \textcolor{keyword}{public} \textcolor{keywordtype}{bool} destroyOnComplete;}
+\DoxyCodeLine{    \textcolor{keyword}{public} Transform trans;}
+\DoxyCodeLine{    \textcolor{keyword}{internal} Vector3 fromInternal;}
+\DoxyCodeLine{    \textcolor{keyword}{public} Vector3 from \{ \textcolor{keyword}{get} \{ \textcolor{keywordflow}{return} this.fromInternal; \} \textcolor{keyword}{set} \{ this.fromInternal = value; \} \}}
+\DoxyCodeLine{    \textcolor{keyword}{internal} Vector3 toInternal;}
+\DoxyCodeLine{    \textcolor{keyword}{public} Vector3 to \{ \textcolor{keyword}{get} \{ \textcolor{keywordflow}{return} this.toInternal; \} \textcolor{keyword}{set} \{ this.toInternal = value; \} \}}
+\DoxyCodeLine{    \textcolor{keyword}{internal} Vector3 diff;}
+\DoxyCodeLine{    \textcolor{keyword}{internal} Vector3 diffDiv2;}
+\DoxyCodeLine{    \textcolor{keyword}{public} TweenAction type;}
+\DoxyCodeLine{    \textcolor{keyword}{private} \mbox{\hyperlink{class_lean_tween_type}{LeanTweenType}} easeType;}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_lean_tween_type}{LeanTweenType}} loopType;}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \textcolor{keywordtype}{bool} hasUpdateCallback;}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} EaseTypeDelegate easeMethod;}
+\DoxyCodeLine{    \textcolor{keyword}{public} ActionMethodDelegate easeInternal \{\textcolor{keyword}{get}; \textcolor{keyword}{set}; \}}
+\DoxyCodeLine{    \textcolor{keyword}{public} ActionMethodDelegate initInternal \{\textcolor{keyword}{get}; \textcolor{keyword}{set}; \}}
+\DoxyCodeLine{    \textcolor{keyword}{public} delegate Vector3 EaseTypeDelegate();}
+\DoxyCodeLine{    \textcolor{keyword}{public} delegate \textcolor{keywordtype}{void} ActionMethodDelegate();}
+\DoxyCodeLine{\textcolor{preprocessor}{    \#if !UNITY\_3\_5 \&\& !UNITY\_4\_0 \&\& !UNITY\_4\_0\_1 \&\& !UNITY\_4\_1 \&\& !UNITY\_4\_2}}
+\DoxyCodeLine{    \textcolor{keyword}{public} SpriteRenderer spriteRen;}
+\DoxyCodeLine{\textcolor{preprocessor}{    \#endif}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{preprocessor}{    \#if !UNITY\_3\_5 \&\& !UNITY\_4\_0 \&\& !UNITY\_4\_0\_1 \&\& !UNITY\_4\_1 \&\& !UNITY\_4\_2 \&\& !UNITY\_4\_3 \&\& !UNITY\_4\_5}}
+\DoxyCodeLine{    \textcolor{keyword}{public} RectTransform rectTransform;}
+\DoxyCodeLine{    \textcolor{keyword}{public} UnityEngine.UI.Text uiText;}
+\DoxyCodeLine{    \textcolor{keyword}{public} UnityEngine.UI.Image uiImage;}
+\DoxyCodeLine{    \textcolor{keyword}{public} UnityEngine.UI.RawImage rawImage;}
+\DoxyCodeLine{    \textcolor{keyword}{public} UnityEngine.Sprite[] sprites;}
+\DoxyCodeLine{\textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{// Convenience Getters}}
+\DoxyCodeLine{    \textcolor{keyword}{public} Transform toTrans\{}
+\DoxyCodeLine{        \textcolor{keyword}{get}\{}
+\DoxyCodeLine{            \textcolor{keywordflow}{return} optional.toTrans;}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr_optional}{LTDescrOptional}} \_optional = \textcolor{keyword}{new} \mbox{\hyperlink{class_l_t_descr_optional}{LTDescrOptional}}();}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \textcolor{keyword}{override} \textcolor{keywordtype}{string} ToString()\{}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} (trans!=\textcolor{keyword}{null} ? \textcolor{stringliteral}{"name:"}+trans.gameObject.name : \textcolor{stringliteral}{"gameObject:null"})+\textcolor{stringliteral}{" toggle:"}+toggle+\textcolor{stringliteral}{" passed:"}+passed+\textcolor{stringliteral}{" time:"}+time+\textcolor{stringliteral}{" delay:"}+delay+\textcolor{stringliteral}{" direction:"}+direction+\textcolor{stringliteral}{" from:"}+from+\textcolor{stringliteral}{" to:"}+to+\textcolor{stringliteral}{" diff:"}+diff+\textcolor{stringliteral}{" type:"}+type+\textcolor{stringliteral}{" ease:"}+easeType+\textcolor{stringliteral}{" useEstimatedTime:"}+useEstimatedTime+\textcolor{stringliteral}{" id:"}+\textcolor{keywordtype}{id}+\textcolor{stringliteral}{" hasInitiliazed:"}+hasInitiliazed;}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}}()\{}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    [System.Obsolete(\textcolor{stringliteral}{"Use 'LeanTween.cancel( id )' instead"})]}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} cancel( GameObject gameObject )\{}
+\DoxyCodeLine{        \textcolor{comment}{// Debug.Log("canceling id:"+this.\_id+" this.uniqueId:"+this.uniqueId+" go:"+this.trans.gameObject);}}
+\DoxyCodeLine{        \textcolor{keywordflow}{if}(gameObject==this.trans.gameObject)}
+\DoxyCodeLine{            \mbox{\hyperlink{class_lean_tween}{LeanTween}}.removeTween((\textcolor{keywordtype}{int})this.\_id, this.uniqueId);}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \textcolor{keywordtype}{int} uniqueId\{}
+\DoxyCodeLine{        \textcolor{keyword}{get}\{ }
+\DoxyCodeLine{            uint toId = \_id | counter << 16;}
+\DoxyCodeLine{}
+\DoxyCodeLine{            \textcolor{comment}{/*uint backId = toId \& 0xFFFF;}}
+\DoxyCodeLine{\textcolor{comment}{            uint backCounter = toId >> 16;}}
+\DoxyCodeLine{\textcolor{comment}{            if(\_id!=backId || backCounter!=counter)\{}}
+\DoxyCodeLine{\textcolor{comment}{                Debug.LogError("BAD CONVERSION toId:"+\_id);}}
+\DoxyCodeLine{\textcolor{comment}{            \}*/}}
+\DoxyCodeLine{}
+\DoxyCodeLine{            \textcolor{keywordflow}{return} (\textcolor{keywordtype}{int})toId;}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \textcolor{keywordtype}{int} \textcolor{keywordtype}{id}\{}
+\DoxyCodeLine{        \textcolor{keyword}{get}\{ }
+\DoxyCodeLine{            \textcolor{keywordflow}{return} uniqueId;}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr_optional}{LTDescrOptional}} optional\{}
+\DoxyCodeLine{        \textcolor{keyword}{get}\{ }
+\DoxyCodeLine{            \textcolor{keywordflow}{return} \_optional;}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{        \textcolor{keyword}{set}\{}
+\DoxyCodeLine{            this.\_optional = value;}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \textcolor{keywordtype}{void} reset()\{}
+\DoxyCodeLine{        this.toggle = this.useRecursion = this.usesNormalDt = \textcolor{keyword}{true};}
+\DoxyCodeLine{        this.trans = \textcolor{keyword}{null};}
+\DoxyCodeLine{        this.spriteRen = \textcolor{keyword}{null};}
+\DoxyCodeLine{        this.passed = this.delay = this.lastVal = 0.0f;}
+\DoxyCodeLine{        this.hasUpdateCallback = this.useEstimatedTime = this.useFrames = this.hasInitiliazed = this.onCompleteOnRepeat = this.destroyOnComplete = this.onCompleteOnStart = this.useManualTime = this.hasExtraOnCompletes = \textcolor{keyword}{false};}
+\DoxyCodeLine{        this.easeType = \mbox{\hyperlink{class_lean_tween_type}{LeanTweenType}}.linear;}
+\DoxyCodeLine{        this.loopType = \mbox{\hyperlink{class_lean_tween_type}{LeanTweenType}}.once;}
+\DoxyCodeLine{        this.loopCount = 0;}
+\DoxyCodeLine{        this.direction = this.directionLast = this.overshoot = this.scale = 1.0f;}
+\DoxyCodeLine{        this.period = 0.3f;}
+\DoxyCodeLine{        this.speed = -\/1f;}
+\DoxyCodeLine{        this.easeMethod = this.easeLinear;}
+\DoxyCodeLine{        this.from = this.to = Vector3.zero;}
+\DoxyCodeLine{        this.\_optional.reset();}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{// Initialize and Internal Methods}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setFollow()}
+\DoxyCodeLine{    \{}
+\DoxyCodeLine{        this.type = TweenAction.FOLLOW;}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setMoveX()\{}
+\DoxyCodeLine{        this.type = TweenAction.MOVE\_X;}
+\DoxyCodeLine{        this.initInternal = ()=>\{ this.fromInternal.x = trans.position.x; \};}
+\DoxyCodeLine{        this.easeInternal = ()=>\{ trans.position=\textcolor{keyword}{new} Vector3( easeMethod().x,trans.position.y,trans.position.z); \};}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setMoveY()\{}
+\DoxyCodeLine{        this.type = TweenAction.MOVE\_Y;}
+\DoxyCodeLine{        this.initInternal = ()=>\{ this.fromInternal.x = trans.position.y; \};}
+\DoxyCodeLine{        this.easeInternal = ()=>\{ trans.position=\textcolor{keyword}{new} Vector3( trans.position.x,easeMethod().x,trans.position.z); \};}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setMoveZ()\{}
+\DoxyCodeLine{        this.type = TweenAction.MOVE\_Z;}
+\DoxyCodeLine{        this.initInternal = ()=>\{ this.fromInternal.x = trans.position.z; \};;}
+\DoxyCodeLine{        this.easeInternal = ()=>\{ trans.position=\textcolor{keyword}{new} Vector3( trans.position.x,trans.position.y,easeMethod().x);  \};}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setMoveLocalX()\{}
+\DoxyCodeLine{        this.type = TweenAction.MOVE\_LOCAL\_X;}
+\DoxyCodeLine{        this.initInternal = ()=>\{ this.fromInternal.x = trans.localPosition.x; \};}
+\DoxyCodeLine{        this.easeInternal = ()=>\{ trans.localPosition=\textcolor{keyword}{new} Vector3( easeMethod().x,trans.localPosition.y,trans.localPosition.z); \};}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setMoveLocalY()\{}
+\DoxyCodeLine{        this.type = TweenAction.MOVE\_LOCAL\_Y;}
+\DoxyCodeLine{        this.initInternal = ()=>\{ this.fromInternal.x = trans.localPosition.y; \};}
+\DoxyCodeLine{        this.easeInternal = ()=>\{ trans.localPosition=\textcolor{keyword}{new} Vector3( trans.localPosition.x,easeMethod().x,trans.localPosition.z); \};}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setMoveLocalZ()\{}
+\DoxyCodeLine{        this.type = TweenAction.MOVE\_LOCAL\_Z;}
+\DoxyCodeLine{        this.initInternal = ()=>\{ this.fromInternal.x = trans.localPosition.z; \};}
+\DoxyCodeLine{        this.easeInternal = ()=>\{ trans.localPosition=\textcolor{keyword}{new} Vector3( trans.localPosition.x,trans.localPosition.y,easeMethod().x);  \};}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{private} \textcolor{keywordtype}{void} initFromInternal()\{ this.fromInternal.x = 0; \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setOffset( Vector3 offset )\{}
+\DoxyCodeLine{        this.toInternal = offset;}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setMoveCurved()\{}
+\DoxyCodeLine{        this.type = TweenAction.MOVE\_CURVED;}
+\DoxyCodeLine{        this.initInternal = this.initFromInternal;}
+\DoxyCodeLine{        this.easeInternal = ()=>\{}
+\DoxyCodeLine{            newVect = easeMethod();}
+\DoxyCodeLine{            val = newVect.x;}
+\DoxyCodeLine{            \textcolor{keywordflow}{if}(this.\_optional.path.orientToPath)\{}
+\DoxyCodeLine{                \textcolor{keywordflow}{if}(this.\_optional.path.orientToPath2d)\{}
+\DoxyCodeLine{                    this.\_optional.path.place2d( trans, val );}
+\DoxyCodeLine{                \}\textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{                    this.\_optional.path.place( trans, val );}
+\DoxyCodeLine{                \}}
+\DoxyCodeLine{            \}\textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{                trans.position = this.\_optional.path.point( val );}
+\DoxyCodeLine{            \}}
+\DoxyCodeLine{        \};}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setMoveCurvedLocal()\{}
+\DoxyCodeLine{        this.type = TweenAction.MOVE\_CURVED\_LOCAL;}
+\DoxyCodeLine{        this.initInternal = this.initFromInternal;}
+\DoxyCodeLine{        this.easeInternal = ()=>\{}
+\DoxyCodeLine{            newVect = easeMethod();}
+\DoxyCodeLine{            val = newVect.x;}
+\DoxyCodeLine{            \textcolor{keywordflow}{if}(this.\_optional.path.orientToPath)\{}
+\DoxyCodeLine{                \textcolor{keywordflow}{if}(this.\_optional.path.orientToPath2d)\{}
+\DoxyCodeLine{                    this.\_optional.path.placeLocal2d( trans, val );}
+\DoxyCodeLine{                \}\textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{                    this.\_optional.path.placeLocal( trans, val );}
+\DoxyCodeLine{                \}}
+\DoxyCodeLine{            \}\textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{                trans.localPosition = this.\_optional.path.point( val );}
+\DoxyCodeLine{            \}}
+\DoxyCodeLine{        \};}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setMoveSpline()\{}
+\DoxyCodeLine{        this.type = TweenAction.MOVE\_SPLINE;}
+\DoxyCodeLine{        this.initInternal = this.initFromInternal;}
+\DoxyCodeLine{        this.easeInternal = ()=>\{}
+\DoxyCodeLine{            newVect = easeMethod();}
+\DoxyCodeLine{            val = newVect.x;}
+\DoxyCodeLine{            \textcolor{keywordflow}{if}(this.\_optional.spline.orientToPath)\{}
+\DoxyCodeLine{                \textcolor{keywordflow}{if}(this.\_optional.spline.orientToPath2d)\{}
+\DoxyCodeLine{                    this.\_optional.spline.place2d( trans, val );}
+\DoxyCodeLine{                \}\textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{                    this.\_optional.spline.place( trans, val );}
+\DoxyCodeLine{                \}}
+\DoxyCodeLine{            \}\textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{                trans.position = this.\_optional.spline.point( val );}
+\DoxyCodeLine{            \}}
+\DoxyCodeLine{        \};}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setMoveSplineLocal()\{}
+\DoxyCodeLine{        this.type = TweenAction.MOVE\_SPLINE\_LOCAL;}
+\DoxyCodeLine{        this.initInternal = this.initFromInternal;}
+\DoxyCodeLine{        this.easeInternal = ()=>\{}
+\DoxyCodeLine{            newVect = easeMethod();}
+\DoxyCodeLine{            val = newVect.x;}
+\DoxyCodeLine{            \textcolor{keywordflow}{if}(this.\_optional.spline.orientToPath)\{}
+\DoxyCodeLine{                \textcolor{keywordflow}{if}(this.\_optional.spline.orientToPath2d)\{}
+\DoxyCodeLine{                    this.\_optional.spline.placeLocal2d( trans, val );}
+\DoxyCodeLine{                \}\textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{                    this.\_optional.spline.placeLocal( trans, val );}
+\DoxyCodeLine{                \}}
+\DoxyCodeLine{            \}\textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{                trans.localPosition = this.\_optional.spline.point( val );}
+\DoxyCodeLine{            \}}
+\DoxyCodeLine{        \};}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setScaleX()\{}
+\DoxyCodeLine{        this.type = TweenAction.SCALE\_X;}
+\DoxyCodeLine{        this.initInternal = ()=>\{ this.fromInternal.x = trans.localScale.x; \};}
+\DoxyCodeLine{        this.easeInternal = ()=>\{ trans.localScale = \textcolor{keyword}{new} Vector3( easeMethod().x,trans.localScale.y,trans.localScale.z); \};}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setScaleY()\{}
+\DoxyCodeLine{        this.type = TweenAction.SCALE\_Y;}
+\DoxyCodeLine{        this.initInternal = ()=>\{ this.fromInternal.x = trans.localScale.y; \};}
+\DoxyCodeLine{        this.easeInternal = ()=>\{ trans.localScale=\textcolor{keyword}{new} Vector3( trans.localScale.x,easeMethod().x,trans.localScale.z); \};}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setScaleZ()\{}
+\DoxyCodeLine{        this.type = TweenAction.SCALE\_Z;}
+\DoxyCodeLine{        this.initInternal = ()=>\{ this.fromInternal.x = trans.localScale.z; \};}
+\DoxyCodeLine{        this.easeInternal = ()=>\{ trans.localScale=\textcolor{keyword}{new} Vector3( trans.localScale.x,trans.localScale.y,easeMethod().x); \};}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setRotateX()\{}
+\DoxyCodeLine{        this.type = TweenAction.ROTATE\_X;}
+\DoxyCodeLine{        this.initInternal = ()=>\{ this.fromInternal.x = trans.eulerAngles.x; this.toInternal.x = \mbox{\hyperlink{class_lean_tween}{LeanTween}}.closestRot( this.fromInternal.x, \textcolor{keyword}{this}.toInternal.x);\};}
+\DoxyCodeLine{        this.easeInternal = ()=>\{ trans.eulerAngles=\textcolor{keyword}{new} Vector3(easeMethod().x,trans.eulerAngles.y,trans.eulerAngles.z); \};}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setRotateY()\{}
+\DoxyCodeLine{        this.type = TweenAction.ROTATE\_Y;}
+\DoxyCodeLine{        this.initInternal = ()=>\{ this.fromInternal.x = trans.eulerAngles.y;  this.toInternal.x = \mbox{\hyperlink{class_lean_tween}{LeanTween}}.closestRot( this.fromInternal.x, \textcolor{keyword}{this}.toInternal.x);\};}
+\DoxyCodeLine{        this.easeInternal = ()=>\{ trans.eulerAngles=\textcolor{keyword}{new} Vector3(trans.eulerAngles.x,easeMethod().x,trans.eulerAngles.z); \};}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setRotateZ()\{}
+\DoxyCodeLine{        this.type = TweenAction.ROTATE\_Z;}
+\DoxyCodeLine{        this.initInternal = ()=>\{}
+\DoxyCodeLine{            this.fromInternal.x = trans.eulerAngles.z; }
+\DoxyCodeLine{            this.toInternal.x = \mbox{\hyperlink{class_lean_tween}{LeanTween}}.closestRot( this.fromInternal.x, \textcolor{keyword}{this}.toInternal.x);}
+\DoxyCodeLine{        \};}
+\DoxyCodeLine{        this.easeInternal = ()=>\{ trans.eulerAngles=\textcolor{keyword}{new} Vector3(trans.eulerAngles.x,trans.eulerAngles.y,easeMethod().x); \};}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setRotateAround()\{}
+\DoxyCodeLine{        this.type = TweenAction.ROTATE\_AROUND;}
+\DoxyCodeLine{        this.initInternal = ()=>\{}
+\DoxyCodeLine{            this.fromInternal.x = 0f;}
+\DoxyCodeLine{            this.\_optional.origRotation = trans.rotation;}
+\DoxyCodeLine{        \};}
+\DoxyCodeLine{        this.easeInternal = ()=>\{}
+\DoxyCodeLine{            newVect = easeMethod();}
+\DoxyCodeLine{            val = newVect.x;}
+\DoxyCodeLine{            Vector3 origPos = trans.localPosition;}
+\DoxyCodeLine{            Vector3 rotateAroundPt = (Vector3)trans.TransformPoint( \textcolor{keyword}{this}.\_optional.point );}
+\DoxyCodeLine{            \textcolor{comment}{// Debug.Log("this.\_optional.point:"+this.\_optional.point);}}
+\DoxyCodeLine{            trans.RotateAround(rotateAroundPt, this.\_optional.axis, -\/\textcolor{keyword}{this}.\_optional.lastVal);}
+\DoxyCodeLine{            Vector3 diff = origPos -\/ trans.localPosition;}
+\DoxyCodeLine{}
+\DoxyCodeLine{            trans.localPosition = origPos -\/ diff; \textcolor{comment}{// Subtract the amount the object has been shifted over by the rotate, to get it back to it's orginal position}}
+\DoxyCodeLine{            trans.rotation = this.\_optional.origRotation;}
+\DoxyCodeLine{}
+\DoxyCodeLine{            rotateAroundPt = (Vector3)trans.TransformPoint( \textcolor{keyword}{this}.\_optional.point );}
+\DoxyCodeLine{            trans.RotateAround(rotateAroundPt, this.\_optional.axis, val);}
+\DoxyCodeLine{}
+\DoxyCodeLine{            this.\_optional.lastVal = val;}
+\DoxyCodeLine{        \};}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setRotateAroundLocal()\{}
+\DoxyCodeLine{        this.type = TweenAction.ROTATE\_AROUND\_LOCAL;}
+\DoxyCodeLine{        this.initInternal = ()=>\{}
+\DoxyCodeLine{            this.fromInternal.x = 0f;}
+\DoxyCodeLine{            this.\_optional.origRotation = trans.localRotation;}
+\DoxyCodeLine{        \};}
+\DoxyCodeLine{        this.easeInternal = ()=>\{}
+\DoxyCodeLine{            newVect = easeMethod();}
+\DoxyCodeLine{            val = newVect.x;}
+\DoxyCodeLine{            Vector3 origPos = trans.localPosition;}
+\DoxyCodeLine{            trans.RotateAround((Vector3)trans.TransformPoint( \textcolor{keyword}{this}.\_optional.point ), trans.TransformDirection(\textcolor{keyword}{this}.\_optional.axis), -\/\textcolor{keyword}{this}.\_optional.lastVal);}
+\DoxyCodeLine{            Vector3 diff = origPos -\/ trans.localPosition;}
+\DoxyCodeLine{}
+\DoxyCodeLine{            trans.localPosition = origPos -\/ diff; \textcolor{comment}{// Subtract the amount the object has been shifted over by the rotate, to get it back to it's orginal position}}
+\DoxyCodeLine{            trans.localRotation = this.\_optional.origRotation;}
+\DoxyCodeLine{            Vector3 rotateAroundPt = (Vector3)trans.TransformPoint( \textcolor{keyword}{this}.\_optional.point );}
+\DoxyCodeLine{            trans.RotateAround(rotateAroundPt, trans.TransformDirection(\textcolor{keyword}{this}.\_optional.axis), val);}
+\DoxyCodeLine{}
+\DoxyCodeLine{            this.\_optional.lastVal = val;}
+\DoxyCodeLine{        \};}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setAlpha()\{}
+\DoxyCodeLine{        this.type = TweenAction.ALPHA;}
+\DoxyCodeLine{        this.initInternal = ()=>\{}
+\DoxyCodeLine{\textcolor{preprocessor}{            \#if UNITY\_3\_5 || UNITY\_4\_0 || UNITY\_4\_0\_1 || UNITY\_4\_1 || UNITY\_4\_2}}
+\DoxyCodeLine{            \textcolor{keywordflow}{if}(trans.gameObject.renderer)\{ this.fromInternal.x = trans.gameObject.renderer.material.color.a; \}\textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(trans.childCount>0)\{ \textcolor{keywordflow}{foreach} (Transform child \textcolor{keywordflow}{in} trans) \{ \textcolor{keywordflow}{if}(child.gameObject.renderer!=\textcolor{keyword}{null})\{ Color col = child.gameObject.renderer.material.color; this.fromInternal.x = col.a; \textcolor{keywordflow}{break}; \}\}\}}
+\DoxyCodeLine{            this.easeInternal = this.alpha;}
+\DoxyCodeLine{            \textcolor{keywordflow}{break};  }
+\DoxyCodeLine{\textcolor{preprocessor}{            \#else}}
+\DoxyCodeLine{            SpriteRenderer ren = trans.GetComponent<SpriteRenderer>();}
+\DoxyCodeLine{            \textcolor{keywordflow}{if}(ren!=\textcolor{keyword}{null})\{}
+\DoxyCodeLine{                this.fromInternal.x = ren.color.a;}
+\DoxyCodeLine{            \}\textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{                \textcolor{keywordflow}{if}(trans.GetComponent<Renderer>()!=\textcolor{keyword}{null} \&\& trans.GetComponent<Renderer>().material.HasProperty(\textcolor{stringliteral}{"\_Color"}))\{}
+\DoxyCodeLine{                    this.fromInternal.x = trans.GetComponent<Renderer>().material.color.a;}
+\DoxyCodeLine{                \}\textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(trans.GetComponent<Renderer>()!=\textcolor{keyword}{null} \&\& trans.GetComponent<Renderer>().material.HasProperty(\textcolor{stringliteral}{"\_TintColor"}))\{}
+\DoxyCodeLine{                    Color col = trans.GetComponent<Renderer>().material.GetColor(\textcolor{stringliteral}{"\_TintColor"});}
+\DoxyCodeLine{                    this.fromInternal.x = col.a;}
+\DoxyCodeLine{                \}\textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(trans.childCount>0)\{}
+\DoxyCodeLine{                    \textcolor{keywordflow}{foreach} (Transform child \textcolor{keywordflow}{in} trans) \{}
+\DoxyCodeLine{                        \textcolor{keywordflow}{if}(child.gameObject.GetComponent<Renderer>()!=\textcolor{keyword}{null})\{}
+\DoxyCodeLine{                            Color col = child.gameObject.GetComponent<Renderer>().material.color;}
+\DoxyCodeLine{                            \textcolor{keyword}{this}.fromInternal.x = col.a;}
+\DoxyCodeLine{                            \textcolor{keywordflow}{break};}
+\DoxyCodeLine{                        \}}
+\DoxyCodeLine{                    \}}
+\DoxyCodeLine{                \}}
+\DoxyCodeLine{            \}}
+\DoxyCodeLine{\textcolor{preprocessor}{            \#endif}}
+\DoxyCodeLine{}
+\DoxyCodeLine{            this.easeInternal = ()=>\{}
+\DoxyCodeLine{                val = easeMethod().x;}
+\DoxyCodeLine{\textcolor{preprocessor}{                \#if UNITY\_3\_5 || UNITY\_4\_0 || UNITY\_4\_0\_1 || UNITY\_4\_1 || UNITY\_4\_2}}
+\DoxyCodeLine{                alphaRecursive(this.trans, val, this.useRecursion);}
+\DoxyCodeLine{\textcolor{preprocessor}{                \#else}}
+\DoxyCodeLine{                \textcolor{keywordflow}{if}(this.spriteRen!=\textcolor{keyword}{null})\{}
+\DoxyCodeLine{                    this.spriteRen.color = \textcolor{keyword}{new} Color( this.spriteRen.color.r, \textcolor{keyword}{this}.spriteRen.color.g, \textcolor{keyword}{this}.spriteRen.color.b, val);}
+\DoxyCodeLine{                    alphaRecursiveSprite(this.trans, val);}
+\DoxyCodeLine{                \}\textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{                    alphaRecursive(this.trans, val, this.useRecursion);}
+\DoxyCodeLine{                \}}
+\DoxyCodeLine{\textcolor{preprocessor}{                \#endif}}
+\DoxyCodeLine{            \};}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \};}
+\DoxyCodeLine{        this.easeInternal = ()=>\{}
+\DoxyCodeLine{            newVect = easeMethod();}
+\DoxyCodeLine{            val = newVect.x;}
+\DoxyCodeLine{\textcolor{preprocessor}{            \#if UNITY\_3\_5 || UNITY\_4\_0 || UNITY\_4\_0\_1 || UNITY\_4\_1 || UNITY\_4\_2}}
+\DoxyCodeLine{            alphaRecursive(this.trans, val, this.useRecursion);}
+\DoxyCodeLine{\textcolor{preprocessor}{            \#else}}
+\DoxyCodeLine{            \textcolor{keywordflow}{if}(this.spriteRen!=\textcolor{keyword}{null})\{}
+\DoxyCodeLine{                this.spriteRen.color = \textcolor{keyword}{new} Color( this.spriteRen.color.r, \textcolor{keyword}{this}.spriteRen.color.g, \textcolor{keyword}{this}.spriteRen.color.b, val);}
+\DoxyCodeLine{                alphaRecursiveSprite(this.trans, val);}
+\DoxyCodeLine{            \}\textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{                alphaRecursive(this.trans, val, this.useRecursion);}
+\DoxyCodeLine{            \}}
+\DoxyCodeLine{\textcolor{preprocessor}{            \#endif}}
+\DoxyCodeLine{        \};}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setTextAlpha()\{}
+\DoxyCodeLine{        this.type = TweenAction.TEXT\_ALPHA;}
+\DoxyCodeLine{        this.initInternal = ()=>\{}
+\DoxyCodeLine{            this.uiText = trans.GetComponent<UnityEngine.UI.Text>();}
+\DoxyCodeLine{            this.fromInternal.x = this.uiText != \textcolor{keyword}{null} ? this.uiText.color.a : 1f;}
+\DoxyCodeLine{        \};}
+\DoxyCodeLine{        this.easeInternal = ()=>\{ textAlphaRecursive( trans, easeMethod().x, this.useRecursion ); \};}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setAlphaVertex()\{}
+\DoxyCodeLine{        this.type = TweenAction.ALPHA\_VERTEX;}
+\DoxyCodeLine{        this.initInternal = ()=>\{ this.fromInternal.x = trans.GetComponent<MeshFilter>().mesh.colors32[0].a; \};}
+\DoxyCodeLine{        this.easeInternal = ()=>\{}
+\DoxyCodeLine{            newVect = easeMethod();}
+\DoxyCodeLine{            val = newVect.x;}
+\DoxyCodeLine{            Mesh mesh = trans.GetComponent<MeshFilter>().mesh;}
+\DoxyCodeLine{            Vector3[] vertices = mesh.vertices;}
+\DoxyCodeLine{            Color32[] colors = \textcolor{keyword}{new} Color32[vertices.Length];}
+\DoxyCodeLine{            \textcolor{keywordflow}{if} (colors.Length == 0)\{ \textcolor{comment}{//MaxFW fix: add vertex colors if the mesh doesn't have any             }}
+\DoxyCodeLine{                Color32 transparentWhiteColor32 = \textcolor{keyword}{new} Color32(0xff, 0xff, 0xff, 0x00);}
+\DoxyCodeLine{                colors = \textcolor{keyword}{new} Color32[mesh.vertices.Length];}
+\DoxyCodeLine{                \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} k=0; k<colors.Length; k++)}
+\DoxyCodeLine{                    colors[k] = transparentWhiteColor32;}
+\DoxyCodeLine{                mesh.colors32 = colors;}
+\DoxyCodeLine{            \}\textcolor{comment}{// fix end}}
+\DoxyCodeLine{            Color32 c = mesh.colors32[0];}
+\DoxyCodeLine{            c = \textcolor{keyword}{new} Color( c.r, c.g, c.b, val);}
+\DoxyCodeLine{            \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} k= 0; k < vertices.Length; k++)}
+\DoxyCodeLine{                colors[k] = c;}
+\DoxyCodeLine{            mesh.colors32 = colors;}
+\DoxyCodeLine{        \};}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setColor()\{}
+\DoxyCodeLine{        this.type = TweenAction.COLOR;}
+\DoxyCodeLine{        this.initInternal = ()=>\{}
+\DoxyCodeLine{\textcolor{preprocessor}{            \#if UNITY\_3\_5 || UNITY\_4\_0 || UNITY\_4\_0\_1 || UNITY\_4\_1 || UNITY\_4\_2}}
+\DoxyCodeLine{            \textcolor{keywordflow}{if}(trans.gameObject.renderer)\{}
+\DoxyCodeLine{            this.setFromColor( trans.gameObject.renderer.material.color );}
+\DoxyCodeLine{            \}\textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(trans.childCount>0)\{}
+\DoxyCodeLine{            \textcolor{keywordflow}{foreach} (Transform child \textcolor{keywordflow}{in} trans) \{}
+\DoxyCodeLine{            \textcolor{keywordflow}{if}(child.gameObject.renderer!=\textcolor{keyword}{null})\{}
+\DoxyCodeLine{            this.setFromColor( child.gameObject.renderer.material.color );}
+\DoxyCodeLine{            \textcolor{keywordflow}{break};}
+\DoxyCodeLine{            \}}
+\DoxyCodeLine{            \}}
+\DoxyCodeLine{            \}}
+\DoxyCodeLine{\textcolor{preprocessor}{            \#else}}
+\DoxyCodeLine{            SpriteRenderer renColor = trans.GetComponent<SpriteRenderer>();}
+\DoxyCodeLine{            \textcolor{keywordflow}{if}(renColor!=\textcolor{keyword}{null})\{}
+\DoxyCodeLine{                this.setFromColor( renColor.color );}
+\DoxyCodeLine{            \}\textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{                \textcolor{keywordflow}{if}(trans.GetComponent<Renderer>()!=\textcolor{keyword}{null} \&\& trans.GetComponent<Renderer>().material.HasProperty(\textcolor{stringliteral}{"\_Color"}))\{}
+\DoxyCodeLine{                    Color col = trans.GetComponent<Renderer>().material.color;}
+\DoxyCodeLine{                    \textcolor{keyword}{this}.setFromColor( col );}
+\DoxyCodeLine{                \}\textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(trans.GetComponent<Renderer>()!=\textcolor{keyword}{null} \&\& trans.GetComponent<Renderer>().material.HasProperty(\textcolor{stringliteral}{"\_TintColor"}))\{}
+\DoxyCodeLine{                    Color col = trans.GetComponent<Renderer>().material.GetColor (\textcolor{stringliteral}{"\_TintColor"});}
+\DoxyCodeLine{                    this.setFromColor( col );}
+\DoxyCodeLine{                \}\textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(trans.childCount>0)\{}
+\DoxyCodeLine{                    \textcolor{keywordflow}{foreach} (Transform child \textcolor{keywordflow}{in} trans) \{}
+\DoxyCodeLine{                        \textcolor{keywordflow}{if}(child.gameObject.GetComponent<Renderer>()!=\textcolor{keyword}{null})\{}
+\DoxyCodeLine{                            Color col = child.gameObject.GetComponent<Renderer>().material.color;}
+\DoxyCodeLine{                            \textcolor{keyword}{this}.setFromColor( col );}
+\DoxyCodeLine{                            \textcolor{keywordflow}{break};}
+\DoxyCodeLine{                        \}}
+\DoxyCodeLine{                    \}}
+\DoxyCodeLine{                \}}
+\DoxyCodeLine{            \}}
+\DoxyCodeLine{\textcolor{preprocessor}{            \#endif}}
+\DoxyCodeLine{        \};}
+\DoxyCodeLine{        this.easeInternal = ()=>\{}
+\DoxyCodeLine{            newVect = easeMethod();}
+\DoxyCodeLine{            val = newVect.x;}
+\DoxyCodeLine{            Color toColor = tweenColor(\textcolor{keyword}{this}, val);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{preprocessor}{            \#if !UNITY\_3\_5 \&\& !UNITY\_4\_0 \&\& !UNITY\_4\_0\_1 \&\& !UNITY\_4\_1 \&\& !UNITY\_4\_2}}
+\DoxyCodeLine{}
+\DoxyCodeLine{            \textcolor{keywordflow}{if}(this.spriteRen!=\textcolor{keyword}{null})\{}
+\DoxyCodeLine{                this.spriteRen.color = toColor;}
+\DoxyCodeLine{                colorRecursiveSprite( trans, toColor);}
+\DoxyCodeLine{            \}\textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{\textcolor{preprocessor}{            \#endif}}
+\DoxyCodeLine{                \textcolor{comment}{// Debug.Log("val:"+val+" tween:"+tween+" tween.diff:"+tween.diff);}}
+\DoxyCodeLine{                \textcolor{keywordflow}{if}(this.type==TweenAction.COLOR)}
+\DoxyCodeLine{                    colorRecursive(trans, toColor, this.useRecursion);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{preprocessor}{                \#if !UNITY\_3\_5 \&\& !UNITY\_4\_0 \&\& !UNITY\_4\_0\_1 \&\& !UNITY\_4\_1 \&\& !UNITY\_4\_2}}
+\DoxyCodeLine{            \}}
+\DoxyCodeLine{\textcolor{preprocessor}{                \#endif}}
+\DoxyCodeLine{            \textcolor{keywordflow}{if}(dt!=0f \&\& this.\_optional.onUpdateColor!=\textcolor{keyword}{null})\{}
+\DoxyCodeLine{                this.\_optional.onUpdateColor(toColor);}
+\DoxyCodeLine{            \}\textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(dt!=0f \&\& this.\_optional.onUpdateColorObject!=\textcolor{keyword}{null})\{}
+\DoxyCodeLine{                this.\_optional.onUpdateColorObject(toColor, this.\_optional.onUpdateParam);}
+\DoxyCodeLine{            \}}
+\DoxyCodeLine{        \};}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setCallbackColor()\{}
+\DoxyCodeLine{        this.type = TweenAction.CALLBACK\_COLOR;}
+\DoxyCodeLine{        this.initInternal = ()=>\{ this.diff = \textcolor{keyword}{new} Vector3(1.0f,0.0f,0.0f); \};}
+\DoxyCodeLine{        this.easeInternal = ()=>\{}
+\DoxyCodeLine{            newVect = easeMethod();}
+\DoxyCodeLine{            val = newVect.x;}
+\DoxyCodeLine{            Color toColor = tweenColor(\textcolor{keyword}{this}, val);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{preprocessor}{            \#if !UNITY\_3\_5 \&\& !UNITY\_4\_0 \&\& !UNITY\_4\_0\_1 \&\& !UNITY\_4\_1 \&\& !UNITY\_4\_2}}
+\DoxyCodeLine{            \textcolor{keywordflow}{if}(this.spriteRen!=\textcolor{keyword}{null})\{}
+\DoxyCodeLine{                this.spriteRen.color = toColor;}
+\DoxyCodeLine{                colorRecursiveSprite( trans, toColor);}
+\DoxyCodeLine{            \}\textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{\textcolor{preprocessor}{            \#endif}}
+\DoxyCodeLine{                \textcolor{comment}{// Debug.Log("val:"+val+" tween:"+tween+" tween.diff:"+tween.diff);}}
+\DoxyCodeLine{                \textcolor{keywordflow}{if}(this.type==TweenAction.COLOR)}
+\DoxyCodeLine{                    colorRecursive(trans, toColor, this.useRecursion);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{preprocessor}{                \#if !UNITY\_3\_5 \&\& !UNITY\_4\_0 \&\& !UNITY\_4\_0\_1 \&\& !UNITY\_4\_1 \&\& !UNITY\_4\_2}}
+\DoxyCodeLine{            \}}
+\DoxyCodeLine{\textcolor{preprocessor}{                \#endif}}
+\DoxyCodeLine{            \textcolor{keywordflow}{if}(dt!=0f \&\& this.\_optional.onUpdateColor!=\textcolor{keyword}{null})\{}
+\DoxyCodeLine{                this.\_optional.onUpdateColor(toColor);}
+\DoxyCodeLine{            \}\textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(dt!=0f \&\& this.\_optional.onUpdateColorObject!=\textcolor{keyword}{null})\{}
+\DoxyCodeLine{                this.\_optional.onUpdateColorObject(toColor, this.\_optional.onUpdateParam);}
+\DoxyCodeLine{            \}}
+\DoxyCodeLine{        \};}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{preprocessor}{    \#if !UNITY\_3\_5 \&\& !UNITY\_4\_0 \&\& !UNITY\_4\_0\_1 \&\& !UNITY\_4\_1 \&\& !UNITY\_4\_2 \&\& !UNITY\_4\_3 \&\& !UNITY\_4\_5}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setTextColor()\{}
+\DoxyCodeLine{        this.type = TweenAction.TEXT\_COLOR;}
+\DoxyCodeLine{        this.initInternal = ()=>\{}
+\DoxyCodeLine{            this.uiText = trans.GetComponent<UnityEngine.UI.Text>();}
+\DoxyCodeLine{            this.setFromColor( this.uiText != \textcolor{keyword}{null} ? this.uiText.color : Color.white );}
+\DoxyCodeLine{        \};}
+\DoxyCodeLine{        this.easeInternal = ()=>\{}
+\DoxyCodeLine{            newVect = easeMethod();}
+\DoxyCodeLine{            val = newVect.x;}
+\DoxyCodeLine{            Color toColor = tweenColor(\textcolor{keyword}{this}, val);}
+\DoxyCodeLine{            this.uiText.color = toColor;}
+\DoxyCodeLine{            \textcolor{keywordflow}{if} (dt!=0f \&\& this.\_optional.onUpdateColor != \textcolor{keyword}{null})}
+\DoxyCodeLine{                this.\_optional.onUpdateColor(toColor);}
+\DoxyCodeLine{}
+\DoxyCodeLine{            \textcolor{keywordflow}{if}(this.useRecursion \&\& trans.childCount>0)}
+\DoxyCodeLine{                textColorRecursive(this.trans, toColor);}
+\DoxyCodeLine{        \};}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setCanvasAlpha()\{}
+\DoxyCodeLine{        this.type = TweenAction.CANVAS\_ALPHA;}
+\DoxyCodeLine{        this.initInternal = ()=>\{}
+\DoxyCodeLine{            this.uiImage = trans.GetComponent<UnityEngine.UI.Image>();}
+\DoxyCodeLine{            \textcolor{keywordflow}{if}(this.uiImage!=\textcolor{keyword}{null})\{}
+\DoxyCodeLine{                this.fromInternal.x = this.uiImage.color.a;}
+\DoxyCodeLine{            \}\textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{                this.rawImage = trans.GetComponent<UnityEngine.UI.RawImage>();}
+\DoxyCodeLine{                \textcolor{keywordflow}{if}(this.rawImage != \textcolor{keyword}{null})\{}
+\DoxyCodeLine{                    this.fromInternal.x = this.rawImage.color.a;}
+\DoxyCodeLine{                \}\textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{                    this.fromInternal.x = 1f;}
+\DoxyCodeLine{                \}}
+\DoxyCodeLine{            \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \};}
+\DoxyCodeLine{        this.easeInternal = ()=>\{}
+\DoxyCodeLine{            newVect = easeMethod();}
+\DoxyCodeLine{            val = newVect.x;}
+\DoxyCodeLine{            \textcolor{keywordflow}{if}(this.uiImage!=\textcolor{keyword}{null})\{}
+\DoxyCodeLine{                Color c = this.uiImage.color; c.a = val; this.uiImage.color = c;}
+\DoxyCodeLine{            \}\textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(this.rawImage!=\textcolor{keyword}{null})\{}
+\DoxyCodeLine{                Color c = this.rawImage.color; c.a = val; this.rawImage.color = c;}
+\DoxyCodeLine{            \}}
+\DoxyCodeLine{            \textcolor{keywordflow}{if}(this.useRecursion)\{}
+\DoxyCodeLine{                alphaRecursive( this.rectTransform, val, 0 );}
+\DoxyCodeLine{                textAlphaChildrenRecursive( this.rectTransform, val);}
+\DoxyCodeLine{            \}}
+\DoxyCodeLine{        \};}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setCanvasGroupAlpha()\{}
+\DoxyCodeLine{        this.type = TweenAction.CANVASGROUP\_ALPHA;}
+\DoxyCodeLine{        this.initInternal = ()=>\{this.fromInternal.x = trans.GetComponent<CanvasGroup>().alpha;\};}
+\DoxyCodeLine{        this.easeInternal = ()=>\{ this.trans.GetComponent<CanvasGroup>().alpha = easeMethod().x; \};}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setCanvasColor()\{}
+\DoxyCodeLine{        this.type = TweenAction.CANVAS\_COLOR;}
+\DoxyCodeLine{        this.initInternal = ()=>\{}
+\DoxyCodeLine{            this.uiImage = trans.GetComponent<UnityEngine.UI.Image>();}
+\DoxyCodeLine{            \textcolor{keywordflow}{if}(this.uiImage==\textcolor{keyword}{null})\{}
+\DoxyCodeLine{                this.rawImage = trans.GetComponent<UnityEngine.UI.RawImage>();}
+\DoxyCodeLine{                this.setFromColor( this.rawImage!=\textcolor{keyword}{null} ? this.rawImage.color : Color.white );}
+\DoxyCodeLine{            \}\textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{                this.setFromColor( this.uiImage.color );}
+\DoxyCodeLine{            \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \};}
+\DoxyCodeLine{        this.easeInternal = ()=>\{}
+\DoxyCodeLine{            newVect = easeMethod();}
+\DoxyCodeLine{            val = newVect.x;}
+\DoxyCodeLine{            Color toColor = tweenColor(\textcolor{keyword}{this}, val);}
+\DoxyCodeLine{            \textcolor{keywordflow}{if}(this.uiImage!=\textcolor{keyword}{null})\{}
+\DoxyCodeLine{                this.uiImage.color = toColor;}
+\DoxyCodeLine{            \}\textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(this.rawImage!=\textcolor{keyword}{null})\{}
+\DoxyCodeLine{                this.rawImage.color = toColor;}
+\DoxyCodeLine{            \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{            \textcolor{keywordflow}{if} (dt!=0f \&\& this.\_optional.onUpdateColor != \textcolor{keyword}{null})}
+\DoxyCodeLine{                this.\_optional.onUpdateColor(toColor);}
+\DoxyCodeLine{}
+\DoxyCodeLine{            \textcolor{keywordflow}{if}(this.useRecursion)}
+\DoxyCodeLine{                colorRecursive(this.rectTransform, toColor);}
+\DoxyCodeLine{        \};}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setCanvasMoveX()\{}
+\DoxyCodeLine{        this.type = TweenAction.CANVAS\_MOVE\_X;}
+\DoxyCodeLine{        this.initInternal = ()=>\{ this.fromInternal.x = this.rectTransform.anchoredPosition3D.x; \};}
+\DoxyCodeLine{        this.easeInternal = ()=>\{ Vector3 c = this.rectTransform.anchoredPosition3D; this.rectTransform.anchoredPosition3D = \textcolor{keyword}{new} Vector3(easeMethod().x, c.y, c.z); \};}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setCanvasMoveY()\{}
+\DoxyCodeLine{        this.type = TweenAction.CANVAS\_MOVE\_Y;}
+\DoxyCodeLine{        this.initInternal = ()=>\{ this.fromInternal.x = this.rectTransform.anchoredPosition3D.y; \};}
+\DoxyCodeLine{        this.easeInternal = ()=>\{ Vector3 c = this.rectTransform.anchoredPosition3D; this.rectTransform.anchoredPosition3D = \textcolor{keyword}{new} Vector3(c.x, easeMethod().x, c.z); \};}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setCanvasMoveZ()\{}
+\DoxyCodeLine{        this.type = TweenAction.CANVAS\_MOVE\_Z;}
+\DoxyCodeLine{        this.initInternal = ()=>\{ this.fromInternal.x = this.rectTransform.anchoredPosition3D.z; \};}
+\DoxyCodeLine{        this.easeInternal = ()=>\{ Vector3 c = this.rectTransform.anchoredPosition3D; this.rectTransform.anchoredPosition3D = \textcolor{keyword}{new} Vector3(c.x, c.y, easeMethod().x); \};}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{private} \textcolor{keywordtype}{void} initCanvasRotateAround()\{}
+\DoxyCodeLine{        this.lastVal = 0.0f;}
+\DoxyCodeLine{        this.fromInternal.x = 0.0f;}
+\DoxyCodeLine{        this.\_optional.origRotation = this.rectTransform.rotation;}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setCanvasRotateAround()\{}
+\DoxyCodeLine{        this.type = TweenAction.CANVAS\_ROTATEAROUND;}
+\DoxyCodeLine{        this.initInternal = this.initCanvasRotateAround;}
+\DoxyCodeLine{        this.easeInternal = ()=>\{}
+\DoxyCodeLine{            newVect = easeMethod();}
+\DoxyCodeLine{            val = newVect.x;}
+\DoxyCodeLine{            RectTransform rect = this.rectTransform;}
+\DoxyCodeLine{            Vector3 origPos = rect.localPosition;}
+\DoxyCodeLine{            rect.RotateAround((Vector3)rect.TransformPoint( \textcolor{keyword}{this}.\_optional.point ), \textcolor{keyword}{this}.\_optional.axis, -\/val);}
+\DoxyCodeLine{            Vector3 diff = origPos -\/ rect.localPosition;}
+\DoxyCodeLine{}
+\DoxyCodeLine{            rect.localPosition = origPos -\/ diff; \textcolor{comment}{// Subtract the amount the object has been shifted over by the rotate, to get it back to it's orginal position}}
+\DoxyCodeLine{            rect.rotation = this.\_optional.origRotation;}
+\DoxyCodeLine{            rect.RotateAround((Vector3)rect.TransformPoint( \textcolor{keyword}{this}.\_optional.point ), \textcolor{keyword}{this}.\_optional.axis, val);}
+\DoxyCodeLine{        \};}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setCanvasRotateAroundLocal()\{}
+\DoxyCodeLine{        this.type = TweenAction.CANVAS\_ROTATEAROUND\_LOCAL;}
+\DoxyCodeLine{        this.initInternal = this.initCanvasRotateAround;}
+\DoxyCodeLine{        this.easeInternal = ()=>\{}
+\DoxyCodeLine{            newVect = easeMethod();}
+\DoxyCodeLine{            val = newVect.x;}
+\DoxyCodeLine{            RectTransform rect = this.rectTransform;}
+\DoxyCodeLine{            Vector3 origPos = rect.localPosition;}
+\DoxyCodeLine{            rect.RotateAround((Vector3)rect.TransformPoint( \textcolor{keyword}{this}.\_optional.point ), rect.TransformDirection(\textcolor{keyword}{this}.\_optional.axis), -\/val);}
+\DoxyCodeLine{            Vector3 diff = origPos -\/ rect.localPosition;}
+\DoxyCodeLine{}
+\DoxyCodeLine{            rect.localPosition = origPos -\/ diff; \textcolor{comment}{// Subtract the amount the object has been shifted over by the rotate, to get it back to it's orginal position}}
+\DoxyCodeLine{            rect.rotation = this.\_optional.origRotation;}
+\DoxyCodeLine{            rect.RotateAround((Vector3)rect.TransformPoint( \textcolor{keyword}{this}.\_optional.point ), rect.TransformDirection(\textcolor{keyword}{this}.\_optional.axis), val);}
+\DoxyCodeLine{        \};}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setCanvasPlaySprite()\{}
+\DoxyCodeLine{        this.type = TweenAction.CANVAS\_PLAYSPRITE;}
+\DoxyCodeLine{        this.initInternal = ()=>\{}
+\DoxyCodeLine{            this.uiImage = trans.GetComponent<UnityEngine.UI.Image>();}
+\DoxyCodeLine{            this.fromInternal.x = 0f;}
+\DoxyCodeLine{        \};}
+\DoxyCodeLine{        this.easeInternal = ()=>\{}
+\DoxyCodeLine{            newVect = easeMethod();}
+\DoxyCodeLine{            val = newVect.x;}
+\DoxyCodeLine{            \textcolor{keywordtype}{int} frame = (int)Mathf.Round( val );}
+\DoxyCodeLine{            this.uiImage.sprite = this.sprites[ frame ];}
+\DoxyCodeLine{        \};}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setCanvasMove()\{}
+\DoxyCodeLine{        this.type = TweenAction.CANVAS\_MOVE;}
+\DoxyCodeLine{        this.initInternal = ()=>\{ this.fromInternal = this.rectTransform.anchoredPosition3D; \};}
+\DoxyCodeLine{        this.easeInternal = ()=>\{ this.rectTransform.anchoredPosition3D = easeMethod(); \};}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setCanvasScale()\{}
+\DoxyCodeLine{        this.type = TweenAction.CANVAS\_SCALE;}
+\DoxyCodeLine{        this.initInternal = ()=>\{ this.from = this.rectTransform.localScale; \};}
+\DoxyCodeLine{        this.easeInternal = ()=>\{ this.rectTransform.localScale = easeMethod(); \};}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setCanvasSizeDelta()\{}
+\DoxyCodeLine{        this.type = TweenAction.CANVAS\_SIZEDELTA;}
+\DoxyCodeLine{        this.initInternal = ()=>\{ this.from = this.rectTransform.sizeDelta; \};}
+\DoxyCodeLine{        this.easeInternal = ()=>\{ this.rectTransform.sizeDelta = easeMethod(); \};}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{\textcolor{preprocessor}{    \#endif}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{private} \textcolor{keywordtype}{void} callback()\{ newVect = easeMethod(); val = newVect.x; \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setCallback()\{}
+\DoxyCodeLine{        this.type = TweenAction.CALLBACK;}
+\DoxyCodeLine{        this.initInternal = ()=>\{\};}
+\DoxyCodeLine{        this.easeInternal = this.callback;}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setValue3()\{}
+\DoxyCodeLine{        this.type = TweenAction.VALUE3;}
+\DoxyCodeLine{        this.initInternal = ()=>\{\};}
+\DoxyCodeLine{        this.easeInternal = this.callback;}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setMove()\{}
+\DoxyCodeLine{        this.type = TweenAction.MOVE;}
+\DoxyCodeLine{        this.initInternal = ()=>\{ this.from = trans.position; \};}
+\DoxyCodeLine{        this.easeInternal = ()=>\{ }
+\DoxyCodeLine{            newVect = easeMethod();}
+\DoxyCodeLine{            trans.position = newVect; }
+\DoxyCodeLine{        \};}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setMoveLocal()\{}
+\DoxyCodeLine{        this.type = TweenAction.MOVE\_LOCAL;}
+\DoxyCodeLine{        this.initInternal = ()=>\{ this.from = trans.localPosition; \};}
+\DoxyCodeLine{        this.easeInternal = ()=>\{ }
+\DoxyCodeLine{            newVect = easeMethod(); }
+\DoxyCodeLine{            trans.localPosition = newVect; }
+\DoxyCodeLine{        \};}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setMoveToTransform()\{}
+\DoxyCodeLine{        this.type = TweenAction.MOVE\_TO\_TRANSFORM;}
+\DoxyCodeLine{        this.initInternal = ()=>\{ this.from = trans.position; \};}
+\DoxyCodeLine{        this.easeInternal = ()=>\{}
+\DoxyCodeLine{            this.to = this.\_optional.toTrans.position;}
+\DoxyCodeLine{            this.diff = this.to -\/ this.from;}
+\DoxyCodeLine{            this.diffDiv2 = this.diff * 0.5f;}
+\DoxyCodeLine{}
+\DoxyCodeLine{            newVect = easeMethod();}
+\DoxyCodeLine{            this.trans.position = newVect;}
+\DoxyCodeLine{        \};}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setRotate()\{}
+\DoxyCodeLine{        this.type = TweenAction.ROTATE;}
+\DoxyCodeLine{        this.initInternal = ()=>\{ this.from = trans.eulerAngles;  this.to = \textcolor{keyword}{new} Vector3(\mbox{\hyperlink{class_lean_tween}{LeanTween}}.closestRot( \textcolor{keyword}{this}.fromInternal.x, \textcolor{keyword}{this}.toInternal.x), \mbox{\hyperlink{class_lean_tween}{LeanTween}}.closestRot( \textcolor{keyword}{this}.from.y, \textcolor{keyword}{this}.to.y), \mbox{\hyperlink{class_lean_tween}{LeanTween}}.closestRot( \textcolor{keyword}{this}.from.z, \textcolor{keyword}{this}.to.z)); \};}
+\DoxyCodeLine{        this.easeInternal = ()=>\{ }
+\DoxyCodeLine{            newVect = easeMethod();}
+\DoxyCodeLine{            trans.eulerAngles = newVect; }
+\DoxyCodeLine{        \};}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setRotateLocal()\{}
+\DoxyCodeLine{        this.type = TweenAction.ROTATE\_LOCAL;}
+\DoxyCodeLine{        this.initInternal = ()=>\{ this.from = trans.localEulerAngles;  this.to = \textcolor{keyword}{new} Vector3(\mbox{\hyperlink{class_lean_tween}{LeanTween}}.closestRot( \textcolor{keyword}{this}.fromInternal.x, \textcolor{keyword}{this}.toInternal.x), \mbox{\hyperlink{class_lean_tween}{LeanTween}}.closestRot( \textcolor{keyword}{this}.from.y, \textcolor{keyword}{this}.to.y), \mbox{\hyperlink{class_lean_tween}{LeanTween}}.closestRot( \textcolor{keyword}{this}.from.z, \textcolor{keyword}{this}.to.z)); \};}
+\DoxyCodeLine{        this.easeInternal = ()=>\{ }
+\DoxyCodeLine{            newVect = easeMethod();}
+\DoxyCodeLine{            trans.localEulerAngles = newVect; }
+\DoxyCodeLine{        \};}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setScale()\{}
+\DoxyCodeLine{        this.type = TweenAction.SCALE;}
+\DoxyCodeLine{        this.initInternal = ()=>\{ this.from = trans.localScale; \};}
+\DoxyCodeLine{        this.easeInternal = ()=>\{ }
+\DoxyCodeLine{            newVect = easeMethod();}
+\DoxyCodeLine{            trans.localScale = newVect; }
+\DoxyCodeLine{        \};}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setGUIMove()\{}
+\DoxyCodeLine{        this.type = TweenAction.GUI\_MOVE;}
+\DoxyCodeLine{        this.initInternal = ()=>\{ this.from = \textcolor{keyword}{new} Vector3(this.\_optional.ltRect.\mbox{\hyperlink{class_l_t_rect_ac7f0ad6726e10153e4c21835a2231b27}{rect}}.x, \textcolor{keyword}{this}.\_optional.ltRect.rect.y, 0); \};}
+\DoxyCodeLine{        this.easeInternal = ()=>\{ Vector3 v = easeMethod(); this.\_optional.ltRect.\mbox{\hyperlink{class_l_t_rect_ac7f0ad6726e10153e4c21835a2231b27}{rect}} = \textcolor{keyword}{new} Rect( v.x, v.y, \textcolor{keyword}{this}.\_optional.ltRect.rect.width, \textcolor{keyword}{this}.\_optional.ltRect.rect.height); \};}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setGUIMoveMargin()\{}
+\DoxyCodeLine{        this.type = TweenAction.GUI\_MOVE\_MARGIN;}
+\DoxyCodeLine{        this.initInternal = ()=>\{ this.from = \textcolor{keyword}{new} Vector2(this.\_optional.ltRect.margin.x, \textcolor{keyword}{this}.\_optional.ltRect.margin.y); \};}
+\DoxyCodeLine{        this.easeInternal = ()=>\{ Vector3 v = easeMethod(); this.\_optional.ltRect.margin = \textcolor{keyword}{new} Vector2(v.x, v.y); \};}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setGUIScale()\{}
+\DoxyCodeLine{        this.type = TweenAction.GUI\_SCALE;}
+\DoxyCodeLine{        this.initInternal = ()=>\{ this.from = \textcolor{keyword}{new} Vector3(this.\_optional.ltRect.\mbox{\hyperlink{class_l_t_rect_ac7f0ad6726e10153e4c21835a2231b27}{rect}}.width, \textcolor{keyword}{this}.\_optional.ltRect.rect.height, 0); \};}
+\DoxyCodeLine{        this.easeInternal = ()=>\{ Vector3 v = easeMethod(); this.\_optional.ltRect.\mbox{\hyperlink{class_l_t_rect_ac7f0ad6726e10153e4c21835a2231b27}{rect}} = \textcolor{keyword}{new} Rect( this.\_optional.ltRect.\mbox{\hyperlink{class_l_t_rect_ac7f0ad6726e10153e4c21835a2231b27}{rect}}.x, \textcolor{keyword}{this}.\_optional.ltRect.rect.y, v.x, v.y); \};}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setGUIAlpha()\{}
+\DoxyCodeLine{        this.type = TweenAction.GUI\_ALPHA;}
+\DoxyCodeLine{        this.initInternal = ()=>\{ this.fromInternal.x = this.\_optional.ltRect.alpha; \};}
+\DoxyCodeLine{        this.easeInternal = ()=>\{ this.\_optional.ltRect.alpha = easeMethod().x; \};}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setGUIRotate()\{}
+\DoxyCodeLine{        this.type = TweenAction.GUI\_ROTATE;}
+\DoxyCodeLine{        this.initInternal = ()=>\{ \textcolor{keywordflow}{if}(this.\_optional.ltRect.rotateEnabled==\textcolor{keyword}{false})\{}
+\DoxyCodeLine{                this.\_optional.ltRect.rotateEnabled = \textcolor{keyword}{true};}
+\DoxyCodeLine{                this.\_optional.ltRect.resetForRotation();}
+\DoxyCodeLine{            \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{            this.fromInternal.x = this.\_optional.ltRect.rotation;}
+\DoxyCodeLine{        \};}
+\DoxyCodeLine{        this.easeInternal = ()=>\{ this.\_optional.ltRect.rotation = easeMethod().x; \};}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setDelayedSound()\{}
+\DoxyCodeLine{        this.type = TweenAction.DELAYED\_SOUND;}
+\DoxyCodeLine{        this.initInternal = ()=>\{ this.hasExtraOnCompletes = \textcolor{keyword}{true}; \};}
+\DoxyCodeLine{        this.easeInternal = this.callback;}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setTarget(Transform trans)}
+\DoxyCodeLine{    \{}
+\DoxyCodeLine{        this.optional.toTrans = trans;}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{private} \textcolor{keywordtype}{void} init()\{}
+\DoxyCodeLine{        this.hasInitiliazed = \textcolor{keyword}{true};}
+\DoxyCodeLine{}
+\DoxyCodeLine{        usesNormalDt = !(useEstimatedTime || useManualTime || useFrames); \textcolor{comment}{// only set this to true if it uses non of the other timing modes}}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{keywordflow}{if} (useFrames)}
+\DoxyCodeLine{            this.optional.initFrameCount = Time.frameCount;}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{keywordflow}{if} (this.time <= 0f) \textcolor{comment}{// avoid dividing by zero}}
+\DoxyCodeLine{            this.time = Mathf.Epsilon;}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{keywordflow}{if}(this.initInternal!=\textcolor{keyword}{null})}
+\DoxyCodeLine{            this.initInternal();}
+\DoxyCodeLine{}
+\DoxyCodeLine{        this.diff = this.to -\/ this.from;}
+\DoxyCodeLine{        this.diffDiv2 = this.diff * 0.5f;}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{keywordflow}{if} (this.\_optional.onStart != \textcolor{keyword}{null})}
+\DoxyCodeLine{            this.\_optional.onStart();}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{keywordflow}{if}(this.onCompleteOnStart)}
+\DoxyCodeLine{            callOnCompletes();}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{keywordflow}{if}(this.speed>=0)\{}
+\DoxyCodeLine{            initSpeed();}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{private} \textcolor{keywordtype}{void} initSpeed()\{}
+\DoxyCodeLine{        \textcolor{keywordflow}{if}(this.type==TweenAction.MOVE\_CURVED || \textcolor{keyword}{this}.type==TweenAction.MOVE\_CURVED\_LOCAL)\{}
+\DoxyCodeLine{            this.time = this.\_optional.path.distance / this.speed;}
+\DoxyCodeLine{        \}\textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(this.type==TweenAction.MOVE\_SPLINE || \textcolor{keyword}{this}.type==TweenAction.MOVE\_SPLINE\_LOCAL)\{}
+\DoxyCodeLine{            this.time = this.\_optional.spline.distance/ this.speed;}
+\DoxyCodeLine{        \}\textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{            this.time = (this.to -\/ this.from).magnitude / this.speed;}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \textcolor{keyword}{static} \textcolor{keywordtype}{float} val;}
+\DoxyCodeLine{    \textcolor{keyword}{public} \textcolor{keyword}{static} \textcolor{keywordtype}{float} dt;}
+\DoxyCodeLine{    \textcolor{keyword}{public} \textcolor{keyword}{static} Vector3 newVect;}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} updateNow()\{}
+\DoxyCodeLine{        updateInternal();}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \textcolor{keywordtype}{bool} updateInternal()\{}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{keywordtype}{float} directionLocal = this.direction;}
+\DoxyCodeLine{        \textcolor{keywordflow}{if}(this.usesNormalDt)\{}
+\DoxyCodeLine{            dt = \mbox{\hyperlink{class_lean_tween}{LeanTween}}.dtActual;}
+\DoxyCodeLine{        \}\textcolor{keywordflow}{else} \textcolor{keywordflow}{if}( this.useEstimatedTime )\{}
+\DoxyCodeLine{            dt = \mbox{\hyperlink{class_lean_tween}{LeanTween}}.dtEstimated;}
+\DoxyCodeLine{        \}\textcolor{keywordflow}{else} \textcolor{keywordflow}{if}( this.useFrames )\{}
+\DoxyCodeLine{            dt = this.optional.initFrameCount==0 ? 0 : 1;}
+\DoxyCodeLine{            this.optional.initFrameCount = Time.frameCount;}
+\DoxyCodeLine{        \}\textcolor{keywordflow}{else} \textcolor{keywordflow}{if}( this.useManualTime )\{}
+\DoxyCodeLine{            dt = \mbox{\hyperlink{class_lean_tween}{LeanTween}}.dtManual;}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//      Debug.Log ("tween:" + this+ " dt:"+dt);}}
+\DoxyCodeLine{        \textcolor{keywordflow}{if}(this.delay<=0f \&\& directionLocal!=0f)\{}
+\DoxyCodeLine{            \textcolor{keywordflow}{if}(trans==\textcolor{keyword}{null})}
+\DoxyCodeLine{                \textcolor{keywordflow}{return} \textcolor{keyword}{true};    }
+\DoxyCodeLine{}
+\DoxyCodeLine{            \textcolor{comment}{// initialize if has not done so yet}}
+\DoxyCodeLine{            \textcolor{keywordflow}{if}(!this.hasInitiliazed)}
+\DoxyCodeLine{                this.init();}
+\DoxyCodeLine{}
+\DoxyCodeLine{            dt = dt*directionLocal;}
+\DoxyCodeLine{            this.passed += dt;}
+\DoxyCodeLine{}
+\DoxyCodeLine{            this.passed = Mathf.Clamp(this.passed, 0f, this.time); }
+\DoxyCodeLine{}
+\DoxyCodeLine{            this.ratioPassed = (this.passed / this.time); \textcolor{comment}{// need to clamp when finished so it will finish at the exact spot and not overshoot}}
+\DoxyCodeLine{}
+\DoxyCodeLine{            this.easeInternal();}
+\DoxyCodeLine{}
+\DoxyCodeLine{            \textcolor{keywordflow}{if}(this.hasUpdateCallback)}
+\DoxyCodeLine{                this.\_optional.callOnUpdate(val, this.ratioPassed);}
+\DoxyCodeLine{}
+\DoxyCodeLine{            \textcolor{keywordtype}{bool} isTweenFinished = directionLocal>0f ? this.passed>=this.time : this.passed<=0f;}
+\DoxyCodeLine{            \textcolor{comment}{//          Debug.Log("lt "+this+" dt:"+dt+" fin:"+isTweenFinished);}}
+\DoxyCodeLine{            \textcolor{keywordflow}{if}(isTweenFinished)\{ \textcolor{comment}{// increment or flip tween}}
+\DoxyCodeLine{                this.loopCount-\/-\/;}
+\DoxyCodeLine{                \textcolor{keywordflow}{if}(this.loopType==\mbox{\hyperlink{class_lean_tween_type}{LeanTweenType}}.pingPong)\{}
+\DoxyCodeLine{                    this.direction = 0.0f-\/directionLocal;}
+\DoxyCodeLine{                \}\textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{                    this.passed = Mathf.Epsilon;}
+\DoxyCodeLine{                \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{                isTweenFinished = this.loopCount == 0 || this.loopType == \mbox{\hyperlink{class_lean_tween_type}{LeanTweenType}}.once; \textcolor{comment}{// only return true if it is fully complete}}
+\DoxyCodeLine{}
+\DoxyCodeLine{                \textcolor{keywordflow}{if}(isTweenFinished==\textcolor{keyword}{false} \&\& this.onCompleteOnRepeat \&\& this.hasExtraOnCompletes)}
+\DoxyCodeLine{                    callOnCompletes(); \textcolor{comment}{// this only gets called if onCompleteOnRepeat is set to true, otherwise LeanTween class takes care of calling it}}
+\DoxyCodeLine{}
+\DoxyCodeLine{                \textcolor{keywordflow}{return} isTweenFinished;}
+\DoxyCodeLine{            \}}
+\DoxyCodeLine{        \}\textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{            this.delay -\/= dt;}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \textcolor{keywordtype}{void} callOnCompletes()\{}
+\DoxyCodeLine{        \textcolor{keywordflow}{if}(this.type==TweenAction.GUI\_ROTATE)}
+\DoxyCodeLine{            this.\_optional.ltRect.rotateFinished = \textcolor{keyword}{true};}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{keywordflow}{if}(this.type==TweenAction.DELAYED\_SOUND)\{}
+\DoxyCodeLine{            AudioSource.PlayClipAtPoint((AudioClip)this.\_optional.onCompleteParam, \textcolor{keyword}{this}.to, \textcolor{keyword}{this}.from.x);}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{        \textcolor{keywordflow}{if}(this.\_optional.onComplete!=\textcolor{keyword}{null})\{}
+\DoxyCodeLine{            this.\_optional.onComplete();}
+\DoxyCodeLine{        \}\textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(this.\_optional.onCompleteObject!=\textcolor{keyword}{null})\{}
+\DoxyCodeLine{            this.\_optional.onCompleteObject(this.\_optional.onCompleteParam);}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{// Helper Methods}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setFromColor( Color col )\{}
+\DoxyCodeLine{        this.from = \textcolor{keyword}{new} Vector3(0.0f, col.a, 0.0f);}
+\DoxyCodeLine{        this.diff = \textcolor{keyword}{new} Vector3(1.0f,0.0f,0.0f);}
+\DoxyCodeLine{        this.\_optional.axis = \textcolor{keyword}{new} Vector3( col.r, col.g, col.b );}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{private} \textcolor{keyword}{static} \textcolor{keywordtype}{void} alphaRecursive( Transform transform, \textcolor{keywordtype}{float} val, \textcolor{keywordtype}{bool} useRecursion = \textcolor{keyword}{true})\{}
+\DoxyCodeLine{        Renderer renderer = transform.gameObject.GetComponent<Renderer>();}
+\DoxyCodeLine{        \textcolor{keywordflow}{if}(renderer!=\textcolor{keyword}{null})\{}
+\DoxyCodeLine{            \textcolor{keywordflow}{foreach}(Material mat \textcolor{keywordflow}{in} renderer.materials)\{}
+\DoxyCodeLine{                \textcolor{keywordflow}{if}(mat.HasProperty(\textcolor{stringliteral}{"\_Color"}))\{}
+\DoxyCodeLine{                    mat.color = \textcolor{keyword}{new} Color( mat.color.r, mat.color.g, mat.color.b, val);}
+\DoxyCodeLine{                \}\textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(mat.HasProperty(\textcolor{stringliteral}{"\_TintColor"}))\{}
+\DoxyCodeLine{                    Color col = mat.GetColor (\textcolor{stringliteral}{"\_TintColor"});}
+\DoxyCodeLine{                    mat.SetColor(\textcolor{stringliteral}{"\_TintColor"}, \textcolor{keyword}{new} Color( col.r, col.g, col.b, val));}
+\DoxyCodeLine{                \}}
+\DoxyCodeLine{            \}}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{        \textcolor{keywordflow}{if}(useRecursion \&\& transform.childCount>0)\{}
+\DoxyCodeLine{            \textcolor{keywordflow}{foreach} (Transform child \textcolor{keywordflow}{in} transform) \{}
+\DoxyCodeLine{                alphaRecursive(child, val);}
+\DoxyCodeLine{            \}}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{private} \textcolor{keyword}{static} \textcolor{keywordtype}{void} colorRecursive( Transform transform, Color toColor, \textcolor{keywordtype}{bool} useRecursion = \textcolor{keyword}{true} )\{}
+\DoxyCodeLine{        Renderer ren = transform.gameObject.GetComponent<Renderer>();}
+\DoxyCodeLine{        \textcolor{keywordflow}{if}(ren!=\textcolor{keyword}{null})\{}
+\DoxyCodeLine{            \textcolor{keywordflow}{foreach}(Material mat \textcolor{keywordflow}{in} ren.materials)\{}
+\DoxyCodeLine{                mat.color = toColor;}
+\DoxyCodeLine{            \}}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{        \textcolor{keywordflow}{if}(useRecursion \&\& transform.childCount>0)\{}
+\DoxyCodeLine{            \textcolor{keywordflow}{foreach} (Transform child \textcolor{keywordflow}{in} transform) \{}
+\DoxyCodeLine{                colorRecursive(child, toColor);}
+\DoxyCodeLine{            \}}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{preprocessor}{    \#if !UNITY\_3\_5 \&\& !UNITY\_4\_0 \&\& !UNITY\_4\_0\_1 \&\& !UNITY\_4\_1 \&\& !UNITY\_4\_2 \&\& !UNITY\_4\_3 \&\& !UNITY\_4\_5}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{private} \textcolor{keyword}{static} \textcolor{keywordtype}{void} alphaRecursive( RectTransform rectTransform, \textcolor{keywordtype}{float} val, \textcolor{keywordtype}{int} recursiveLevel = 0)\{}
+\DoxyCodeLine{        \textcolor{keywordflow}{if}(rectTransform.childCount>0)\{}
+\DoxyCodeLine{            \textcolor{keywordflow}{foreach} (RectTransform child \textcolor{keywordflow}{in} rectTransform) \{}
+\DoxyCodeLine{                UnityEngine.UI.MaskableGraphic uiImage = child.GetComponent<UnityEngine.UI.Image>();}
+\DoxyCodeLine{                \textcolor{keywordflow}{if} (uiImage != \textcolor{keyword}{null}) \{}
+\DoxyCodeLine{                    Color c = uiImage.color; c.a = val; uiImage.color = c;}
+\DoxyCodeLine{                \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{                    uiImage = child.GetComponent<UnityEngine.UI.RawImage>();}
+\DoxyCodeLine{                    \textcolor{keywordflow}{if} (uiImage != \textcolor{keyword}{null}) \{}
+\DoxyCodeLine{                        Color c = uiImage.color; c.a = val; uiImage.color = c;}
+\DoxyCodeLine{                    \}}
+\DoxyCodeLine{                \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{                alphaRecursive(child, val, recursiveLevel + 1);}
+\DoxyCodeLine{            \}}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{private} \textcolor{keyword}{static} \textcolor{keywordtype}{void} alphaRecursiveSprite( Transform transform, \textcolor{keywordtype}{float} val )\{}
+\DoxyCodeLine{        \textcolor{keywordflow}{if}(transform.childCount>0)\{}
+\DoxyCodeLine{            \textcolor{keywordflow}{foreach} (Transform child \textcolor{keywordflow}{in} transform) \{}
+\DoxyCodeLine{                SpriteRenderer ren = child.GetComponent<SpriteRenderer>();}
+\DoxyCodeLine{                \textcolor{keywordflow}{if}(ren!=\textcolor{keyword}{null})}
+\DoxyCodeLine{                    ren.color = \textcolor{keyword}{new} Color( ren.color.r, ren.color.g, ren.color.b, val);}
+\DoxyCodeLine{                alphaRecursiveSprite(child, val);}
+\DoxyCodeLine{            \}}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{private} \textcolor{keyword}{static} \textcolor{keywordtype}{void} colorRecursiveSprite( Transform transform, Color toColor )\{}
+\DoxyCodeLine{        \textcolor{keywordflow}{if}(transform.childCount>0)\{}
+\DoxyCodeLine{            \textcolor{keywordflow}{foreach} (Transform child \textcolor{keywordflow}{in} transform) \{}
+\DoxyCodeLine{                SpriteRenderer ren = transform.gameObject.GetComponent<SpriteRenderer>();}
+\DoxyCodeLine{                \textcolor{keywordflow}{if}(ren!=\textcolor{keyword}{null})}
+\DoxyCodeLine{                    ren.color = toColor;}
+\DoxyCodeLine{                colorRecursiveSprite(child, toColor);}
+\DoxyCodeLine{            \}}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{private} \textcolor{keyword}{static} \textcolor{keywordtype}{void} colorRecursive( RectTransform rectTransform, Color toColor )\{}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{keywordflow}{if}(rectTransform.childCount>0)\{}
+\DoxyCodeLine{            \textcolor{keywordflow}{foreach} (RectTransform child \textcolor{keywordflow}{in} rectTransform) \{}
+\DoxyCodeLine{                UnityEngine.UI.MaskableGraphic uiImage = child.GetComponent<UnityEngine.UI.Image>();}
+\DoxyCodeLine{                \textcolor{keywordflow}{if} (uiImage != \textcolor{keyword}{null}) \{}
+\DoxyCodeLine{                    uiImage.color = toColor;}
+\DoxyCodeLine{                \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{                    uiImage = child.GetComponent<UnityEngine.UI.RawImage>();}
+\DoxyCodeLine{                    \textcolor{keywordflow}{if} (uiImage != \textcolor{keyword}{null})}
+\DoxyCodeLine{                        uiImage.color = toColor;}
+\DoxyCodeLine{                \}}
+\DoxyCodeLine{                colorRecursive(child, toColor);}
+\DoxyCodeLine{            \}}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{private} \textcolor{keyword}{static} \textcolor{keywordtype}{void} textAlphaChildrenRecursive( Transform trans, \textcolor{keywordtype}{float} val, \textcolor{keywordtype}{bool} useRecursion = \textcolor{keyword}{true} )\{}
+\DoxyCodeLine{        }
+\DoxyCodeLine{        \textcolor{keywordflow}{if}(useRecursion \&\& trans.childCount>0)\{}
+\DoxyCodeLine{            \textcolor{keywordflow}{foreach} (Transform child \textcolor{keywordflow}{in} trans) \{}
+\DoxyCodeLine{                UnityEngine.UI.Text uiText = child.GetComponent<UnityEngine.UI.Text>();}
+\DoxyCodeLine{                \textcolor{keywordflow}{if}(uiText!=\textcolor{keyword}{null})\{}
+\DoxyCodeLine{                    Color c = uiText.color;}
+\DoxyCodeLine{                    c.a = val;}
+\DoxyCodeLine{                    uiText.color = c;}
+\DoxyCodeLine{                \}}
+\DoxyCodeLine{                textAlphaChildrenRecursive(child, val);}
+\DoxyCodeLine{            \}}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{private} \textcolor{keyword}{static} \textcolor{keywordtype}{void} textAlphaRecursive( Transform trans, \textcolor{keywordtype}{float} val, \textcolor{keywordtype}{bool} useRecursion = \textcolor{keyword}{true} )\{}
+\DoxyCodeLine{        UnityEngine.UI.Text uiText = trans.GetComponent<UnityEngine.UI.Text>();}
+\DoxyCodeLine{        \textcolor{keywordflow}{if}(uiText!=\textcolor{keyword}{null})\{}
+\DoxyCodeLine{            Color c = uiText.color;}
+\DoxyCodeLine{            c.a = val;}
+\DoxyCodeLine{            uiText.color = c;}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{        \textcolor{keywordflow}{if}(useRecursion \&\& trans.childCount>0)\{}
+\DoxyCodeLine{            \textcolor{keywordflow}{foreach} (Transform child \textcolor{keywordflow}{in} trans) \{}
+\DoxyCodeLine{                textAlphaRecursive(child, val);}
+\DoxyCodeLine{            \}}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{private} \textcolor{keyword}{static} \textcolor{keywordtype}{void} textColorRecursive(Transform trans, Color toColor )\{}
+\DoxyCodeLine{        \textcolor{keywordflow}{if}(trans.childCount>0)\{}
+\DoxyCodeLine{            \textcolor{keywordflow}{foreach} (Transform child \textcolor{keywordflow}{in} trans) \{}
+\DoxyCodeLine{                UnityEngine.UI.Text uiText = child.GetComponent<UnityEngine.UI.Text>();}
+\DoxyCodeLine{                \textcolor{keywordflow}{if}(uiText!=\textcolor{keyword}{null})\{}
+\DoxyCodeLine{                    uiText.color = toColor;}
+\DoxyCodeLine{                \}}
+\DoxyCodeLine{                textColorRecursive(child, toColor);}
+\DoxyCodeLine{            \}}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{\textcolor{preprocessor}{    \#endif}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{private} \textcolor{keyword}{static} Color tweenColor( \mbox{\hyperlink{class_l_t_descr}{LTDescr}} tween, \textcolor{keywordtype}{float} val )\{}
+\DoxyCodeLine{        Vector3 diff3 = tween.\_optional.point -\/ tween.\_optional.axis;}
+\DoxyCodeLine{        \textcolor{keywordtype}{float} diffAlpha = tween.to.y -\/ tween.from.y;}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{new} Color(tween.\_optional.axis.x + diff3.x*val, tween.\_optional.axis.y + diff3.y*val, tween.\_optional.axis.z + diff3.z*val, tween.from.y + diffAlpha*val);}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} \mbox{\hyperlink{class_l_t_descr_ab71cb668c38284b65dd2fb0072ba3fbd}{pause}}()\{}
+\DoxyCodeLine{        \textcolor{keywordflow}{if}(this.direction != 0.0f)\{ \textcolor{comment}{// check if tween is already paused}}
+\DoxyCodeLine{            this.directionLast =  this.direction;}
+\DoxyCodeLine{            this.direction = 0.0f;}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} \mbox{\hyperlink{class_l_t_descr_a4dc72935b9f6597b342310e977c7cd1c}{resume}}()\{}
+\DoxyCodeLine{        this.direction = this.directionLast;}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setAxis( Vector3 axis )\{}
+\DoxyCodeLine{        this.\_optional.axis = axis;}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setDelay( \textcolor{keywordtype}{float} delay )\{}
+\DoxyCodeLine{        this.delay = delay;}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setEase( \mbox{\hyperlink{class_lean_tween_type}{LeanTweenType}} easeType )\{}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{keywordflow}{switch}( easeType )\{}
+\DoxyCodeLine{        \textcolor{keywordflow}{case} \mbox{\hyperlink{class_lean_tween_type}{LeanTweenType}}.linear:}
+\DoxyCodeLine{            setEaseLinear(); \textcolor{keywordflow}{break};}
+\DoxyCodeLine{        \textcolor{keywordflow}{case} \mbox{\hyperlink{class_lean_tween_type}{LeanTweenType}}.easeOutQuad:}
+\DoxyCodeLine{            setEaseOutQuad(); \textcolor{keywordflow}{break};}
+\DoxyCodeLine{        \textcolor{keywordflow}{case} \mbox{\hyperlink{class_lean_tween_type}{LeanTweenType}}.easeInQuad:}
+\DoxyCodeLine{            setEaseInQuad(); \textcolor{keywordflow}{break};}
+\DoxyCodeLine{        \textcolor{keywordflow}{case} \mbox{\hyperlink{class_lean_tween_type}{LeanTweenType}}.easeInOutQuad:}
+\DoxyCodeLine{            setEaseInOutQuad(); \textcolor{keywordflow}{break};}
+\DoxyCodeLine{        \textcolor{keywordflow}{case} \mbox{\hyperlink{class_lean_tween_type}{LeanTweenType}}.easeInCubic:}
+\DoxyCodeLine{            setEaseInCubic();\textcolor{keywordflow}{break};}
+\DoxyCodeLine{        \textcolor{keywordflow}{case} \mbox{\hyperlink{class_lean_tween_type}{LeanTweenType}}.easeOutCubic:}
+\DoxyCodeLine{            setEaseOutCubic(); \textcolor{keywordflow}{break};}
+\DoxyCodeLine{        \textcolor{keywordflow}{case} \mbox{\hyperlink{class_lean_tween_type}{LeanTweenType}}.easeInOutCubic:}
+\DoxyCodeLine{            setEaseInOutCubic(); \textcolor{keywordflow}{break};}
+\DoxyCodeLine{        \textcolor{keywordflow}{case} \mbox{\hyperlink{class_lean_tween_type}{LeanTweenType}}.easeInQuart:}
+\DoxyCodeLine{            setEaseInQuart(); \textcolor{keywordflow}{break};}
+\DoxyCodeLine{        \textcolor{keywordflow}{case} \mbox{\hyperlink{class_lean_tween_type}{LeanTweenType}}.easeOutQuart:}
+\DoxyCodeLine{            setEaseOutQuart(); \textcolor{keywordflow}{break};}
+\DoxyCodeLine{        \textcolor{keywordflow}{case} \mbox{\hyperlink{class_lean_tween_type}{LeanTweenType}}.easeInOutQuart:}
+\DoxyCodeLine{            setEaseInOutQuart(); \textcolor{keywordflow}{break};}
+\DoxyCodeLine{        \textcolor{keywordflow}{case} \mbox{\hyperlink{class_lean_tween_type}{LeanTweenType}}.easeInQuint:}
+\DoxyCodeLine{            setEaseInQuint(); \textcolor{keywordflow}{break};}
+\DoxyCodeLine{        \textcolor{keywordflow}{case} \mbox{\hyperlink{class_lean_tween_type}{LeanTweenType}}.easeOutQuint:}
+\DoxyCodeLine{            setEaseOutQuint(); \textcolor{keywordflow}{break};}
+\DoxyCodeLine{        \textcolor{keywordflow}{case} \mbox{\hyperlink{class_lean_tween_type}{LeanTweenType}}.easeInOutQuint:}
+\DoxyCodeLine{            setEaseInOutQuint(); \textcolor{keywordflow}{break};}
+\DoxyCodeLine{        \textcolor{keywordflow}{case} \mbox{\hyperlink{class_lean_tween_type}{LeanTweenType}}.easeInSine:}
+\DoxyCodeLine{            setEaseInSine(); \textcolor{keywordflow}{break};}
+\DoxyCodeLine{        \textcolor{keywordflow}{case} \mbox{\hyperlink{class_lean_tween_type}{LeanTweenType}}.easeOutSine:}
+\DoxyCodeLine{            setEaseOutSine(); \textcolor{keywordflow}{break};}
+\DoxyCodeLine{        \textcolor{keywordflow}{case} \mbox{\hyperlink{class_lean_tween_type}{LeanTweenType}}.easeInOutSine:}
+\DoxyCodeLine{            setEaseInOutSine(); \textcolor{keywordflow}{break};}
+\DoxyCodeLine{        \textcolor{keywordflow}{case} \mbox{\hyperlink{class_lean_tween_type}{LeanTweenType}}.easeInExpo:}
+\DoxyCodeLine{            setEaseInExpo(); \textcolor{keywordflow}{break};}
+\DoxyCodeLine{        \textcolor{keywordflow}{case} \mbox{\hyperlink{class_lean_tween_type}{LeanTweenType}}.easeOutExpo:}
+\DoxyCodeLine{            setEaseOutExpo(); \textcolor{keywordflow}{break};}
+\DoxyCodeLine{        \textcolor{keywordflow}{case} \mbox{\hyperlink{class_lean_tween_type}{LeanTweenType}}.easeInOutExpo:}
+\DoxyCodeLine{            setEaseInOutExpo(); \textcolor{keywordflow}{break};}
+\DoxyCodeLine{        \textcolor{keywordflow}{case} \mbox{\hyperlink{class_lean_tween_type}{LeanTweenType}}.easeInCirc:}
+\DoxyCodeLine{            setEaseInCirc(); \textcolor{keywordflow}{break};}
+\DoxyCodeLine{        \textcolor{keywordflow}{case} \mbox{\hyperlink{class_lean_tween_type}{LeanTweenType}}.easeOutCirc:}
+\DoxyCodeLine{            setEaseOutCirc(); \textcolor{keywordflow}{break};}
+\DoxyCodeLine{        \textcolor{keywordflow}{case} \mbox{\hyperlink{class_lean_tween_type}{LeanTweenType}}.easeInOutCirc:}
+\DoxyCodeLine{            setEaseInOutCirc(); \textcolor{keywordflow}{break};}
+\DoxyCodeLine{        \textcolor{keywordflow}{case} \mbox{\hyperlink{class_lean_tween_type}{LeanTweenType}}.easeInBounce:}
+\DoxyCodeLine{            setEaseInBounce(); \textcolor{keywordflow}{break};}
+\DoxyCodeLine{        \textcolor{keywordflow}{case} \mbox{\hyperlink{class_lean_tween_type}{LeanTweenType}}.easeOutBounce:}
+\DoxyCodeLine{            setEaseOutBounce(); \textcolor{keywordflow}{break};}
+\DoxyCodeLine{        \textcolor{keywordflow}{case} \mbox{\hyperlink{class_lean_tween_type}{LeanTweenType}}.easeInOutBounce:}
+\DoxyCodeLine{            setEaseInOutBounce(); \textcolor{keywordflow}{break};}
+\DoxyCodeLine{        \textcolor{keywordflow}{case} \mbox{\hyperlink{class_lean_tween_type}{LeanTweenType}}.easeInBack:}
+\DoxyCodeLine{            setEaseInBack(); \textcolor{keywordflow}{break};}
+\DoxyCodeLine{        \textcolor{keywordflow}{case} \mbox{\hyperlink{class_lean_tween_type}{LeanTweenType}}.easeOutBack:}
+\DoxyCodeLine{            setEaseOutBack(); \textcolor{keywordflow}{break};}
+\DoxyCodeLine{        \textcolor{keywordflow}{case} \mbox{\hyperlink{class_lean_tween_type}{LeanTweenType}}.easeInOutBack:}
+\DoxyCodeLine{            setEaseInOutBack();  \textcolor{keywordflow}{break};}
+\DoxyCodeLine{        \textcolor{keywordflow}{case} \mbox{\hyperlink{class_lean_tween_type}{LeanTweenType}}.easeInElastic:}
+\DoxyCodeLine{            setEaseInElastic();  \textcolor{keywordflow}{break};}
+\DoxyCodeLine{        \textcolor{keywordflow}{case} \mbox{\hyperlink{class_lean_tween_type}{LeanTweenType}}.easeOutElastic:}
+\DoxyCodeLine{            setEaseOutElastic(); \textcolor{keywordflow}{break};}
+\DoxyCodeLine{        \textcolor{keywordflow}{case} \mbox{\hyperlink{class_lean_tween_type}{LeanTweenType}}.easeInOutElastic:}
+\DoxyCodeLine{            setEaseInOutElastic(); \textcolor{keywordflow}{break};}
+\DoxyCodeLine{        \textcolor{keywordflow}{case} \mbox{\hyperlink{class_lean_tween_type}{LeanTweenType}}.punch:}
+\DoxyCodeLine{            setEasePunch(); \textcolor{keywordflow}{break};}
+\DoxyCodeLine{        \textcolor{keywordflow}{case} \mbox{\hyperlink{class_lean_tween_type}{LeanTweenType}}.easeShake:}
+\DoxyCodeLine{            setEaseShake(); \textcolor{keywordflow}{break};}
+\DoxyCodeLine{        \textcolor{keywordflow}{case} \mbox{\hyperlink{class_lean_tween_type}{LeanTweenType}}.easeSpring:}
+\DoxyCodeLine{            setEaseSpring(); \textcolor{keywordflow}{break};}
+\DoxyCodeLine{        \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{            setEaseLinear(); \textcolor{keywordflow}{break};}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setEaseLinear()\{ this.easeType = \mbox{\hyperlink{class_lean_tween_type}{LeanTweenType}}.linear; this.easeMethod = this.easeLinear; \textcolor{keywordflow}{return} \textcolor{keyword}{this}; \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setEaseSpring()\{ this.easeType = \mbox{\hyperlink{class_lean_tween_type}{LeanTweenType}}.easeSpring; this.easeMethod = this.easeSpring; \textcolor{keywordflow}{return} \textcolor{keyword}{this}; \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setEaseInQuad()\{ this.easeType = \mbox{\hyperlink{class_lean_tween_type}{LeanTweenType}}.easeInQuad; this.easeMethod = this.easeInQuad; \textcolor{keywordflow}{return} \textcolor{keyword}{this}; \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setEaseOutQuad()\{ this.easeType = \mbox{\hyperlink{class_lean_tween_type}{LeanTweenType}}.easeOutQuad; this.easeMethod = this.easeOutQuad; \textcolor{keywordflow}{return} \textcolor{keyword}{this}; \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setEaseInOutQuad()\{ this.easeType = \mbox{\hyperlink{class_lean_tween_type}{LeanTweenType}}.easeInOutQuad; this.easeMethod = this.easeInOutQuad; \textcolor{keywordflow}{return} \textcolor{keyword}{this};\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setEaseInCubic()\{ this.easeType = \mbox{\hyperlink{class_lean_tween_type}{LeanTweenType}}.easeInCubic; this.easeMethod = this.easeInCubic; \textcolor{keywordflow}{return} \textcolor{keyword}{this}; \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setEaseOutCubic()\{ this.easeType = \mbox{\hyperlink{class_lean_tween_type}{LeanTweenType}}.easeOutCubic; this.easeMethod = this.easeOutCubic; \textcolor{keywordflow}{return} \textcolor{keyword}{this}; \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setEaseInOutCubic()\{ this.easeType = \mbox{\hyperlink{class_lean_tween_type}{LeanTweenType}}.easeInOutCubic; this.easeMethod = this.easeInOutCubic; \textcolor{keywordflow}{return} \textcolor{keyword}{this}; \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setEaseInQuart()\{ this.easeType = \mbox{\hyperlink{class_lean_tween_type}{LeanTweenType}}.easeInQuart; this.easeMethod = this.easeInQuart; \textcolor{keywordflow}{return} \textcolor{keyword}{this}; \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setEaseOutQuart()\{ this.easeType = \mbox{\hyperlink{class_lean_tween_type}{LeanTweenType}}.easeOutQuart; this.easeMethod = this.easeOutQuart; \textcolor{keywordflow}{return} \textcolor{keyword}{this}; \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setEaseInOutQuart()\{ this.easeType = \mbox{\hyperlink{class_lean_tween_type}{LeanTweenType}}.easeInOutQuart; this.easeMethod = this.easeInOutQuart; \textcolor{keywordflow}{return} \textcolor{keyword}{this}; \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setEaseInQuint()\{ this.easeType = \mbox{\hyperlink{class_lean_tween_type}{LeanTweenType}}.easeInQuint; this.easeMethod = this.easeInQuint; \textcolor{keywordflow}{return} \textcolor{keyword}{this}; \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setEaseOutQuint()\{ this.easeType = \mbox{\hyperlink{class_lean_tween_type}{LeanTweenType}}.easeOutQuint; this.easeMethod = this.easeOutQuint; \textcolor{keywordflow}{return} \textcolor{keyword}{this}; \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setEaseInOutQuint()\{ this.easeType = \mbox{\hyperlink{class_lean_tween_type}{LeanTweenType}}.easeInOutQuint; this.easeMethod = this.easeInOutQuint; \textcolor{keywordflow}{return} \textcolor{keyword}{this}; \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setEaseInSine()\{ this.easeType = \mbox{\hyperlink{class_lean_tween_type}{LeanTweenType}}.easeInSine; this.easeMethod = this.easeInSine; \textcolor{keywordflow}{return} \textcolor{keyword}{this}; \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setEaseOutSine()\{ this.easeType = \mbox{\hyperlink{class_lean_tween_type}{LeanTweenType}}.easeOutSine; this.easeMethod = this.easeOutSine; \textcolor{keywordflow}{return} \textcolor{keyword}{this}; \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setEaseInOutSine()\{ this.easeType = \mbox{\hyperlink{class_lean_tween_type}{LeanTweenType}}.easeInOutSine; this.easeMethod = this.easeInOutSine; \textcolor{keywordflow}{return} \textcolor{keyword}{this}; \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setEaseInExpo()\{ this.easeType = \mbox{\hyperlink{class_lean_tween_type}{LeanTweenType}}.easeInExpo; this.easeMethod = this.easeInExpo; \textcolor{keywordflow}{return} \textcolor{keyword}{this}; \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setEaseOutExpo()\{ this.easeType = \mbox{\hyperlink{class_lean_tween_type}{LeanTweenType}}.easeOutExpo; this.easeMethod = this.easeOutExpo; \textcolor{keywordflow}{return} \textcolor{keyword}{this}; \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setEaseInOutExpo()\{ this.easeType = \mbox{\hyperlink{class_lean_tween_type}{LeanTweenType}}.easeInOutExpo; this.easeMethod = this.easeInOutExpo; \textcolor{keywordflow}{return} \textcolor{keyword}{this}; \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setEaseInCirc()\{ this.easeType = \mbox{\hyperlink{class_lean_tween_type}{LeanTweenType}}.easeInCirc; this.easeMethod = this.easeInCirc; \textcolor{keywordflow}{return} \textcolor{keyword}{this}; \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setEaseOutCirc()\{ this.easeType = \mbox{\hyperlink{class_lean_tween_type}{LeanTweenType}}.easeOutCirc; this.easeMethod = this.easeOutCirc; \textcolor{keywordflow}{return} \textcolor{keyword}{this}; \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setEaseInOutCirc()\{ this.easeType = \mbox{\hyperlink{class_lean_tween_type}{LeanTweenType}}.easeInOutCirc; this.easeMethod = this.easeInOutCirc; \textcolor{keywordflow}{return} \textcolor{keyword}{this}; \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setEaseInBounce()\{ this.easeType = \mbox{\hyperlink{class_lean_tween_type}{LeanTweenType}}.easeInBounce; this.easeMethod = this.easeInBounce; \textcolor{keywordflow}{return} \textcolor{keyword}{this}; \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setEaseOutBounce()\{ this.easeType = \mbox{\hyperlink{class_lean_tween_type}{LeanTweenType}}.easeOutBounce; this.easeMethod = this.easeOutBounce; \textcolor{keywordflow}{return} \textcolor{keyword}{this}; \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setEaseInOutBounce()\{ this.easeType = \mbox{\hyperlink{class_lean_tween_type}{LeanTweenType}}.easeInOutBounce; this.easeMethod = this.easeInOutBounce; \textcolor{keywordflow}{return} \textcolor{keyword}{this}; \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setEaseInBack()\{ this.easeType = \mbox{\hyperlink{class_lean_tween_type}{LeanTweenType}}.easeInBack; this.easeMethod = this.easeInBack; \textcolor{keywordflow}{return} \textcolor{keyword}{this}; \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setEaseOutBack()\{ this.easeType = \mbox{\hyperlink{class_lean_tween_type}{LeanTweenType}}.easeOutBack; this.easeMethod = this.easeOutBack; \textcolor{keywordflow}{return} \textcolor{keyword}{this}; \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setEaseInOutBack()\{ this.easeType = \mbox{\hyperlink{class_lean_tween_type}{LeanTweenType}}.easeInOutBack; this.easeMethod = this.easeInOutBack; \textcolor{keywordflow}{return} \textcolor{keyword}{this}; \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setEaseInElastic()\{ this.easeType = \mbox{\hyperlink{class_lean_tween_type}{LeanTweenType}}.easeInElastic; this.easeMethod = this.easeInElastic; \textcolor{keywordflow}{return} \textcolor{keyword}{this}; \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setEaseOutElastic()\{ this.easeType = \mbox{\hyperlink{class_lean_tween_type}{LeanTweenType}}.easeOutElastic; this.easeMethod = this.easeOutElastic; \textcolor{keywordflow}{return} \textcolor{keyword}{this}; \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setEaseInOutElastic()\{ this.easeType = \mbox{\hyperlink{class_lean_tween_type}{LeanTweenType}}.easeInOutElastic; this.easeMethod = this.easeInOutElastic; \textcolor{keywordflow}{return} \textcolor{keyword}{this}; \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setEasePunch()\{ this.\_optional.animationCurve = \mbox{\hyperlink{class_lean_tween}{LeanTween}}.punch; this.toInternal.x = this.from.x + this.to.x; this.easeMethod = this.tweenOnCurve; \textcolor{keywordflow}{return} \textcolor{keyword}{this}; \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setEaseShake()\{ this.\_optional.animationCurve = \mbox{\hyperlink{class_lean_tween}{LeanTween}}.shake; this.toInternal.x = this.from.x + this.to.x; this.easeMethod = this.tweenOnCurve; \textcolor{keywordflow}{return} \textcolor{keyword}{this}; \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{private} Vector3 tweenOnCurve()\{}
+\DoxyCodeLine{        \textcolor{keywordflow}{return}  \textcolor{keyword}{new} Vector3(this.from.x + (\textcolor{keyword}{this}.diff.x) * \textcolor{keyword}{this}.\_optional.animationCurve.Evaluate(ratioPassed),}
+\DoxyCodeLine{            \textcolor{keyword}{this}.from.y + (\textcolor{keyword}{this}.diff.y) * \textcolor{keyword}{this}.\_optional.animationCurve.Evaluate(ratioPassed),}
+\DoxyCodeLine{            \textcolor{keyword}{this}.from.z + (\textcolor{keyword}{this}.diff.z) * \textcolor{keyword}{this}.\_optional.animationCurve.Evaluate(ratioPassed) );}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{// Vector3 Ease Methods}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{private} Vector3 easeInOutQuad()\{}
+\DoxyCodeLine{        val = this.ratioPassed * 2f;}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{keywordflow}{if} (val < 1f) \{}
+\DoxyCodeLine{            val = val * val;}
+\DoxyCodeLine{            \textcolor{keywordflow}{return} \textcolor{keyword}{new} Vector3( this.diffDiv2.x * val + \textcolor{keyword}{this}.from.x, \textcolor{keyword}{this}.diffDiv2.y * val + \textcolor{keyword}{this}.from.y, \textcolor{keyword}{this}.diffDiv2.z * val + \textcolor{keyword}{this}.from.z);}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{        val = (1f-\/val) * (val -\/ 3f) + 1f;}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{new} Vector3( this.diffDiv2.x * val + \textcolor{keyword}{this}.from.x, \textcolor{keyword}{this}.diffDiv2.y * val + \textcolor{keyword}{this}.from.y, \textcolor{keyword}{this}.diffDiv2.z * val + \textcolor{keyword}{this}.from.z);}
+\DoxyCodeLine{    \} }
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{private} Vector3 easeInQuad()\{}
+\DoxyCodeLine{        val = ratioPassed * ratioPassed;}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{new} Vector3(this.diff.x * val + \textcolor{keyword}{this}.from.x, \textcolor{keyword}{this}.diff.y * val + \textcolor{keyword}{this}.from.y, \textcolor{keyword}{this}.diff.z * val + \textcolor{keyword}{this}.from.z);}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{private} Vector3 easeOutQuad()\{}
+\DoxyCodeLine{        val = this.ratioPassed;}
+\DoxyCodeLine{        val = -\/val * (val -\/ 2f);}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} (this.diff * val + this.from);}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{private} Vector3 easeLinear()\{}
+\DoxyCodeLine{        val = this.ratioPassed;}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{new} Vector3(this.from.x+\textcolor{keyword}{this}.diff.x*val, \textcolor{keyword}{this}.from.y+\textcolor{keyword}{this}.diff.y*val, \textcolor{keyword}{this}.from.z+\textcolor{keyword}{this}.diff.z*val);}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{private} Vector3 easeSpring()\{}
+\DoxyCodeLine{        val = Mathf.Clamp01(this.ratioPassed);}
+\DoxyCodeLine{        val = (Mathf.Sin(val * Mathf.PI * (0.2f + 2.5f * val * val * val)) * Mathf.Pow(1f -\/ val, 2.2f ) + val) * (1f + (1.2f * (1f -\/ val) ));}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} this.from + this.diff * val;}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{private} Vector3 easeInCubic()\{}
+\DoxyCodeLine{        val = this.ratioPassed * this.ratioPassed * this.ratioPassed;}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{new} Vector3(this.diff.x * val + \textcolor{keyword}{this}.from.x, \textcolor{keyword}{this}.diff.y * val + \textcolor{keyword}{this}.from.y, \textcolor{keyword}{this}.diff.z * val + \textcolor{keyword}{this}.from.z);}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{private} Vector3 easeOutCubic()\{}
+\DoxyCodeLine{        val = this.ratioPassed -\/ 1f;}
+\DoxyCodeLine{        val = (val * val * val + 1);}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{new} Vector3( this.diff.x * val + \textcolor{keyword}{this}.from.x, \textcolor{keyword}{this}.diff.y * val + \textcolor{keyword}{this}.from.y, \textcolor{keyword}{this}.diff.z * val + \textcolor{keyword}{this}.from.z) ;}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{private} Vector3 easeInOutCubic()\{}
+\DoxyCodeLine{        val = this.ratioPassed * 2f;}
+\DoxyCodeLine{        \textcolor{keywordflow}{if} (val < 1f) \{}
+\DoxyCodeLine{            val = val * val * val;}
+\DoxyCodeLine{            \textcolor{keywordflow}{return} \textcolor{keyword}{new} Vector3(this.diffDiv2.x * val + \textcolor{keyword}{this}.from.x, \textcolor{keyword}{this}.diffDiv2.y * val + \textcolor{keyword}{this}.from.y, \textcolor{keyword}{this}.diffDiv2.z * val + \textcolor{keyword}{this}.from.z);}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{        val -\/= 2f;}
+\DoxyCodeLine{        val = val * val * val + 2f;}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{new} Vector3(this.diffDiv2.x * val + \textcolor{keyword}{this}.from.x, \textcolor{keyword}{this}.diffDiv2.y * val + \textcolor{keyword}{this}.from.y,\textcolor{keyword}{this}.diffDiv2.z * val + \textcolor{keyword}{this}.from.z);}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{private} Vector3 easeInQuart()\{}
+\DoxyCodeLine{        val = this.ratioPassed * this.ratioPassed * this.ratioPassed * this.ratioPassed;}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} diff * val + this.from;}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{private} Vector3 easeOutQuart()\{}
+\DoxyCodeLine{        val = this.ratioPassed -\/ 1f;}
+\DoxyCodeLine{        val = -\/(val * val * val * val -\/ 1);}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{new} Vector3(this.diff.x * val + \textcolor{keyword}{this}.from.x, \textcolor{keyword}{this}.diff.y * val + \textcolor{keyword}{this}.from.y,\textcolor{keyword}{this}.diff.z * val + \textcolor{keyword}{this}.from.z);}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{private} Vector3 easeInOutQuart()\{}
+\DoxyCodeLine{        val = this.ratioPassed * 2f;}
+\DoxyCodeLine{        \textcolor{keywordflow}{if} (val < 1f) \{}
+\DoxyCodeLine{            val = val * val * val * val;}
+\DoxyCodeLine{            \textcolor{keywordflow}{return} \textcolor{keyword}{new} Vector3(this.diffDiv2.x * val + \textcolor{keyword}{this}.from.x, \textcolor{keyword}{this}.diffDiv2.y * val + \textcolor{keyword}{this}.from.y, \textcolor{keyword}{this}.diffDiv2.z * val + \textcolor{keyword}{this}.from.z);}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{        val -\/= 2f;}
+\DoxyCodeLine{\textcolor{comment}{//      val = (val * val * val * val -\/ 2f);}}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} -\/this.diffDiv2 * (val * val * val * val -\/ 2f) + this.from;}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{private} Vector3 easeInQuint()\{}
+\DoxyCodeLine{        val = this.ratioPassed;}
+\DoxyCodeLine{        val = val * val * val * val * val;}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{new} Vector3(this.diff.x * val + \textcolor{keyword}{this}.from.x, \textcolor{keyword}{this}.diff.y * val + \textcolor{keyword}{this}.from.y, \textcolor{keyword}{this}.diff.z * val + \textcolor{keyword}{this}.from.z);}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{private} Vector3 easeOutQuint()\{}
+\DoxyCodeLine{        val = this.ratioPassed -\/ 1f;}
+\DoxyCodeLine{        val = (val * val * val * val * val + 1f);}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{new} Vector3(this.diff.x * val + \textcolor{keyword}{this}.from.x, \textcolor{keyword}{this}.diff.y * val + \textcolor{keyword}{this}.from.y, \textcolor{keyword}{this}.diff.z * val + \textcolor{keyword}{this}.from.z);}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{private} Vector3 easeInOutQuint()\{}
+\DoxyCodeLine{        val = this.ratioPassed * 2f;}
+\DoxyCodeLine{        \textcolor{keywordflow}{if} (val < 1f)\{}
+\DoxyCodeLine{            val = val * val * val * val * val;}
+\DoxyCodeLine{            \textcolor{keywordflow}{return} \textcolor{keyword}{new} Vector3(this.diffDiv2.x * val + \textcolor{keyword}{this}.from.x,\textcolor{keyword}{this}.diffDiv2.y * val + \textcolor{keyword}{this}.from.y,\textcolor{keyword}{this}.diffDiv2.z * val + \textcolor{keyword}{this}.from.z);}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{        val -\/= 2f;}
+\DoxyCodeLine{        val = (val * val * val * val * val + 2f);}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{new} Vector3(this.diffDiv2.x * val + \textcolor{keyword}{this}.from.x, \textcolor{keyword}{this}.diffDiv2.y * val + \textcolor{keyword}{this}.from.y, \textcolor{keyword}{this}.diffDiv2.z * val + \textcolor{keyword}{this}.from.z);}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{private} Vector3 easeInSine()\{}
+\DoxyCodeLine{        val = -\/ Mathf.Cos(this.ratioPassed * \mbox{\hyperlink{class_lean_tween}{LeanTween}}.PI\_DIV2);}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{new} Vector3(this.diff.x * val + \textcolor{keyword}{this}.diff.x + \textcolor{keyword}{this}.from.x, \textcolor{keyword}{this}.diff.y * val + \textcolor{keyword}{this}.diff.y + \textcolor{keyword}{this}.from.y, \textcolor{keyword}{this}.diff.z * val + \textcolor{keyword}{this}.diff.z + \textcolor{keyword}{this}.from.z);}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{private} Vector3 easeOutSine()\{}
+\DoxyCodeLine{        val = Mathf.Sin(this.ratioPassed * \mbox{\hyperlink{class_lean_tween}{LeanTween}}.PI\_DIV2);}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{new} Vector3(this.diff.x * val + \textcolor{keyword}{this}.from.x, \textcolor{keyword}{this}.diff.y * val + \textcolor{keyword}{this}.from.y,\textcolor{keyword}{this}.diff.z * val + \textcolor{keyword}{this}.from.z);}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{private} Vector3 easeInOutSine()\{}
+\DoxyCodeLine{        val = -\/(Mathf.Cos(Mathf.PI * \textcolor{keyword}{this}.ratioPassed) -\/ 1f);}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{new} Vector3(this.diffDiv2.x * val + \textcolor{keyword}{this}.from.x, \textcolor{keyword}{this}.diffDiv2.y * val + \textcolor{keyword}{this}.from.y, \textcolor{keyword}{this}.diffDiv2.z * val + \textcolor{keyword}{this}.from.z);}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{private} Vector3 easeInExpo()\{}
+\DoxyCodeLine{        val = Mathf.Pow(2f, 10f * (this.ratioPassed -\/ 1f));}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{new} Vector3(this.diff.x * val + \textcolor{keyword}{this}.from.x, \textcolor{keyword}{this}.diff.y * val + \textcolor{keyword}{this}.from.y, \textcolor{keyword}{this}.diff.z * val + \textcolor{keyword}{this}.from.z);}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{private} Vector3 easeOutExpo()\{}
+\DoxyCodeLine{        val = (-\/Mathf.Pow(2f, -\/10f * this.ratioPassed) + 1f);}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{new} Vector3(this.diff.x * val + \textcolor{keyword}{this}.from.x, \textcolor{keyword}{this}.diff.y * val + \textcolor{keyword}{this}.from.y, \textcolor{keyword}{this}.diff.z * val + \textcolor{keyword}{this}.from.z);}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{private} Vector3 easeInOutExpo()\{}
+\DoxyCodeLine{        val = this.ratioPassed * 2f;}
+\DoxyCodeLine{        \textcolor{keywordflow}{if} (val < 1) \textcolor{keywordflow}{return} this.diffDiv2 * Mathf.Pow(2, 10 * (val -\/ 1)) + this.from;}
+\DoxyCodeLine{        val-\/-\/;}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} this.diffDiv2 * (-\/Mathf.Pow(2, -\/10 * val) + 2) + this.from;}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{private} Vector3 easeInCirc()\{}
+\DoxyCodeLine{        val = -\/(Mathf.Sqrt(1f -\/ this.ratioPassed * this.ratioPassed) -\/ 1f);}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{new} Vector3(this.diff.x * val + \textcolor{keyword}{this}.from.x, \textcolor{keyword}{this}.diff.y * val + \textcolor{keyword}{this}.from.y, \textcolor{keyword}{this}.diff.z * val + \textcolor{keyword}{this}.from.z);}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{private} Vector3 easeOutCirc()\{}
+\DoxyCodeLine{        val = this.ratioPassed -\/ 1f;}
+\DoxyCodeLine{        val = Mathf.Sqrt(1f -\/ val * val);}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{new} Vector3(this.diff.x * val + \textcolor{keyword}{this}.from.x, \textcolor{keyword}{this}.diff.y * val + \textcolor{keyword}{this}.from.y, \textcolor{keyword}{this}.diff.z * val + \textcolor{keyword}{this}.from.z);}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{private} Vector3 easeInOutCirc()\{}
+\DoxyCodeLine{        val = this.ratioPassed * 2f;}
+\DoxyCodeLine{        \textcolor{keywordflow}{if} (val < 1f)\{}
+\DoxyCodeLine{            val = -\/(Mathf.Sqrt(1f -\/ val * val) -\/ 1f);}
+\DoxyCodeLine{            \textcolor{keywordflow}{return} \textcolor{keyword}{new} Vector3(this.diffDiv2.x * val  + \textcolor{keyword}{this}.from.x, \textcolor{keyword}{this}.diffDiv2.y * val  + \textcolor{keyword}{this}.from.y, \textcolor{keyword}{this}.diffDiv2.z * val  + \textcolor{keyword}{this}.from.z);}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{        val -\/= 2f;}
+\DoxyCodeLine{        val = (Mathf.Sqrt(1f -\/ val * val) + 1f);}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{new} Vector3(this.diffDiv2.x * val + \textcolor{keyword}{this}.from.x, \textcolor{keyword}{this}.diffDiv2.y * val + \textcolor{keyword}{this}.from.y, \textcolor{keyword}{this}.diffDiv2.z * val + \textcolor{keyword}{this}.from.z);}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{private} Vector3 easeInBounce()\{}
+\DoxyCodeLine{        val = this.ratioPassed;}
+\DoxyCodeLine{        val = 1f -\/ val;}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{new} Vector3(this.diff.x -\/ \mbox{\hyperlink{class_lean_tween}{LeanTween}}.easeOutBounce(0, \textcolor{keyword}{this}.diff.x, val) + \textcolor{keyword}{this}.from.x, }
+\DoxyCodeLine{            \textcolor{keyword}{this}.diff.y -\/ \mbox{\hyperlink{class_lean_tween}{LeanTween}}.easeOutBounce(0, \textcolor{keyword}{this}.diff.y, val) + \textcolor{keyword}{this}.from.y, }
+\DoxyCodeLine{            \textcolor{keyword}{this}.diff.z -\/ \mbox{\hyperlink{class_lean_tween}{LeanTween}}.easeOutBounce(0, \textcolor{keyword}{this}.diff.z, val) + \textcolor{keyword}{this}.from.z);}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{private} Vector3 easeOutBounce ()}
+\DoxyCodeLine{    \{}
+\DoxyCodeLine{        val = ratioPassed;}
+\DoxyCodeLine{        \textcolor{keywordtype}{float} valM, valN; \textcolor{comment}{// bounce values}}
+\DoxyCodeLine{        \textcolor{keywordflow}{if} (val < (valM = 1 -\/ 1.75f * this.overshoot / 2.75f)) \{}
+\DoxyCodeLine{            val = 1 / valM / valM * val * val;}
+\DoxyCodeLine{        \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (val < (valN = 1 -\/ .75f * this.overshoot / 2.75f)) \{}
+\DoxyCodeLine{            val -\/= (valM + valN) / 2;}
+\DoxyCodeLine{            \textcolor{comment}{// first bounce, height: 1/4}}
+\DoxyCodeLine{            val = 7.5625f * val * val + 1 -\/ .25f * this.overshoot * this.overshoot;}
+\DoxyCodeLine{        \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (val < (valM = 1 -\/ .25f * this.overshoot / 2.75f)) \{}
+\DoxyCodeLine{            val -\/= (valM + valN) / 2;}
+\DoxyCodeLine{            \textcolor{comment}{// second bounce, height: 1/16}}
+\DoxyCodeLine{            val = 7.5625f * val * val + 1 -\/ .0625f * this.overshoot * this.overshoot;}
+\DoxyCodeLine{        \} \textcolor{keywordflow}{else} \{ \textcolor{comment}{// valN = 1}}
+\DoxyCodeLine{            val -\/= (valM + 1) / 2;}
+\DoxyCodeLine{            \textcolor{comment}{// third bounce, height: 1/64}}
+\DoxyCodeLine{            val = 7.5625f * val * val + 1 -\/ .015625f * this.overshoot * this.overshoot;}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} this.diff * val + this.from;}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{private} Vector3 easeInOutBounce()\{}
+\DoxyCodeLine{        val = this.ratioPassed * 2f;}
+\DoxyCodeLine{        \textcolor{keywordflow}{if} (val < 1f)\{}
+\DoxyCodeLine{            \textcolor{keywordflow}{return} \textcolor{keyword}{new} Vector3(\mbox{\hyperlink{class_lean_tween}{LeanTween}}.easeInBounce(0, \textcolor{keyword}{this}.diff.x, val) * 0.5f + \textcolor{keyword}{this}.from.x, }
+\DoxyCodeLine{                \mbox{\hyperlink{class_lean_tween}{LeanTween}}.easeInBounce(0, \textcolor{keyword}{this}.diff.y, val) * 0.5f + \textcolor{keyword}{this}.from.y, }
+\DoxyCodeLine{                \mbox{\hyperlink{class_lean_tween}{LeanTween}}.easeInBounce(0, \textcolor{keyword}{this}.diff.z, val) * 0.5f + \textcolor{keyword}{this}.from.z);}
+\DoxyCodeLine{        \}\textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{            val = val -\/ 1f;}
+\DoxyCodeLine{            \textcolor{keywordflow}{return} \textcolor{keyword}{new} Vector3(\mbox{\hyperlink{class_lean_tween}{LeanTween}}.easeOutBounce(0, \textcolor{keyword}{this}.diff.x, val) * 0.5f + \textcolor{keyword}{this}.diffDiv2.x + \textcolor{keyword}{this}.from.x,}
+\DoxyCodeLine{                \mbox{\hyperlink{class_lean_tween}{LeanTween}}.easeOutBounce(0, \textcolor{keyword}{this}.diff.y, val) * 0.5f + \textcolor{keyword}{this}.diffDiv2.y + \textcolor{keyword}{this}.from.y,}
+\DoxyCodeLine{                \mbox{\hyperlink{class_lean_tween}{LeanTween}}.easeOutBounce(0, \textcolor{keyword}{this}.diff.z, val) * 0.5f + \textcolor{keyword}{this}.diffDiv2.z + \textcolor{keyword}{this}.from.z);}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{private} Vector3 easeInBack()\{}
+\DoxyCodeLine{        val = this.ratioPassed;}
+\DoxyCodeLine{        val /= 1;}
+\DoxyCodeLine{        \textcolor{keywordtype}{float} s = 1.70158f * this.overshoot;}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} this.diff * (val) * val * ((s + 1) * val -\/ s) + this.from;}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{private} Vector3 easeOutBack()\{}
+\DoxyCodeLine{        \textcolor{keywordtype}{float} s = 1.70158f * this.overshoot;}
+\DoxyCodeLine{        val = (this.ratioPassed / 1) -\/ 1;}
+\DoxyCodeLine{        val = ((val) * val * ((s + 1) * val + s) + 1);}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} this.diff * val + this.from;}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{private} Vector3 easeInOutBack()\{}
+\DoxyCodeLine{        \textcolor{keywordtype}{float} s = 1.70158f * this.overshoot;}
+\DoxyCodeLine{        val = this.ratioPassed * 2f;}
+\DoxyCodeLine{        \textcolor{keywordflow}{if} ((val) < 1)\{}
+\DoxyCodeLine{            s *= (1.525f) * overshoot;}
+\DoxyCodeLine{            \textcolor{keywordflow}{return} this.diffDiv2 * (val * val * (((s) + 1) * val -\/ s)) + this.from;}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{        val -\/= 2;}
+\DoxyCodeLine{        s *= (1.525f) * overshoot;}
+\DoxyCodeLine{        val = ((val) * val * (((s) + 1) * val + s) + 2);}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} this.diffDiv2 * val + this.from;}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{private} Vector3 easeInElastic()\{}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{new} Vector3(\mbox{\hyperlink{class_lean_tween}{LeanTween}}.easeInElastic(\textcolor{keyword}{this}.from.x,\textcolor{keyword}{this}.to.x,\textcolor{keyword}{this}.ratioPassed,\textcolor{keyword}{this}.overshoot,\textcolor{keyword}{this}.period),}
+\DoxyCodeLine{            \mbox{\hyperlink{class_lean_tween}{LeanTween}}.easeInElastic(\textcolor{keyword}{this}.from.y,\textcolor{keyword}{this}.to.y,\textcolor{keyword}{this}.ratioPassed,\textcolor{keyword}{this}.overshoot,\textcolor{keyword}{this}.period),}
+\DoxyCodeLine{            \mbox{\hyperlink{class_lean_tween}{LeanTween}}.easeInElastic(\textcolor{keyword}{this}.from.z,\textcolor{keyword}{this}.to.z,\textcolor{keyword}{this}.ratioPassed,\textcolor{keyword}{this}.overshoot,\textcolor{keyword}{this}.period));}
+\DoxyCodeLine{    \}       }
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{private} Vector3 easeOutElastic()\{}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{new} Vector3(\mbox{\hyperlink{class_lean_tween}{LeanTween}}.easeOutElastic(\textcolor{keyword}{this}.from.x,\textcolor{keyword}{this}.to.x,\textcolor{keyword}{this}.ratioPassed,\textcolor{keyword}{this}.overshoot,\textcolor{keyword}{this}.period),}
+\DoxyCodeLine{            \mbox{\hyperlink{class_lean_tween}{LeanTween}}.easeOutElastic(\textcolor{keyword}{this}.from.y,\textcolor{keyword}{this}.to.y,\textcolor{keyword}{this}.ratioPassed,\textcolor{keyword}{this}.overshoot,\textcolor{keyword}{this}.period),}
+\DoxyCodeLine{            \mbox{\hyperlink{class_lean_tween}{LeanTween}}.easeOutElastic(\textcolor{keyword}{this}.from.z,\textcolor{keyword}{this}.to.z,\textcolor{keyword}{this}.ratioPassed,\textcolor{keyword}{this}.overshoot,\textcolor{keyword}{this}.period));}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{private} Vector3 easeInOutElastic()}
+\DoxyCodeLine{    \{}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{new} Vector3(\mbox{\hyperlink{class_lean_tween}{LeanTween}}.easeInOutElastic(\textcolor{keyword}{this}.from.x,\textcolor{keyword}{this}.to.x,\textcolor{keyword}{this}.ratioPassed,\textcolor{keyword}{this}.overshoot,\textcolor{keyword}{this}.period),}
+\DoxyCodeLine{            \mbox{\hyperlink{class_lean_tween}{LeanTween}}.easeInOutElastic(\textcolor{keyword}{this}.from.y,\textcolor{keyword}{this}.to.y,\textcolor{keyword}{this}.ratioPassed,\textcolor{keyword}{this}.overshoot,\textcolor{keyword}{this}.period),}
+\DoxyCodeLine{            \mbox{\hyperlink{class_lean_tween}{LeanTween}}.easeInOutElastic(\textcolor{keyword}{this}.from.z,\textcolor{keyword}{this}.to.z,\textcolor{keyword}{this}.ratioPassed,\textcolor{keyword}{this}.overshoot,\textcolor{keyword}{this}.period));}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setOvershoot( \textcolor{keywordtype}{float} overshoot )\{}
+\DoxyCodeLine{        this.overshoot = overshoot;}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setPeriod( \textcolor{keywordtype}{float} period )\{}
+\DoxyCodeLine{        this.period = period;}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setScale( \textcolor{keywordtype}{float} scale )\{}
+\DoxyCodeLine{        this.scale = scale;}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setEase( AnimationCurve easeCurve )\{}
+\DoxyCodeLine{        this.\_optional.animationCurve = easeCurve;}
+\DoxyCodeLine{        this.easeMethod = this.tweenOnCurve;}
+\DoxyCodeLine{        this.easeType = \mbox{\hyperlink{class_lean_tween_type}{LeanTweenType}}.animationCurve;}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setTo( Vector3 to )\{}
+\DoxyCodeLine{        \textcolor{keywordflow}{if}(this.hasInitiliazed)\{}
+\DoxyCodeLine{            this.to = to;}
+\DoxyCodeLine{            this.diff = to -\/ this.from;}
+\DoxyCodeLine{        \}\textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{            this.to = to;}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setTo( Transform to )\{}
+\DoxyCodeLine{        this.\_optional.toTrans = to;}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setFrom( Vector3 from )\{}
+\DoxyCodeLine{        \textcolor{keywordflow}{if}(this.trans)\{}
+\DoxyCodeLine{            this.init();}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{        this.from = from;}
+\DoxyCodeLine{        \textcolor{comment}{// this.hasInitiliazed = true; // this is set, so that the "from" value isn't overwritten later on when the tween starts}}
+\DoxyCodeLine{        this.diff = this.to -\/ this.from;}
+\DoxyCodeLine{        this.diffDiv2 = this.diff * 0.5f;}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setFrom( \textcolor{keywordtype}{float} from )\{}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} setFrom( \textcolor{keyword}{new} Vector3(from, 0f, 0f) );}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setDiff( Vector3 diff )\{}
+\DoxyCodeLine{        this.diff = diff;}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setHasInitialized( \textcolor{keywordtype}{bool} has )\{}
+\DoxyCodeLine{        this.hasInitiliazed = has;}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setId( uint \textcolor{keywordtype}{id}, uint global\_counter )\{}
+\DoxyCodeLine{        this.\_id = id;}
+\DoxyCodeLine{        this.counter = global\_counter;}
+\DoxyCodeLine{        \textcolor{comment}{// Debug.Log("Global counter:"+global\_counter);}}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setPassed( \textcolor{keywordtype}{float} passed )\{}
+\DoxyCodeLine{        this.passed = passed;}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setTime( \textcolor{keywordtype}{float} time )\{}
+\DoxyCodeLine{        \textcolor{keywordtype}{float} passedTimeRatio = this.passed / this.time;}
+\DoxyCodeLine{        this.passed = time * passedTimeRatio;}
+\DoxyCodeLine{        this.time = time;}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setSpeed( \textcolor{keywordtype}{float} speed )\{}
+\DoxyCodeLine{        this.speed = speed;}
+\DoxyCodeLine{        \textcolor{keywordflow}{if}(this.hasInitiliazed)}
+\DoxyCodeLine{            initSpeed();}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setRepeat( \textcolor{keywordtype}{int} repeat )\{}
+\DoxyCodeLine{        this.loopCount = repeat;}
+\DoxyCodeLine{        \textcolor{keywordflow}{if}((repeat>1 \&\& this.loopType == \mbox{\hyperlink{class_lean_tween_type}{LeanTweenType}}.once) || (repeat < 0 \&\& \textcolor{keyword}{this}.loopType == \mbox{\hyperlink{class_lean_tween_type}{LeanTweenType}}.once))\{}
+\DoxyCodeLine{            this.loopType = \mbox{\hyperlink{class_lean_tween_type}{LeanTweenType}}.clamp;}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{        \textcolor{keywordflow}{if}(this.type==TweenAction.CALLBACK || \textcolor{keyword}{this}.type==TweenAction.CALLBACK\_COLOR)\{}
+\DoxyCodeLine{            this.setOnCompleteOnRepeat(\textcolor{keyword}{true});}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setLoopType( \mbox{\hyperlink{class_lean_tween_type}{LeanTweenType}} loopType )\{}
+\DoxyCodeLine{        this.loopType = loopType;}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setUseEstimatedTime( \textcolor{keywordtype}{bool} useEstimatedTime )\{}
+\DoxyCodeLine{        this.useEstimatedTime = useEstimatedTime;}
+\DoxyCodeLine{        this.usesNormalDt = \textcolor{keyword}{false};}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setIgnoreTimeScale( \textcolor{keywordtype}{bool} useUnScaledTime )\{}
+\DoxyCodeLine{        this.useEstimatedTime = useUnScaledTime;}
+\DoxyCodeLine{        this.usesNormalDt = \textcolor{keyword}{false};}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setUseFrames( \textcolor{keywordtype}{bool} useFrames )\{}
+\DoxyCodeLine{        this.useFrames = useFrames;}
+\DoxyCodeLine{        this.usesNormalDt = \textcolor{keyword}{false};}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setUseManualTime( \textcolor{keywordtype}{bool} useManualTime )\{}
+\DoxyCodeLine{        this.useManualTime = useManualTime;}
+\DoxyCodeLine{        this.usesNormalDt = \textcolor{keyword}{false};}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setLoopCount( \textcolor{keywordtype}{int} loopCount )\{}
+\DoxyCodeLine{        this.loopType = \mbox{\hyperlink{class_lean_tween_type}{LeanTweenType}}.clamp;}
+\DoxyCodeLine{        this.loopCount = loopCount;}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setLoopOnce()\{ this.loopType = \mbox{\hyperlink{class_lean_tween_type}{LeanTweenType}}.once; \textcolor{keywordflow}{return} \textcolor{keyword}{this}; \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setLoopClamp()\{ }
+\DoxyCodeLine{        this.loopType = \mbox{\hyperlink{class_lean_tween_type}{LeanTweenType}}.clamp; }
+\DoxyCodeLine{        \textcolor{keywordflow}{if}(this.loopCount==0)}
+\DoxyCodeLine{            this.loopCount = -\/1;}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setLoopClamp( \textcolor{keywordtype}{int} loops )\{ }
+\DoxyCodeLine{        this.loopCount = loops;}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setLoopPingPong()\{}
+\DoxyCodeLine{        this.loopType = \mbox{\hyperlink{class_lean_tween_type}{LeanTweenType}}.pingPong;}
+\DoxyCodeLine{        \textcolor{keywordflow}{if}(this.loopCount==0)}
+\DoxyCodeLine{            this.loopCount = -\/1;}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this}; }
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setLoopPingPong( \textcolor{keywordtype}{int} loops ) \{ }
+\DoxyCodeLine{        this.loopType = \mbox{\hyperlink{class_lean_tween_type}{LeanTweenType}}.pingPong;}
+\DoxyCodeLine{        this.loopCount = loops == -\/1 ? loops : loops * 2;}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this}; }
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setOnComplete( Action onComplete )\{}
+\DoxyCodeLine{        this.\_optional.onComplete = onComplete;}
+\DoxyCodeLine{        this.hasExtraOnCompletes = \textcolor{keyword}{true};}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setOnComplete( Action<object> onComplete )\{}
+\DoxyCodeLine{        this.\_optional.onCompleteObject = onComplete;}
+\DoxyCodeLine{        this.hasExtraOnCompletes = \textcolor{keyword}{true};}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setOnComplete( Action<object> onComplete, \textcolor{keywordtype}{object} onCompleteParam )\{}
+\DoxyCodeLine{        this.\_optional.onCompleteObject = onComplete;}
+\DoxyCodeLine{        this.hasExtraOnCompletes = \textcolor{keyword}{true};}
+\DoxyCodeLine{        \textcolor{keywordflow}{if}(onCompleteParam!=\textcolor{keyword}{null})}
+\DoxyCodeLine{            this.\_optional.onCompleteParam = onCompleteParam;}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setOnCompleteParam( \textcolor{keywordtype}{object} onCompleteParam )\{}
+\DoxyCodeLine{        this.\_optional.onCompleteParam = onCompleteParam;}
+\DoxyCodeLine{        this.hasExtraOnCompletes = \textcolor{keyword}{true};}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setOnUpdate( Action<float> onUpdate )\{}
+\DoxyCodeLine{        this.\_optional.onUpdateFloat = onUpdate;}
+\DoxyCodeLine{        this.hasUpdateCallback = \textcolor{keyword}{true};}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setOnUpdateRatio(Action<float,float> onUpdate)}
+\DoxyCodeLine{    \{}
+\DoxyCodeLine{        this.\_optional.onUpdateFloatRatio = onUpdate;}
+\DoxyCodeLine{        this.hasUpdateCallback = \textcolor{keyword}{true};}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setOnUpdateObject( Action<float,object> onUpdate )\{}
+\DoxyCodeLine{        this.\_optional.onUpdateFloatObject = onUpdate;}
+\DoxyCodeLine{        this.hasUpdateCallback = \textcolor{keyword}{true};}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setOnUpdateVector2( Action<Vector2> onUpdate )\{}
+\DoxyCodeLine{        this.\_optional.onUpdateVector2 = onUpdate;}
+\DoxyCodeLine{        this.hasUpdateCallback = \textcolor{keyword}{true};}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setOnUpdateVector3( Action<Vector3> onUpdate )\{}
+\DoxyCodeLine{        this.\_optional.onUpdateVector3 = onUpdate;}
+\DoxyCodeLine{        this.hasUpdateCallback = \textcolor{keyword}{true};}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setOnUpdateColor( Action<Color> onUpdate )\{}
+\DoxyCodeLine{        this.\_optional.onUpdateColor = onUpdate;}
+\DoxyCodeLine{        this.hasUpdateCallback = \textcolor{keyword}{true};}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setOnUpdateColor( Action<Color,object> onUpdate )\{}
+\DoxyCodeLine{        this.\_optional.onUpdateColorObject = onUpdate;}
+\DoxyCodeLine{        this.hasUpdateCallback = \textcolor{keyword}{true};}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{preprocessor}{    \#if !UNITY\_FLASH}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setOnUpdate( Action<Color> onUpdate )\{}
+\DoxyCodeLine{        this.\_optional.onUpdateColor = onUpdate;}
+\DoxyCodeLine{        this.hasUpdateCallback = \textcolor{keyword}{true};}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setOnUpdate( Action<Color,object> onUpdate )\{}
+\DoxyCodeLine{        this.\_optional.onUpdateColorObject = onUpdate;}
+\DoxyCodeLine{        this.hasUpdateCallback = \textcolor{keyword}{true};}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setOnUpdate( Action<float,object> onUpdate, \textcolor{keywordtype}{object} onUpdateParam = \textcolor{keyword}{null} )\{}
+\DoxyCodeLine{        this.\_optional.onUpdateFloatObject = onUpdate;}
+\DoxyCodeLine{        this.hasUpdateCallback = \textcolor{keyword}{true};}
+\DoxyCodeLine{        \textcolor{keywordflow}{if}(onUpdateParam!=\textcolor{keyword}{null})}
+\DoxyCodeLine{            this.\_optional.onUpdateParam = onUpdateParam;}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setOnUpdate( Action<Vector3,object> onUpdate, \textcolor{keywordtype}{object} onUpdateParam = \textcolor{keyword}{null} )\{}
+\DoxyCodeLine{        this.\_optional.onUpdateVector3Object = onUpdate;}
+\DoxyCodeLine{        this.hasUpdateCallback = \textcolor{keyword}{true};}
+\DoxyCodeLine{        \textcolor{keywordflow}{if}(onUpdateParam!=\textcolor{keyword}{null})}
+\DoxyCodeLine{            this.\_optional.onUpdateParam = onUpdateParam;}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setOnUpdate( Action<Vector2> onUpdate, \textcolor{keywordtype}{object} onUpdateParam = \textcolor{keyword}{null} )\{}
+\DoxyCodeLine{        this.\_optional.onUpdateVector2 = onUpdate;}
+\DoxyCodeLine{        this.hasUpdateCallback = \textcolor{keyword}{true};}
+\DoxyCodeLine{        \textcolor{keywordflow}{if}(onUpdateParam!=\textcolor{keyword}{null})}
+\DoxyCodeLine{            this.\_optional.onUpdateParam = onUpdateParam;}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setOnUpdate( Action<Vector3> onUpdate, \textcolor{keywordtype}{object} onUpdateParam = \textcolor{keyword}{null} )\{}
+\DoxyCodeLine{        this.\_optional.onUpdateVector3 = onUpdate;}
+\DoxyCodeLine{        this.hasUpdateCallback = \textcolor{keyword}{true};}
+\DoxyCodeLine{        \textcolor{keywordflow}{if}(onUpdateParam!=\textcolor{keyword}{null})}
+\DoxyCodeLine{            this.\_optional.onUpdateParam = onUpdateParam;}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{\textcolor{preprocessor}{    \#endif}}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setOnUpdateParam( \textcolor{keywordtype}{object} onUpdateParam )\{}
+\DoxyCodeLine{        this.\_optional.onUpdateParam = onUpdateParam;}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setOrientToPath( \textcolor{keywordtype}{bool} doesOrient )\{}
+\DoxyCodeLine{        \textcolor{keywordflow}{if}(this.type==TweenAction.MOVE\_CURVED || \textcolor{keyword}{this}.type==TweenAction.MOVE\_CURVED\_LOCAL)\{}
+\DoxyCodeLine{            \textcolor{keywordflow}{if}(this.\_optional.path==\textcolor{keyword}{null})}
+\DoxyCodeLine{                this.\_optional.path = \textcolor{keyword}{new} \mbox{\hyperlink{class_l_t_bezier_path}{LTBezierPath}}();}
+\DoxyCodeLine{            this.\_optional.path.orientToPath = doesOrient;}
+\DoxyCodeLine{        \}\textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{            this.\_optional.spline.orientToPath = doesOrient;}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setOrientToPath2d( \textcolor{keywordtype}{bool} doesOrient2d )\{}
+\DoxyCodeLine{        setOrientToPath(doesOrient2d);}
+\DoxyCodeLine{        \textcolor{keywordflow}{if}(this.type==TweenAction.MOVE\_CURVED || \textcolor{keyword}{this}.type==TweenAction.MOVE\_CURVED\_LOCAL)\{}
+\DoxyCodeLine{            this.\_optional.path.orientToPath2d = doesOrient2d;}
+\DoxyCodeLine{        \}\textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{            this.\_optional.spline.orientToPath2d = doesOrient2d;}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setRect( \mbox{\hyperlink{class_l_t_rect}{LTRect}} rect )\{}
+\DoxyCodeLine{        this.\_optional.ltRect = rect;}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setRect( Rect rect )\{}
+\DoxyCodeLine{        this.\_optional.ltRect = \textcolor{keyword}{new} \mbox{\hyperlink{class_l_t_rect}{LTRect}}(rect);}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setPath( \mbox{\hyperlink{class_l_t_bezier_path}{LTBezierPath}} path )\{}
+\DoxyCodeLine{        this.\_optional.path = path;}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setPoint( Vector3 point )\{}
+\DoxyCodeLine{        this.\_optional.point = point;}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setDestroyOnComplete( \textcolor{keywordtype}{bool} doesDestroy )\{}
+\DoxyCodeLine{        this.destroyOnComplete = doesDestroy;}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setAudio( \textcolor{keywordtype}{object} audio )\{}
+\DoxyCodeLine{        this.\_optional.onCompleteParam = audio;}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setOnCompleteOnRepeat( \textcolor{keywordtype}{bool} isOn )\{}
+\DoxyCodeLine{        this.onCompleteOnRepeat = isOn;}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setOnCompleteOnStart( \textcolor{keywordtype}{bool} isOn )\{}
+\DoxyCodeLine{        this.onCompleteOnStart = isOn;}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{preprocessor}{    \#if !UNITY\_3\_5 \&\& !UNITY\_4\_0 \&\& !UNITY\_4\_0\_1 \&\& !UNITY\_4\_1 \&\& !UNITY\_4\_2 \&\& !UNITY\_4\_3 \&\& !UNITY\_4\_5}}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setRect( RectTransform rect )\{}
+\DoxyCodeLine{        this.rectTransform = rect;}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setSprites( UnityEngine.Sprite[] sprites )\{}
+\DoxyCodeLine{        this.sprites = sprites;}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setFrameRate( \textcolor{keywordtype}{float} frameRate )\{}
+\DoxyCodeLine{        this.time = this.sprites.Length / frameRate;}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{\textcolor{preprocessor}{    \#endif}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setOnStart( Action onStart )\{}
+\DoxyCodeLine{        this.\_optional.onStart = onStart;}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setDirection( \textcolor{keywordtype}{float} direction )\{}
+\DoxyCodeLine{        \textcolor{keywordflow}{if}(this.direction!=-\/1f \&\& this.direction!=1f)\{}
+\DoxyCodeLine{            Debug.LogWarning(\textcolor{stringliteral}{"You have passed an incorrect direction of '"}+direction+\textcolor{stringliteral}{"', direction must be -\/1f or 1f"});}
+\DoxyCodeLine{            \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{keywordflow}{if}(this.direction!=direction)\{}
+\DoxyCodeLine{            \textcolor{comment}{// Debug.Log("reverse path:"+this.path+" spline:"+this.\_optional.spline+" hasInitiliazed:"+this.hasInitiliazed);}}
+\DoxyCodeLine{            \textcolor{keywordflow}{if}(this.hasInitiliazed)\{}
+\DoxyCodeLine{                this.direction = direction;}
+\DoxyCodeLine{            \}\textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{                \textcolor{keywordflow}{if}(this.\_optional.path!=\textcolor{keyword}{null})\{}
+\DoxyCodeLine{                    this.\_optional.path = \textcolor{keyword}{new} \mbox{\hyperlink{class_l_t_bezier_path}{LTBezierPath}}( \mbox{\hyperlink{class_l_t_utility}{LTUtility}}.reverse( \textcolor{keyword}{this}.\_optional.path.pts ) );}
+\DoxyCodeLine{                \}\textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(this.\_optional.spline!=\textcolor{keyword}{null})\{}
+\DoxyCodeLine{                    this.\_optional.spline = \textcolor{keyword}{new} \mbox{\hyperlink{class_l_t_spline}{LTSpline}}( \mbox{\hyperlink{class_l_t_utility}{LTUtility}}.reverse( \textcolor{keyword}{this}.\_optional.spline.pts ) );}
+\DoxyCodeLine{                \}}
+\DoxyCodeLine{                \textcolor{comment}{// this.passed = this.time -\/ this.passed;}}
+\DoxyCodeLine{            \}}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} setRecursive( \textcolor{keywordtype}{bool} useRecursion )\{}
+\DoxyCodeLine{        this.useRecursion = useRecursion;}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//\}}}
+\end{DoxyCodeInclude}
+ 

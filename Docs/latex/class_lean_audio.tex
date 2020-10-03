@@ -1,0 +1,94 @@
+\hypertarget{class_lean_audio}{}\doxysection{Класс Lean\+Audio}
+\label{class_lean_audio}\index{LeanAudio@{LeanAudio}}
+
+
+Граф наследования\+:Lean\+Audio\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=262pt]{class_lean_audio__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Граф связей класса Lean\+Audio\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=262pt]{class_lean_audio__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Открытые статические члены}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_lean_audio_a22ebdf40e5f1a505c2b39645ae02ca0d}\label{class_lean_audio_a22ebdf40e5f1a505c2b39645ae02ca0d}} 
+static \mbox{\hyperlink{class_lean_audio_options}{Lean\+Audio\+Options}} {\bfseries options} ()
+\item 
+\mbox{\Hypertarget{class_lean_audio_a56974e416eb9f9a85d518b1e7395f46a}\label{class_lean_audio_a56974e416eb9f9a85d518b1e7395f46a}} 
+static \mbox{\hyperlink{class_lean_audio_stream}{Lean\+Audio\+Stream}} {\bfseries create\+Audio\+Stream} (Animation\+Curve volume, Animation\+Curve frequency, \mbox{\hyperlink{class_lean_audio_options}{Lean\+Audio\+Options}} options=null)
+\item 
+\mbox{\Hypertarget{class_lean_audio_a53c73120b8c47b7b958ce7b2f39fb7b6}\label{class_lean_audio_a53c73120b8c47b7b958ce7b2f39fb7b6}} 
+static Audio\+Clip {\bfseries create\+Audio} (Animation\+Curve volume, Animation\+Curve frequency, \mbox{\hyperlink{class_lean_audio_options}{Lean\+Audio\+Options}} options=null)
+\item 
+\mbox{\Hypertarget{class_lean_audio_aa724ef3576ef6b8fff8778d5dc52fe6a}\label{class_lean_audio_aa724ef3576ef6b8fff8778d5dc52fe6a}} 
+static Audio\+Clip {\bfseries generate\+Audio\+From\+Curve} (Animation\+Curve curve, int frequency\+Rate=44100)
+\item 
+\mbox{\Hypertarget{class_lean_audio_a032fa2a9186bf8180dc21bd15bb5ce97}\label{class_lean_audio_a032fa2a9186bf8180dc21bd15bb5ce97}} 
+static Audio\+Source {\bfseries play} (Audio\+Clip audio, float volume)
+\item 
+\mbox{\Hypertarget{class_lean_audio_a00be74eb0605b9ac2239d941d44f9171}\label{class_lean_audio_a00be74eb0605b9ac2239d941d44f9171}} 
+static Audio\+Source {\bfseries play} (Audio\+Clip audio)
+\item 
+\mbox{\Hypertarget{class_lean_audio_a4714b51283f7af4112e0b6c33fd90945}\label{class_lean_audio_a4714b51283f7af4112e0b6c33fd90945}} 
+static Audio\+Source {\bfseries play} (Audio\+Clip audio, Vector3 pos)
+\item 
+\mbox{\Hypertarget{class_lean_audio_a380a483da45a0425c7f0c703baa8b86e}\label{class_lean_audio_a380a483da45a0425c7f0c703baa8b86e}} 
+static Audio\+Source {\bfseries play} (Audio\+Clip audio, Vector3 pos, float volume)
+\item 
+\mbox{\Hypertarget{class_lean_audio_a3b3ffc2db9f85e3d15800ee811fe525e}\label{class_lean_audio_a3b3ffc2db9f85e3d15800ee811fe525e}} 
+static Audio\+Source {\bfseries play\+Clip\+At} (Audio\+Clip clip, Vector3 pos)
+\item 
+\mbox{\Hypertarget{class_lean_audio_a259dc4c725ec544d3ea435b5973f7dbe}\label{class_lean_audio_a259dc4c725ec544d3ea435b5973f7dbe}} 
+static void {\bfseries print\+Out\+Audio\+Clip} (Audio\+Clip audio\+Clip, ref Animation\+Curve curve, float scaleX=1f)
+\end{DoxyCompactItemize}
+\doxysubsection*{Статические открытые данные}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_lean_audio_aed187ab83e19fb990fb9ded41943fa17}\label{class_lean_audio_aed187ab83e19fb990fb9ded41943fa17}} 
+static float {\bfseries M\+I\+N\+\_\+\+F\+R\+E\+Q\+E\+U\+N\+C\+Y\+\_\+\+P\+E\+R\+I\+OD} = 0.\+000115f
+\item 
+\mbox{\Hypertarget{class_lean_audio_a5433c61c56272536aec261f54a51afcd}\label{class_lean_audio_a5433c61c56272536aec261f54a51afcd}} 
+static int {\bfseries P\+R\+O\+C\+E\+S\+S\+I\+N\+G\+\_\+\+I\+T\+E\+R\+A\+T\+I\+O\+N\+S\+\_\+\+M\+AX} = 50000
+\item 
+\mbox{\Hypertarget{class_lean_audio_a634ee0fd0f50aacba0e0bddc2ddc7999}\label{class_lean_audio_a634ee0fd0f50aacba0e0bddc2ddc7999}} 
+static float\mbox{[}$\,$\mbox{]} {\bfseries generated\+Wave\+Distances}
+\item 
+\mbox{\Hypertarget{class_lean_audio_a1331b7469047a7541a9c28b588ee69e9}\label{class_lean_audio_a1331b7469047a7541a9c28b588ee69e9}} 
+static int {\bfseries generated\+Wave\+Distances\+Count} = 0
+\end{DoxyCompactItemize}
+\doxysubsection*{Закрытые статические члены}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_lean_audio_a6b93aefed3c7bc19ca6bf07c14ddd772}\label{class_lean_audio_a6b93aefed3c7bc19ca6bf07c14ddd772}} 
+static int {\bfseries create\+Audio\+Wave} (Animation\+Curve volume, Animation\+Curve frequency, \mbox{\hyperlink{class_lean_audio_options}{Lean\+Audio\+Options}} options)
+\item 
+\mbox{\Hypertarget{class_lean_audio_a4b2264880306b7db91ada18b8ac82c88}\label{class_lean_audio_a4b2264880306b7db91ada18b8ac82c88}} 
+static Audio\+Clip {\bfseries create\+Audio\+From\+Wave} (int wave\+Length, \mbox{\hyperlink{class_lean_audio_options}{Lean\+Audio\+Options}} options)
+\item 
+\mbox{\Hypertarget{class_lean_audio_a71d20651021ae1f2971c07f607f92dc3}\label{class_lean_audio_a71d20651021ae1f2971c07f607f92dc3}} 
+static void {\bfseries On\+Audio\+Set\+Position} (int new\+Position)
+\end{DoxyCompactItemize}
+\doxysubsection*{Закрытые статические данные}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_lean_audio_adb4c2b93154432d99ddd851b7955270b}\label{class_lean_audio_adb4c2b93154432d99ddd851b7955270b}} 
+static float\mbox{[}$\,$\mbox{]} {\bfseries long\+List}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Подробное описание}
+Create Audio dynamically and easily playback
+
+@constructor \begin{Desc}
+\item[Примеры]\par
+\mbox{\hyperlink{_d_1_2_dev_2_unity_2_shaperation_2_assets_2_lean_tween_2_framework_2_lean_audio_8cs-example}{D\+:/\+Dev/\+Unity/\+Shaperation/\+Assets/\+Lean\+Tween/\+Framework/\+Lean\+Audio.\+cs}}.\end{Desc}

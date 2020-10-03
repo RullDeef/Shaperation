@@ -1,0 +1,14 @@
+<map id="ShapesRepository" name="ShapesRepository">
+<area shape="rect" id="node1" title=" " alt="" coords="272,645,400,737"/>
+<area shape="rect" id="node2" href="$class_mono_behaviour.html" title=" " alt="" coords="5,20,117,97"/>
+<area shape="rect" id="node5" href="$class_shape.html" title=" " alt="" coords="219,189,370,325"/>
+<area shape="rect" id="node3" title=" " alt="" coords="580,432,636,509"/>
+<area shape="rect" id="node4" href="$class_base_shape.html" title=" " alt="" coords="213,432,302,509"/>
+<area shape="rect" id="node10" href="$class_transistor_shape.html" title=" " alt="" coords="329,388,506,553"/>
+<area shape="rect" id="node6" href="$interface_i_shape.html" title=" " alt="" coords="141,5,277,112"/>
+<area shape="rect" id="node7" href="$interface_i_draggable.html" title=" " alt="" coords="302,13,423,105"/>
+<area shape="rect" id="node8" href="$interface_i_triggerable.html" title=" " alt="" coords="447,13,598,105"/>
+<area shape="rect" id="node9" title=" " alt="" coords="623,20,727,97"/>
+<area shape="rect" id="node11" title=" " alt="" coords="394,219,441,296"/>
+<area shape="rect" id="node12" title=" " alt="" coords="465,219,573,296"/>
+</map>

@@ -1,0 +1,21 @@
+\hypertarget{_lean_tween_8rotate_around_local-example}{}\doxysection{Lean\+Tween.\+rotate\+Around\+Local}
+Rotate a Rect\+Transform object around it\textquotesingle{}s local axis (used in Unity G\+UI in 4.\+6+, for Buttons, Panel, Scrollbar, etc...)
+
+@method Lean\+Tween.\+rotate\+Around\+Local (Rect\+Transform) 
+\begin{DoxyParams}{Аргументы}
+{\em \{\+Rect\+Transform\}} & rect\+Trans\+:Rect\+Transform Rect\+Transform that you wish to attach the tween to \\
+\hline
+{\em \{\+Vector3\}} & axis\+:Vector3 The local axis in which to rotate the Rect\+Transform (Vector3.\+forward is most commonly used) \\
+\hline
+{\em \{float\}} & to\+:float The degree with which to rotate the Rect\+Transform \\
+\hline
+{\em \{float\}} & time\+:float The time to complete the tween in \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+\{\mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}}\} \mbox{\hyperlink{class_l_t_descr}{L\+T\+Descr}} an object that distinguishes the tween (game\+Object.\+Get\+Component$<$Rect\+Transform$>$(), Vector3.\+forward, 90f, 1f).set\+Delay(1f);
+\end{DoxyReturn}
+
+\begin{DoxyCodeInclude}{0}
+\end{DoxyCodeInclude}
+ 

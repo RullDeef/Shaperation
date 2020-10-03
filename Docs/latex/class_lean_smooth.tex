@@ -1,0 +1,63 @@
+\hypertarget{class_lean_smooth}{}\doxysection{Класс Lean\+Smooth}
+\label{class_lean_smooth}\index{LeanSmooth@{LeanSmooth}}
+
+
+Граф связей класса Lean\+Smooth\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=159pt]{class_lean_smooth__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Открытые статические члены}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_lean_smooth_a12f0f1bb5fbfb482a8026f4ca12af093}\label{class_lean_smooth_a12f0f1bb5fbfb482a8026f4ca12af093}} 
+static float {\bfseries damp} (float current, float target, ref float current\+Velocity, float smooth\+Time, float max\+Speed=-\/1f, float delta\+Time=-\/1f)
+\item 
+\mbox{\Hypertarget{class_lean_smooth_ab7d81907ee4e999e5fa4cc9b12a52acf}\label{class_lean_smooth_ab7d81907ee4e999e5fa4cc9b12a52acf}} 
+static Vector3 {\bfseries damp} (Vector3 current, Vector3 target, ref Vector3 current\+Velocity, float smooth\+Time, float max\+Speed=-\/1f, float delta\+Time=-\/1f)
+\item 
+\mbox{\Hypertarget{class_lean_smooth_abe2e42a961793b3087c1bc813f705eb1}\label{class_lean_smooth_abe2e42a961793b3087c1bc813f705eb1}} 
+static Color {\bfseries damp} (Color current, Color target, ref Color current\+Velocity, float smooth\+Time, float max\+Speed=-\/1f, float delta\+Time=-\/1f)
+\item 
+\mbox{\Hypertarget{class_lean_smooth_afcb122c9a6ed2c7f0b25ffc4fa219210}\label{class_lean_smooth_afcb122c9a6ed2c7f0b25ffc4fa219210}} 
+static float {\bfseries spring} (float current, float target, ref float current\+Velocity, float smooth\+Time, float max\+Speed=-\/1f, float delta\+Time=-\/1f, float friction=2f, float accel\+Rate=0.\+5f)
+\item 
+\mbox{\Hypertarget{class_lean_smooth_a7a97391b9e9de620476f7baa9df76496}\label{class_lean_smooth_a7a97391b9e9de620476f7baa9df76496}} 
+static Vector3 {\bfseries spring} (Vector3 current, Vector3 target, ref Vector3 current\+Velocity, float smooth\+Time, float max\+Speed=-\/1f, float delta\+Time=-\/1f, float friction=2f, float accel\+Rate=0.\+5f)
+\item 
+\mbox{\Hypertarget{class_lean_smooth_aa7b16b1e00a514b38afde27b2a21cf49}\label{class_lean_smooth_aa7b16b1e00a514b38afde27b2a21cf49}} 
+static Color {\bfseries spring} (Color current, Color target, ref Color current\+Velocity, float smooth\+Time, float max\+Speed=-\/1f, float delta\+Time=-\/1f, float friction=2f, float accel\+Rate=0.\+5f)
+\item 
+\mbox{\Hypertarget{class_lean_smooth_ab33e3b9d46db698ade738ea2cd243173}\label{class_lean_smooth_ab33e3b9d46db698ade738ea2cd243173}} 
+static float {\bfseries linear} (float current, float target, float move\+Speed, float delta\+Time=-\/1f)
+\item 
+\mbox{\Hypertarget{class_lean_smooth_a8118ae1c437465e802e913f0648d5167}\label{class_lean_smooth_a8118ae1c437465e802e913f0648d5167}} 
+static Vector3 {\bfseries linear} (Vector3 current, Vector3 target, float move\+Speed, float delta\+Time=-\/1f)
+\item 
+\mbox{\Hypertarget{class_lean_smooth_a8c7153d9500e2d4291a3a6a8ee62a273}\label{class_lean_smooth_a8c7153d9500e2d4291a3a6a8ee62a273}} 
+static Color {\bfseries linear} (Color current, Color target, float move\+Speed)
+\item 
+\mbox{\Hypertarget{class_lean_smooth_a8198122431636377e4567c14454d20fc}\label{class_lean_smooth_a8198122431636377e4567c14454d20fc}} 
+static float {\bfseries bounce\+Out} (float current, float target, ref float current\+Velocity, float smooth\+Time, float max\+Speed=-\/1f, float delta\+Time=-\/1f, float friction=2f, float accel\+Rate=0.\+5f, float hit\+Damping=0.\+9f)
+\item 
+\mbox{\Hypertarget{class_lean_smooth_a3a00e144dc313ea6ed956d1e62d1f58c}\label{class_lean_smooth_a3a00e144dc313ea6ed956d1e62d1f58c}} 
+static Vector3 {\bfseries bounce\+Out} (Vector3 current, Vector3 target, ref Vector3 current\+Velocity, float smooth\+Time, float max\+Speed=-\/1f, float delta\+Time=-\/1f, float friction=2f, float accel\+Rate=0.\+5f, float hit\+Damping=0.\+9f)
+\item 
+\mbox{\Hypertarget{class_lean_smooth_ab34ad4f2f74d586d220b2732c689cb2f}\label{class_lean_smooth_ab34ad4f2f74d586d220b2732c689cb2f}} 
+static Color {\bfseries bounce\+Out} (Color current, Color target, ref Color current\+Velocity, float smooth\+Time, float max\+Speed=-\/1f, float delta\+Time=-\/1f, float friction=2f, float accel\+Rate=0.\+5f, float hit\+Damping=0.\+9f)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Подробное описание}
+Use these smooth methods to move one value towards another~\newline
+~\newline
+ {\bfseries{Example\+: }}~\newline
+fromY = Lean\+Smooth.\+spring(fromY, follow\+Arrow.\+local\+Position.\+y, ref velocityY, 1.\+1f);~\newline
+ from\+Vec3 = Lean\+Smooth.\+damp(from\+Vec3, dude5\+Title.\+local\+Position, ref velocity\+Vec3, 1.\+1f);~\newline
+ from\+Color = Lean\+Smooth.\+damp(from\+Color, dude5\+Title.\+Get\+Component$<$\+Renderer$>$().material.\+color, ref velocity\+Color, 1.\+1f);~\newline
+ Debug.\+Log(\char`\"{}\+Smoothed y\+:\char`\"{} + fromY + \char`\"{} vec3\+:\char`\"{} + from\+Vec3 + \char`\"{} color\+:\char`\"{} + from\+Color);~\newline
+ \begin{Desc}
+\item[Примеры]\par
+\mbox{\hyperlink{_d_1_2_dev_2_unity_2_shaperation_2_assets_2_lean_tween_2_framework_2_lean_smooth_8cs-example}{D\+:/\+Dev/\+Unity/\+Shaperation/\+Assets/\+Lean\+Tween/\+Framework/\+Lean\+Smooth.\+cs}} и \mbox{\hyperlink{_d_1_2_dev_2_unity_2_shaperation_2_assets_2_lean_tween_2_framework_2_lean_tween_8cs-example}{D\+:/\+Dev/\+Unity/\+Shaperation/\+Assets/\+Lean\+Tween/\+Framework/\+Lean\+Tween.\+cs}}.\end{Desc}

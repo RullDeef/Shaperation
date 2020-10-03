@@ -1,0 +1,8 @@
+<map id="TransistorShape" name="TransistorShape">
+<area shape="rect" id="node1" title=" " alt="" coords="197,373,374,568"/>
+<area shape="rect" id="node2" href="$class_shape.html" title=" " alt="" coords="210,160,361,325"/>
+<area shape="rect" id="node3" href="$class_mono_behaviour.html" title=" " alt="" coords="5,20,117,97"/>
+<area shape="rect" id="node4" href="$interface_i_shape.html" title=" " alt="" coords="141,5,277,112"/>
+<area shape="rect" id="node5" href="$interface_i_draggable.html" title=" " alt="" coords="302,13,423,105"/>
+<area shape="rect" id="node6" href="$interface_i_triggerable.html" title=" " alt="" coords="447,13,598,105"/>
+</map>

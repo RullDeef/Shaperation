@@ -1,0 +1,181 @@
+\hypertarget{_d_1_2_dev_2_unity_2_shaperation_2_assets_2_lean_tween_2_framework_2_l_t_seq_8cs-example}{}\doxysection{D\+:/\+Dev/\+Unity/\+Shaperation/\+Assets/\+Lean\+Tween/\+Framework/\+L\+T\+Seq.\+cs}
+Add a time delay to the sequence @method append (method) 
+\begin{DoxyParams}{Аргументы}
+{\em \{\+System.\+Action\}} & callback\+:System.\+Action method you want to be called \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+\{\mbox{\hyperlink{class_l_t_seq}{L\+T\+Seq}}\} \mbox{\hyperlink{class_l_t_seq}{L\+T\+Seq}} an object that you can add tweens, methods and time on to
+\end{DoxyReturn}
+var seq = Lean\+Tween.\+sequence();~\newline
+ seq.\+append( () =$>$ \{ // fire an event before start~\newline
+ ~Debug.\+Log(\char`\"{}\+I have started\char`\"{});~\newline
+ \});~\newline
+ seq.\+append( Lean\+Tween.\+move(cube1, Vector3.\+one $\ast$ 10f, 1f) ); // do a tween~\newline
+ seq.\+append( () =$>$ \{ // fire event after tween~\newline
+ ~Debug.\+Log(\char`\"{}\+We are done now\char`\"{});~\newline
+ \});;~\newline
+
+
+
+\begin{DoxyCodeInclude}{0}
+\DoxyCodeLine{\textcolor{keyword}{using} System.Collections;}
+\DoxyCodeLine{\textcolor{keyword}{using} System.Collections.Generic;}
+\DoxyCodeLine{\textcolor{keyword}{using} UnityEngine;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{public} \textcolor{keyword}{class }\mbox{\hyperlink{class_l_t_seq}{LTSeq}} \{}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_seq}{LTSeq}} previous;}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_seq}{LTSeq}} current;}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_descr}{LTDescr}} tween;}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \textcolor{keywordtype}{float} totalDelay;}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \textcolor{keywordtype}{float} timeScale;}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{private} \textcolor{keywordtype}{int} debugIter;}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} uint counter;}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \textcolor{keywordtype}{bool} toggle = \textcolor{keyword}{false};}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{private} uint \_id;}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \textcolor{keywordtype}{int} \textcolor{keywordtype}{id}\{}
+\DoxyCodeLine{        \textcolor{keyword}{get}\{ }
+\DoxyCodeLine{            uint toId = \_id | counter << 16;}
+\DoxyCodeLine{}
+\DoxyCodeLine{            \textcolor{comment}{/*uint backId = toId \& 0xFFFF;}}
+\DoxyCodeLine{\textcolor{comment}{            uint backCounter = toId >> 16;}}
+\DoxyCodeLine{\textcolor{comment}{            if(\_id!=backId || backCounter!=counter)\{}}
+\DoxyCodeLine{\textcolor{comment}{                Debug.LogError("BAD CONVERSION toId:"+\_id);}}
+\DoxyCodeLine{\textcolor{comment}{            \}*/}}
+\DoxyCodeLine{}
+\DoxyCodeLine{            \textcolor{keywordflow}{return} (\textcolor{keywordtype}{int})toId;}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \textcolor{keywordtype}{void} reset()\{}
+\DoxyCodeLine{        previous = \textcolor{keyword}{null};}
+\DoxyCodeLine{        tween = \textcolor{keyword}{null};}
+\DoxyCodeLine{        totalDelay = 0f;}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \textcolor{keywordtype}{void} init(uint \textcolor{keywordtype}{id}, uint global\_counter)\{}
+\DoxyCodeLine{        reset();}
+\DoxyCodeLine{        \_id = id;}
+\DoxyCodeLine{}
+\DoxyCodeLine{        counter = global\_counter;}
+\DoxyCodeLine{}
+\DoxyCodeLine{        this.current = \textcolor{keyword}{this};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{private} \mbox{\hyperlink{class_l_t_seq}{LTSeq}} addOn()\{}
+\DoxyCodeLine{        this.current.toggle = \textcolor{keyword}{true};}
+\DoxyCodeLine{        \mbox{\hyperlink{class_l_t_seq}{LTSeq}} lastCurrent = this.current;}
+\DoxyCodeLine{        this.current = \mbox{\hyperlink{class_lean_tween}{LeanTween}}.sequence(\textcolor{keyword}{true});}
+\DoxyCodeLine{        \textcolor{comment}{// Debug.Log("this.current:" + this.current.id + " lastCurrent:" + lastCurrent.id);}}
+\DoxyCodeLine{        this.current.previous = lastCurrent;}
+\DoxyCodeLine{        lastCurrent.toggle = \textcolor{keyword}{false};}
+\DoxyCodeLine{        this.current.totalDelay = lastCurrent.totalDelay;}
+\DoxyCodeLine{        this.current.debugIter = lastCurrent.debugIter + 1;}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} current;}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{private} \textcolor{keywordtype}{float} addPreviousDelays()\{}
+\DoxyCodeLine{\textcolor{comment}{//      Debug.Log("delay:"+delay+" count:"+this.current.count+" this.current.totalDelay:"+this.current.totalDelay);}}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \mbox{\hyperlink{class_l_t_seq}{LTSeq}} prev = this.current.previous;}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{keywordflow}{if} (prev != \textcolor{keyword}{null} \&\& prev.tween!=\textcolor{keyword}{null}) \{}
+\DoxyCodeLine{            \textcolor{keywordflow}{return} this.current.totalDelay + prev.tween.time;}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} this.current.totalDelay;}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_seq}{LTSeq}} \mbox{\hyperlink{class_l_t_seq_a92c2238c6f85370a37d0226ac54c37d0}{append}}( \textcolor{keywordtype}{float} delay )\{}
+\DoxyCodeLine{        this.current.totalDelay += delay;}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} this.current;}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_seq}{LTSeq}} \mbox{\hyperlink{class_l_t_seq_a92c2238c6f85370a37d0226ac54c37d0}{append}}( System.Action callback )\{}
+\DoxyCodeLine{        \mbox{\hyperlink{class_l_t_descr}{LTDescr}} newTween = \mbox{\hyperlink{class_lean_tween}{LeanTween}}.delayedCall(0f, callback);}
+\DoxyCodeLine{\textcolor{comment}{//      Debug.Log("newTween:" + newTween);}}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} \mbox{\hyperlink{class_l_t_seq_a92c2238c6f85370a37d0226ac54c37d0}{append}}(newTween);}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_seq}{LTSeq}} \mbox{\hyperlink{class_l_t_seq_a92c2238c6f85370a37d0226ac54c37d0}{append}}( System.Action<\textcolor{keywordtype}{object}> callback, \textcolor{keywordtype}{object} obj )\{}
+\DoxyCodeLine{        \mbox{\hyperlink{class_l_t_seq_a92c2238c6f85370a37d0226ac54c37d0}{append}}(\mbox{\hyperlink{class_lean_tween}{LeanTween}}.delayedCall(0f, callback).setOnCompleteParam(obj));}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} addOn();}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_seq}{LTSeq}} \mbox{\hyperlink{class_l_t_seq_a92c2238c6f85370a37d0226ac54c37d0}{append}}( GameObject gameObject, System.Action callback )\{}
+\DoxyCodeLine{        \mbox{\hyperlink{class_l_t_seq_a92c2238c6f85370a37d0226ac54c37d0}{append}}(\mbox{\hyperlink{class_lean_tween}{LeanTween}}.delayedCall(gameObject, 0f, callback));}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} addOn();}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_seq}{LTSeq}} \mbox{\hyperlink{class_l_t_seq_a92c2238c6f85370a37d0226ac54c37d0}{append}}( GameObject gameObject, System.Action<\textcolor{keywordtype}{object}> callback, \textcolor{keywordtype}{object} obj )\{}
+\DoxyCodeLine{        \mbox{\hyperlink{class_l_t_seq_a92c2238c6f85370a37d0226ac54c37d0}{append}}(\mbox{\hyperlink{class_lean_tween}{LeanTween}}.delayedCall(gameObject, 0f, callback).setOnCompleteParam(obj));}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} addOn();}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_seq}{LTSeq}} \mbox{\hyperlink{class_l_t_seq_a92c2238c6f85370a37d0226ac54c37d0}{append}}( \mbox{\hyperlink{class_l_t_descr}{LTDescr}} tween )\{}
+\DoxyCodeLine{        this.current.tween = tween;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//      Debug.Log("tween:" + tween + " delay:" + this.current.totalDelay);}}
+\DoxyCodeLine{}
+\DoxyCodeLine{        this.current.totalDelay = addPreviousDelays();}
+\DoxyCodeLine{}
+\DoxyCodeLine{        tween.setDelay( this.current.totalDelay );}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} addOn();}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_seq}{LTSeq}} insert( \mbox{\hyperlink{class_l_t_descr}{LTDescr}} tween )\{}
+\DoxyCodeLine{        this.current.tween = tween;}
+\DoxyCodeLine{}
+\DoxyCodeLine{        tween.setDelay( addPreviousDelays() );}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} addOn();}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_seq}{LTSeq}} setScale( \textcolor{keywordtype}{float} timeScale )\{}
+\DoxyCodeLine{\textcolor{comment}{//      Debug.Log("this.current:" + this.current.previous.debugIter+" tween:"+this.current.previous.tween);}}
+\DoxyCodeLine{        setScaleRecursive(this.current, timeScale, 500);}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} addOn();}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{private} \textcolor{keywordtype}{void} setScaleRecursive( \mbox{\hyperlink{class_l_t_seq}{LTSeq}} seq, \textcolor{keywordtype}{float} timeScale, \textcolor{keywordtype}{int} count )\{}
+\DoxyCodeLine{        \textcolor{keywordflow}{if} (count > 0) \{}
+\DoxyCodeLine{            this.timeScale = timeScale;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//          Debug.Log("seq.count:" + count + " seq.tween:" + seq.tween);}}
+\DoxyCodeLine{            seq.totalDelay *= timeScale;}
+\DoxyCodeLine{            \textcolor{keywordflow}{if} (seq.tween != \textcolor{keyword}{null}) \{}
+\DoxyCodeLine{\textcolor{comment}{//          Debug.Log("seq.tween.time * timeScale:" + seq.tween.time * timeScale + " seq.totalDelay:"+seq.totalDelay +" time:"+seq.tween.time+" seq.tween.delay:"+seq.tween.delay);}}
+\DoxyCodeLine{                \textcolor{keywordflow}{if} (seq.tween.time != 0f)}
+\DoxyCodeLine{                    seq.tween.setTime(seq.tween.time * timeScale);}
+\DoxyCodeLine{                seq.tween.setDelay(seq.tween.delay * timeScale);}
+\DoxyCodeLine{            \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{            \textcolor{keywordflow}{if} (seq.previous != \textcolor{keyword}{null})}
+\DoxyCodeLine{                setScaleRecursive(seq.previous, timeScale, count -\/ 1);}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \mbox{\hyperlink{class_l_t_seq}{LTSeq}} reverse()\{}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} addOn();}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\}}
+\end{DoxyCodeInclude}
+ 
